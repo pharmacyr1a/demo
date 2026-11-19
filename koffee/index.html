@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медовый Эспрессо — Кофейня</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #F5F0E8;
+            --coffee: #3D2B1F;
+            --coffee-light: #6B5344;
+            --accent: #C4A77D;
+            --text: #2C2420;
+            --text-light: #8A7E72;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background-color: transparent;
+            transition: background-color 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        /* Тёмная градиентная подложка: гарантирует читаемость светлого
+           текста на любом участке hero-фотографии */
+        nav::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(to bottom,
+                rgba(45, 32, 23, 0.80) 0%,
+                rgba(45, 32, 23, 0.45) 55%,
+                rgba(45, 32, 23, 0) 100%);
+            opacity: 1;
+            transition: opacity 0.35s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 60px;
+            box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+        }
+
+        nav.scrolled::before {
+            opacity: 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            color: var(--coffee);
+            text-shadow: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text);
+            text-shadow: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(61,43,31,0.7) 0%, rgba(61,43,31,0.4) 100%),
+                        url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--cream);
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.3s;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.6s;
+            font-weight: 300;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: rgba(255,255,255,0.3);
+            overflow: hidden;
+        }
+
+        .scroll-hint::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: var(--cream);
+            animation: scrollDown 2s ease infinite;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(200%); }
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--coffee);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+            margin: 20px auto;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.6s, transform 0.6s;
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 1px solid var(--accent);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--coffee);
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .about-text .signature {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--coffee);
+            margin-top: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Menu */
+        .menu-section {
+            background: var(--warm-white);
+            max-width: 100%;
+            padding: 120px 60px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-category h3 {
+            font-size: 1.3rem;
+            color: var(--coffee);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(196, 167, 125, 0.3);
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: padding-left 0.3s;
+        }
+
+        .menu-item:hover {
+            padding-left: 10px;
+        }
+
+        .menu-item-name {
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .menu-item-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            color: var(--coffee-light);
+            font-size: 1.1rem;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s, filter 0.6s;
+            filter: grayscale(30%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(61,43,31,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Info / Contact */
+        .info-section {
+            background: var(--coffee);
+            color: var(--cream);
+            max-width: 100%;
+            padding: 100px 60px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .info-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 2;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--cream);
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            section {
+                padding: 80px 30px;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Медовый Эспрессо</a>
+        <ul class="nav-links">
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#gallery">Атмосфера</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Медовый Эспрессо</h1>
+            <p>Где время останавливается</p>
+        </div>
+        <div class="scroll-hint"></div>
+    </section>
+
+    <section id="about">
+        <div class="section-header reveal">
+            <h2>Наша история</h2>
+            <div class="divider"></div>
+            <p>Маленькая кофейня с душой большого города</p>
+        </div>
+        <div class="about">
+            <div class="about-image reveal">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80" alt="Интерьер кофейни">
+            </div>
+            <div class="about-text reveal">
+                <h3>Кофе — это язык, на котором говорит душа</h3>
+                <p>Мы открылись в тихом переулке старого центра, чтобы создать место, где каждая чашка кофе — это маленькое искусство. Зерна обжариваются небольшими партиями, бариста знают постоянных гостей по имени.</p>
+                <p>Интерьер в тёплых тонах, мягкий свет, запах свежемолотого кофе и тишина, нарушаемая только шепотом разговоров. Здесь можно поработать, встретиться с другом или просто посидеть в одиночестве с хорошей книгой.</p>
+                <p class="signature">С любовью, команда Медового Эспрессо</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="menu-section" id="menu">
+        <div class="section-header reveal">
+            <h2>Меню</h2>
+            <div class="divider"></div>
+            <p>Только качественные ингредиенты и внимание к деталям</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-category reveal">
+                <h3>Классика</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Эспрессо</div>
+                        <div class="menu-item-desc">30 мл, крепкий и насыщенный</div>
+                    </div>
+                    <span class="menu-item-price">120 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Американо</div>
+                        <div class="menu-item-desc">Эспрессо + горячая вода</div>
+                    </div>
+                    <span class="menu-item-price">150 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Капучино</div>
+                        <div class="menu-item-desc">Равные части эспрессо, молока и пены</div>
+                    </div>
+                    <span class="menu-item-price">180 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Латте</div>
+                        <div class="menu-item-desc">Нежный, с молочной пенкой</div>
+                    </div>
+                    <span class="menu-item-price">190 ₽</span>
+                </div>
+            </div>
+
+            <div class="menu-category reveal">
+                <h3>Авторское</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Медовый раф</div>
+                        <div class="menu-item-desc">Сливки, мед, ваниль, эспрессо</div>
+                    </div>
+                    <span class="menu-item-price">220 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Лавандовый латте</div>
+                        <div class="menu-item-desc">Домашний лавандовый сироп</div>
+                    </div>
+                    <span class="menu-item-price">240 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Корица & Апельсин</div>
+                        <div class="menu-item-desc">Зимний вариант с пряностями</div>
+                    </div>
+                    <span class="menu-item-price">230 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Холодный брю</div>
+                        <div class="menu-item-desc">12-часовая заварка, нитро</div>
+                    </div>
+                    <span class="menu-item-price">250 ₽</span>
+                </div>
+            </div>
+
+            <div class="menu-category reveal">
+                <h3>Десерты</h3>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Тирамису</div>
+                        <div class="menu-item-desc">Домашний рецепт</div>
+                    </div>
+                    <span class="menu-item-price">290 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Чизкейк Нью-Йорк</div>
+                        <div class="menu-item-desc">С ягодным соусом</div>
+                    </div>
+                    <span class="menu-item-price">270 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Круассан миндальный</div>
+                        <div class="menu-item-desc">Свежая выпечка каждое утро</div>
+                    </div>
+                    <span class="menu-item-price">180 ₽</span>
+                </div>
+                <div class="menu-item">
+                    <div>
+                        <div class="menu-item-name">Медовик</div>
+                        <div class="menu-item-desc">Тонкие коржи, сметанный крем</div>
+                    </div>
+                    <span class="menu-item-price">240 ₽</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="gallery">
+        <div class="section-header reveal">
+            <h2>Атмосфера</h2>
+            <div class="divider"></div>
+            <p>Моменты, которые остаются в памяти</p>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Кофе">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80" alt="Интерьер">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&q=80" alt="Десерт">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Зерна">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=600&q=80" alt="Латте арт">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=600&q=80" alt="Уют">
+            </div>
+        </div>
+    </section>
+
+    <div class="info-section" id="contact">
+        <div class="info-grid">
+            <div class="info-item reveal">
+                <h4>Адрес</h4>
+                <p>ул. Большая Дмитровка, 12<br>Москва, Россия</p>
+            </div>
+            <div class="info-item reveal">
+                <h4>Часы работы</h4>
+                <p>Пн–Пт: 08:00 – 22:00<br>Сб–Вс: 09:00 – 23:00</p>
+            </div>
+            <div class="info-item reveal">
+                <h4>Контакты</h4>
+                <p>+7 (495) 123-45-67<br>hello@medovy.com</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Медовый Эспрессо © 2026</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 100;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+    </script>
+
+</body>
+</html>

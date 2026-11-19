@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери эту строку после оплаты, чтобы сайт попал в поиск -->
+<meta name="robots" content="noindex">
+<title>Студия маникюра и педикюра — Кушелевская дорога</title>
+<meta name="description" content="Маникюр и педикюр на Кушелевской дороге в Санкт-Петербурге. Цены и запись онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --milk:#eef1ea; --powder:#f0cfd2; --pist:#cddbc6; --ink:#2b1823;
+  --accent:#9c1c3b;
+  --serif:"Yeseva One",Georgia,"Times New Roman",serif;
+  --sans:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--milk);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+.logo{font:400 1.15rem/1.2 var(--serif);text-decoration:none}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:34px 0 70px}
+h1{font:400 clamp(2.5rem,6.4vw,4.7rem)/1.04 var(--serif);letter-spacing:-.01em}
+.lead{max-width:30em;margin:22px 0 30px;font-size:1.1rem}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:14px 22px;border-radius:14px;font-weight:600;text-decoration:none;border:2px solid var(--accent);transition:background .2s,color .2s}
+.btn.main{background:var(--accent);color:#fff}
+.btn.alt{color:var(--accent)}
+.btn.alt:hover{background:var(--accent);color:#fff}
+.btn.main:hover{background:transparent;color:var(--accent)}
+
+.hand{display:flex;align-items:flex-end;justify-content:center;gap:11px;height:170px}
+.nail{--h:100px;width:52px;height:var(--h);border:0;padding:0;cursor:pointer;position:relative;
+  border-radius:26px 26px 12px 12px;background:var(--c);
+  animation:rise .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*80ms)}
+.nail::after{content:"";position:absolute;left:11px;top:10px;width:8px;height:44%;border-radius:8px;background:rgba(255,255,255,.38)}
+.nail[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:4px}
+.hint{text-align:center;font-size:.9rem;margin-top:18px;opacity:.75}
+@keyframes rise{from{transform:translateY(22px);opacity:0}}
+
+section{padding:70px 0}
+h2{font:400 clamp(1.9rem,4vw,2.6rem)/1.1 var(--serif);margin-bottom:28px}
+
+.prices{background:var(--powder);border-radius:44px 44px 0 0}
+.list{list-style:none;padding:0;max-width:640px}
+.list li{display:flex;align-items:baseline;gap:10px;padding:11px 0}
+.list .dots{flex:1;border-bottom:2px dotted rgba(43,24,35,.35);transform:translateY(-4px)}
+.list .price{font-weight:600;white-space:nowrap}
+.note{margin-top:18px;font-size:.9rem;opacity:.75}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:760px}
+.works div{aspect-ratio:3/4;border-radius:999px 999px 18px 18px;display:grid;place-items:end center;padding-bottom:18px;font-size:.9rem;background:var(--pist)}
+.works div:nth-child(even){background:var(--powder)}
+
+.contacts{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.contacts p+p{margin-top:8px}
+.contacts .actions{margin-top:18px}
+footer{padding:30px 0 90px;font-size:.9rem;opacity:.8;border-top:2px dotted rgba(43,24,35,.3)}
+
+/* ДЕМО: удали этот блок и строку <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:999px;font-size:.85rem;z-index:9}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;gap:34px;padding-bottom:50px}
+  .contacts{grid-template-columns:1fr}
+  .works{grid-template-columns:repeat(2,1fr)}
+  section{padding:54px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top">Студия маникюра<br>и педикюра</a>
+    <a class="btn alt" href="https://go.2gis.com/LWuCf" target="_blank" rel="noopener">Записаться</a>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <h1>Маникюр и педикюр на Кушелевской дороге</h1>
+        <p class="lead">Цены и адрес в одном месте. Записаться можно онлайн через 2ГИС или написать в мессенджер.</p>
+        <div class="actions">
+          <a class="btn main" href="https://go.2gis.com/LWuCf" target="_blank" rel="noopener">Записаться онлайн</a>
+          <!-- ЗАМЕНИ: номер в формате 7XXXXXXXXXX (без плюса) -->
+          <a class="btn alt" href="https://wa.me/79000000000" target="_blank" rel="noopener">WhatsApp</a>
+          <!-- ЗАМЕНИ: username без @ -->
+          <a class="btn alt" href="https://t.me/username" target="_blank" rel="noopener">Telegram</a>
+        </div>
+      </div>
+      <div>
+        <div class="hand" id="hand" role="group" aria-label="Выбор оттенка лака">
+          <button class="nail" style="--i:0;--h:88px;--c:#9c1c3b" data-c="#9c1c3b" aria-label="Вишня" aria-pressed="true"></button>
+          <button class="nail" style="--i:1;--h:116px;--c:#6a2c5f" data-c="#6a2c5f" aria-label="Слива" aria-pressed="false"></button>
+          <button class="nail" style="--i:2;--h:132px;--c:#2f5d4e" data-c="#2f5d4e" aria-label="Сосна" aria-pressed="false"></button>
+          <button class="nail" style="--i:3;--h:116px;--c:#2a4a73" data-c="#2a4a73" aria-label="Чернильный синий" aria-pressed="false"></button>
+          <button class="nail" style="--i:4;--h:92px;--c:#6b3f2e" data-c="#6b3f2e" aria-label="Какао" aria-pressed="false"></button>
+        </div>
+        <p class="hint">Нажмите на ноготь, чтобы сменить оттенок</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<section class="prices" id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <ul class="list">
+      <li><span>Маникюр классический</span><span class="dots"></span><span class="price">от 1&nbsp;500&nbsp;₽</span></li>
+      <li><span>Маникюр с покрытием гель-лак</span><span class="dots"></span><span class="price">от 2&nbsp;200&nbsp;₽</span></li>
+      <li><span>Педикюр</span><span class="dots"></span><span class="price">от 2&nbsp;500&nbsp;₽</span></li>
+      <li><span>Педикюр с покрытием</span><span class="dots"></span><span class="price">от 3&nbsp;200&nbsp;₽</span></li>
+      <li><span>Снятие покрытия</span><span class="dots"></span><span class="price">от 400&nbsp;₽</span></li>
+      <li><span>Дизайн, один ноготь</span><span class="dots"></span><span class="price">от 100&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Цены в демо условные. Актуальный прайс студия присылает на правку в любой момент.</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works">
+      <div>фото</div><div>фото</div><div>фото</div>
+      <div>фото</div><div>фото</div><div>фото</div>
+    </div>
+    <p class="note">Здесь появятся фотографии работ студии.</p>
+  </div>
+</section>
+
+<section id="contacts" style="padding-top:0">
+  <div class="wrap contacts">
+    <div>
+      <h2>Как нас найти</h2>
+      <p>Санкт-Петербург, Кушелевская дорога</p>
+      <p>Ежедневно, 10:00–21:00</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Выберите удобное время онлайн или напишите, мы подберём окно.</p>
+      <div class="actions">
+        <a class="btn main" href="https://go.2gis.com/LWuCf" target="_blank" rel="noopener">Записаться онлайн</a>
+        <a class="btn alt" href="https://t.me/username" target="_blank" rel="noopener">Написать в Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>Демо-версия сайта: цены, часы работы и фото условные.</footer>
+</div>
+
+<script>
+  var nails = document.querySelectorAll('.nail');
+  nails.forEach(function (n) {
+    n.addEventListener('click', function () {
+      document.documentElement.style.setProperty('--accent', n.dataset.c);
+      nails.forEach(function (m) { m.setAttribute('aria-pressed', m === n ? 'true' : 'false'); });
+    });
+  });
+</script>
+</body>
+</html>

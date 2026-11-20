@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Kova Tattoo — татуировки на проспекте Энгельса</title>
+<meta name="description" content="Татуировки на проспекте Энгельса в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1f35c9;--deep:#16248f;--white:#f4f6ff;--yellow:#ffd84a;--line:rgba(244,246,255,.35);
+  --disp:"Unbounded","Arial Black",Impact,sans-serif;
+  --sans:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--blue);color:var(--white);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
+.btn{display:inline-block;padding:13px 22px;background:var(--white);color:var(--deep);font-weight:600;text-decoration:none;border:2px solid var(--white);transition:background .2s,color .2s}
+.btn:hover{background:var(--yellow);border-color:var(--yellow)}
+.btn.ghost{background:transparent;color:var(--white)}
+.btn.ghost:hover{background:var(--white);color:var(--deep);border-color:var(--white)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+.hero{position:relative;padding:44px 0 56px;overflow:hidden}
+.mandala{position:absolute;right:-60px;top:-30px;width:min(58vw,430px);opacity:.9;animation:spin 120s linear infinite}
+.mandala circle{fill:var(--white)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .wrap{position:relative}
+.kicker{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:200px}
+h1{font:800 clamp(4rem,22vw,17rem)/.82 var(--disp);letter-spacing:-.05em;text-transform:uppercase;margin-left:-.04em}
+h1 small{display:block;font:500 clamp(1rem,3.4vw,2rem)/1.1 var(--disp);letter-spacing:0;margin-top:20px}
+.lead{max-width:26em;margin:28px 0 30px;font-size:1.1rem}
+
+section{padding:76px 0;border-top:1px solid var(--line)}
+h2{font:800 clamp(1.5rem,4vw,2.3rem)/1.1 var(--disp);text-transform:uppercase;margin-bottom:34px;letter-spacing:-.02em}
+.table{list-style:none;padding:0}
+.table li{display:grid;grid-template-columns:1.2fr 1fr auto;gap:6px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.table .head{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);padding:0 0 10px}
+.table .n{font:500 1.15rem var(--disp)}
+.table .d{opacity:.85}
+.table .p{font:500 1.05rem var(--disp);white-space:nowrap}
+.note{margin-top:22px;font-size:.88rem;opacity:.85}
+
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.steps b{display:block;font:800 clamp(3.4rem,8vw,5.4rem)/1 var(--disp);color:transparent;-webkit-text-stroke:1.5px var(--white);margin-bottom:10px}
+.steps span{display:block;font:500 1.05rem var(--disp);margin-bottom:6px}
+.steps p{opacity:.85;font-size:.95rem}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.works div{position:relative;aspect-ratio:1;border:1px solid var(--line);display:grid;place-items:end start;padding:14px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  background:linear-gradient(to top right,transparent calc(50% - 1px),var(--line),transparent calc(50% + 1px)),linear-gradient(to bottom right,transparent calc(50% - 1px),var(--line),transparent calc(50% + 1px))}
+
+.big a{display:block;font:800 clamp(1.7rem,6vw,3.6rem)/1.15 var(--disp);text-transform:uppercase;letter-spacing:-.03em;text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line);transition:padding-left .25s,color .2s}
+.big a:hover{padding-left:16px;color:var(--yellow)}
+.big a::after{content:" →"}
+.addr{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.addr span{display:block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:4px}
+
+footer{padding:28px 0 90px;border-top:1px solid var(--line);font-size:.88rem;opacity:.9}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--yellow);color:#1a1a1a;padding:8px 14px;font:800 .7rem var(--disp);text-transform:uppercase}
+
+@media (max-width:780px){
+  .kicker{margin-bottom:150px}
+  .steps{grid-template-columns:1fr 1fr;row-gap:34px}
+  .works{grid-template-columns:1fr 1fr}
+  .table li{grid-template-columns:1fr auto}
+  .table .d{grid-column:1;grid-row:2}
+  .table .p{grid-row:1;grid-column:2}
+  .table .head{display:none}
+  .addr{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="wrap">
+  <div class="top"><span>Kova Tattoo</span><span>Санкт-Петербург</span><a class="btn" href="#contacts">Записаться</a></div>
+</div>
+
+<main class="hero" id="top">
+  <svg class="mandala" viewBox="0 0 400 400" aria-hidden="true"><g id="dots"></g></svg>
+  <div class="wrap">
+    <p class="kicker">Тату-услуги · проспект Энгельса</p>
+    <h1>Kova<small>Tattoo</small></h1>
+    <p class="lead">Напишите, что хотите набить, где и какого размера. Обсудим эскиз и подберём время.</p>
+    <div class="actions">
+      <a class="btn" href="#contacts">Записаться</a>
+      <a class="btn ghost" href="#prices">Цены</a>
+    </div>
+  </div>
+</main>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <ul class="table">
+      <li class="head"><span>Услуга</span><span>Размер</span><span>Цена</span></li>
+      <li><span class="n">Небольшая татуировка</span><span class="d">до 5 см</span><span class="p">от 4&nbsp;000&nbsp;₽</span></li>
+      <li><span class="n">Средняя татуировка</span><span class="d">5–15 см</span><span class="p">от 9&nbsp;000&nbsp;₽</span></li>
+      <li><span class="n">Крупная работа</span><span class="d">от 15 см, возможно в несколько сеансов</span><span class="p">от 18&nbsp;000&nbsp;₽</span></li>
+      <li><span class="n">Перекрытие старой татуировки</span><span class="d">стоимость после консультации</span><span class="p">по эскизу</span></li>
+      <li><span class="n">Эскиз под ваш запрос</span><span class="d">отдельная услуга</span><span class="p">от 2&nbsp;000&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Цены в демо условные. Точную стоимость мастер называет после обсуждения эскиза.</p>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="wrap">
+    <h2>Как это проходит</h2>
+    <ol class="steps">
+      <li><b>01</b><span>Идея</span><p>Описание, размер, место на теле, референсы.</p></li>
+      <li><b>02</b><span>Эскиз</span><p>Обсуждаем детали и стоимость.</p></li>
+      <li><b>03</b><span>Сеанс</span><p>В назначенное время на проспекте Энгельса.</p></li>
+      <li><b>04</b><span>Уход</span><p>Подскажем, как ухаживать после сеанса.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+    <p class="note">Здесь появятся работы студии.</p>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <h2>Запись</h2>
+    <div class="big">
+      <!-- ЗАМЕНИ href: https://t.me/username -->
+      <a href="#">Telegram</a>
+      <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+      <a href="#">WhatsApp</a>
+    </div>
+    <div class="addr">
+      <div><span>Адрес</span>Санкт-Петербург, проспект Энгельса</div>
+      <div><span>Приём</span>По записи</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, процесс и фото условные. © 2026 Kova Tattoo</div>
+</footer>
+
+<script>
+(function () {
+  var g = document.getElementById('dots'), NS = 'http://www.w3.org/2000/svg';
+  function dot(x, y, r) {
+    var c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', x.toFixed(1)); c.setAttribute('cy', y.toFixed(1)); c.setAttribute('r', r.toFixed(2));
+    g.appendChild(c);
+  }
+  dot(200, 200, 3);
+  for (var k = 1; k <= 9; k++) {
+    var R = k * 20, n = 10 * k + 6;
+    for (var i = 0; i < n; i++) {
+      var a = i / n * Math.PI * 2;
+      dot(200 + R * Math.cos(a), 200 + R * Math.sin(a), 0.8 + k * 0.17);
+    }
+  }
+})();
+</script>
+</body>
+</html>

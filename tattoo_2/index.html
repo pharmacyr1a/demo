@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Taiga — татуировки на улице Хлопина</title>
+<meta name="description" content="Татуировки на улице Хлопина в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Forum&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#12281f;--bg2:#183326;--ink:#ecefe6;--mut:#a9b79a;--acc:#e8942b;--line:rgba(236,239,230,.22);
+  --serif:"Forum",Georgia,"Times New Roman",serif;
+  --sans:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.up{font-family:var(--serif);text-transform:uppercase}
+
+header{position:absolute;inset:0 0 auto;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:24px 22px;max-width:1080px;margin:0 auto;left:0;right:0}
+.logo{font:400 1.4rem/1 var(--serif);letter-spacing:.32em;text-transform:uppercase;text-decoration:none}
+nav{display:flex;align-items:center;gap:26px;font-size:.92rem}
+nav a{text-decoration:none;color:var(--mut)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;padding:13px 24px;border:1px solid var(--acc);background:var(--acc);color:#1b1409;font-weight:600;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--acc)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg)}
+
+.hero{position:relative;min-height:min(94vh,780px);overflow:hidden;display:flex;align-items:center}
+.sun{position:absolute;right:12%;top:16%;width:clamp(110px,18vw,210px);aspect-ratio:1;border-radius:50%;background:var(--acc);opacity:.92}
+.forest{position:absolute;left:0;bottom:0;width:100%;height:46%}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:80px;padding-bottom:12vh}
+.eyebrow{font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acc);margin-bottom:18px}
+h1{font:400 clamp(2.6rem,8.2vw,6.2rem)/1 var(--serif);text-transform:uppercase;max-width:9em}
+.lead{max-width:27em;margin:24px 0 34px;font-size:1.1rem;color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+
+section{padding:84px 0;border-top:1px solid var(--line)}
+h2{font:400 clamp(1.8rem,4.4vw,2.8rem)/1.1 var(--serif);text-transform:uppercase;margin-bottom:34px}
+.list{list-style:none;padding:0}
+.list li{display:grid;grid-template-columns:3rem 1fr auto;gap:6px 18px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line);transition:padding-left .25s}
+.list li:hover{padding-left:12px}
+.list li:hover .n{color:var(--acc)}
+.list .k{color:var(--acc);font:400 1rem var(--serif)}
+.list .n{font:400 clamp(1.2rem,2.6vw,1.6rem)/1.2 var(--serif);transition:color .2s}
+.list .d{grid-column:2;color:var(--mut);font-size:.92rem}
+.list .p{font:400 1.15rem var(--serif);white-space:nowrap;grid-row:1;grid-column:3}
+.note{margin-top:22px;font-size:.88rem;color:var(--mut)}
+
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.steps li{position:relative;padding-top:26px;border-top:1px solid var(--line)}
+.steps li::before{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--acc)}
+.steps b{display:block;font:400 1.3rem var(--serif);text-transform:uppercase;margin-bottom:6px}
+.steps span{color:var(--mut);font-size:.95rem}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.works div{aspect-ratio:3/4;border:1px solid var(--line);border-radius:999px 999px 0 0;display:grid;place-content:center;justify-items:center;gap:12px;color:var(--mut);font-size:.85rem;background:var(--bg2)}
+.works svg{width:46px;height:76px;color:var(--line);fill:currentColor}
+
+.panel{background:var(--acc);color:#1b1409;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.panel h2{margin-bottom:18px}
+.panel p+p{margin-top:6px}
+.panel .btn{background:var(--bg);border-color:var(--bg);color:var(--ink)}
+.panel .btn:hover{background:transparent;color:#1b1409}
+.panel .btn.ghost{background:transparent;color:#1b1409;border-color:#1b1409}
+.panel .btn.ghost:hover{background:#1b1409;color:var(--acc)}
+
+footer{padding:30px 0 90px;font-size:.88rem;color:var(--mut)}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--ink);color:var(--bg);padding:8px 14px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+
+@media (max-width:780px){
+  nav a:not(.btn){display:none}
+  .logo{font-size:1.15rem;letter-spacing:.24em}
+  .sun{right:8%;top:14%}
+  .steps{grid-template-columns:1fr 1fr;row-gap:36px}
+  .works{grid-template-columns:1fr 1fr}
+  .panel{grid-template-columns:1fr}
+  .list li{grid-template-columns:2.2rem 1fr auto}
+  section{padding:60px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spruce" viewBox="0 0 60 100" preserveAspectRatio="none"><path d="M30 0L46 30H37L52 58H42L58 90H2L18 58H8L23 30H14Z"/><rect x="26" y="88" width="8" height="12"/></symbol>
+</svg>
+
+<div class="hero" id="top">
+  <header>
+    <a class="logo" href="#top">Taiga</a>
+    <nav>
+      <a href="#prices">Услуги</a><a href="#steps">Процесс</a><a href="#works">Работы</a>
+      <a class="btn" href="#contacts">Записаться</a>
+    </nav>
+  </header>
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="forest" id="forest" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+  <div class="wrap">
+    <p class="eyebrow">Taiga · Санкт-Петербург</p>
+    <h1>Татуировки на Хлопина</h1>
+    <p class="lead">Напишите, что хотите набить, где и какого размера. Обсудим эскиз и подберём время.</p>
+    <div class="actions">
+      <a class="btn" href="#contacts">Записаться</a>
+      <a class="btn ghost" href="#prices">Цены</a>
+    </div>
+  </div>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <ul class="list">
+      <li><span class="k">01</span><span class="n">Небольшая татуировка</span><span class="p">от 5&nbsp;000&nbsp;₽</span><span class="d">до 5 см</span></li>
+      <li><span class="k">02</span><span class="n">Средняя татуировка</span><span class="p">от 10&nbsp;000&nbsp;₽</span><span class="d">5–15 см</span></li>
+      <li><span class="k">03</span><span class="n">Крупная работа</span><span class="p">от 20&nbsp;000&nbsp;₽</span><span class="d">от 15 см, возможно в несколько сеансов</span></li>
+      <li><span class="k">04</span><span class="n">Перекрытие старой татуировки</span><span class="p">по эскизу</span><span class="d">стоимость после консультации</span></li>
+      <li><span class="k">05</span><span class="n">Эскиз под ваш запрос</span><span class="p">от 2&nbsp;000&nbsp;₽</span><span class="d">отдельная услуга</span></li>
+    </ul>
+    <p class="note">Цены в демо условные. Точную стоимость мастер называет после обсуждения эскиза.</p>
+  </div>
+</section>
+
+<section id="steps" style="background:var(--bg2)">
+  <div class="wrap">
+    <h2>Как это проходит</h2>
+    <ol class="steps">
+      <li><b>Идея</b><span>Описание, размер, место на теле, референсы.</span></li>
+      <li><b>Эскиз</b><span>Обсуждаем детали и стоимость.</span></li>
+      <li><b>Сеанс</b><span>В назначенное время на Хлопина.</span></li>
+      <li><b>Заживление</b><span>Подскажем, как ухаживать после сеанса.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works" aria-hidden="true">
+      <div><svg><use href="#spruce"/></svg>фото</div><div><svg><use href="#spruce"/></svg>фото</div><div><svg><use href="#spruce"/></svg>фото</div>
+    </div>
+    <p class="note">Здесь появятся работы студии.</p>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <div class="panel">
+      <div>
+        <h2>Где найти</h2>
+        <p>Санкт-Петербург, улица Хлопина</p>
+        <p>Приём по записи</p>
+      </div>
+      <div>
+        <h2>Запись</h2>
+        <p>Напишите в мессенджер: подберём время и обсудим эскиз.</p>
+        <div class="actions" style="margin-top:22px">
+          <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+          <a class="btn" href="#">WhatsApp</a>
+          <!-- ЗАМЕНИ href: https://t.me/username -->
+          <a class="btn ghost" href="#">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, процесс и фото условные. © 2026 Taiga</div>
+</footer>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg', f = document.getElementById('forest'), s = 7;
+  function r() { s = (s * 9301 + 49297) % 233280; return s / 233280; }
+  function row(n, fill, minH, maxH, base) {
+    for (var i = 0; i < n; i++) {
+      var h = minH + r() * (maxH - minH), w = h * 0.55, x = i * (1200 / n) + r() * 30 - 15;
+      var u = document.createElementNS(NS, 'use');
+      u.setAttribute('href', '#spruce'); u.setAttribute('x', x); u.setAttribute('y', base - h);
+      u.setAttribute('width', w); u.setAttribute('height', h); u.setAttribute('fill', fill);
+      f.appendChild(u);
+    }
+  }
+  row(17, '#1f4535', 110, 190, 222);
+  row(13, '#0a1812', 80, 150, 226);
+})();
+</script>
+</body>
+</html>

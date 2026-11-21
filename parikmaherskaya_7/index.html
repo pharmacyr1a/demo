@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f2ed">
+  <meta name="description" content="Restyling — салон красоты на Мебельной улице. Уход, стиль и внимание к деталям.">
+  <title>Restyling — салон красоты</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f6f2ed;
+      --paper-deep: #eee7df;
+      --ink: #282523;
+      --muted: #77706a;
+      --line: rgba(40, 37, 35, .15);
+      --accent: #b77c70;
+      --accent-dark: #87594f;
+      --sage: #858b78;
+      --white: #fffdf9;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', Arial, sans-serif;
+      --gutter: clamp(20px, 5.2vw, 84px);
+      --radius: 4px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      color: var(--ink); background: var(--paper); font-family: var(--sans);
+      line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    img { display: block; max-width: 100%; }
+    .wrap { width: min(100% - var(--gutter) * 2, 1440px); margin-inline: auto; }
+    .topbar {
+      position: fixed; inset: 0 0 auto; z-index: 50; height: 82px; padding-inline: var(--gutter);
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      background: rgba(246,242,237,.88); border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; border: 1px solid var(--accent); border-radius: 50%; display: grid; place-items: center; color: var(--accent-dark); font-family: var(--serif); font-size: 19px; font-weight: 400; letter-spacing: 0; }
+    .nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 44px); margin-left: auto; }
+    .nav a { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; transition: color .2s; }
+    .nav a:hover { color: var(--accent-dark); }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      min-height: 48px; padding: 0 23px; border: 1px solid var(--ink); border-radius: 2px;
+      background: var(--ink); color: var(--white); font-size: 10px; font-weight: 700;
+      letter-spacing: .13em; text-transform: uppercase; cursor: pointer;
+      transition: background .25s, color .25s, border-color .25s, transform .25s;
+    }
+    .button:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
+    .button--light { color: var(--ink); background: transparent; }
+    .button--light:hover { color: white; }
+    .button--small { min-height: 40px; padding-inline: 17px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .menu-toggle span { display: block; width: 17px; height: 1px; margin: 5px auto; background: var(--ink); transition: transform .2s; }
+
+    .hero { min-height: 760px; min-height: 100svh; padding: 144px var(--gutter) 38px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .hero-main { width: min(100%, 1440px); margin: 0 auto; display: grid; grid-template-columns: 1fr .87fr; align-items: center; gap: clamp(40px, 8vw, 120px); flex: 1; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--accent-dark); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; width: 30px; height: 1px; background: currentColor; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    h1 { max-width: 760px; margin: 25px 0 23px; font-size: clamp(62px, 8.7vw, 132px); line-height: .96; letter-spacing: -.055em; }
+    h1 em { color: var(--accent); font-weight: 400; }
+    .hero-copy { max-width: 440px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .hero-visual { position: relative; width: 100%; max-width: 570px; justify-self: end; padding: 0 0 44px 42px; }
+    .hero-photo { height: min(66vh, 650px); min-height: 430px; overflow: hidden; background: var(--paper-deep); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+    .hero-stamp { position: absolute; left: 0; bottom: 0; width: 150px; height: 150px; display: grid; place-items: center; border-radius: 50%; background: var(--sage); color: white; text-align: center; font-family: var(--serif); font-size: 20px; line-height: 1.2; transform: rotate(-8deg); }
+    .hero-stamp small { display: block; font-family: var(--sans); font-size: 8px; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-bottom { width: min(100%, 1440px); margin: 52px auto 0; padding-top: 17px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; }
+    .hero-bottom a { color: var(--accent-dark); }
+
+    .ticker { overflow: hidden; padding: 22px 0; background: var(--accent); color: white; }
+    .ticker-track { display: flex; width: max-content; align-items: center; gap: 34px; animation: ticker 32s linear infinite; }
+    .ticker-track span { font-family: var(--serif); font-size: clamp(22px, 3vw, 34px); font-style: italic; white-space: nowrap; }
+    .ticker-track b { font-family: var(--sans); font-size: 13px; font-weight: 400; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    .section { padding: clamp(82px, 10vw, 150px) var(--gutter); border-bottom: 1px solid var(--line); }
+    .section-inner { width: min(100%, 1440px); margin-inline: auto; }
+    .section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; margin-bottom: 58px; }
+    .section-kicker { display: block; margin-bottom: 13px; color: var(--accent-dark); font-size: 10px; font-weight: 700; letter-spacing: .19em; text-transform: uppercase; }
+    h2 { font-size: clamp(42px, 5.5vw, 76px); line-height: 1.02; letter-spacing: -.04em; }
+    .section-intro { max-width: 345px; padding-top: 28px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .service-card { min-height: 250px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); background: rgba(255,253,249,.45); transition: background .3s, transform .3s, border-color .3s; }
+    .service-card:hover { background: var(--white); border-color: rgba(183,124,112,.55); transform: translateY(-4px); }
+    .service-top { display: flex; justify-content: space-between; gap: 15px; color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .service-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--accent-dark); font-family: var(--serif); font-size: 19px; }
+    .service-card h3 { margin: 23px 0 8px; font-size: clamp(25px, 2.4vw, 34px); line-height: 1.1; }
+    .service-card p { max-width: 34ch; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .service-link { display: inline-flex; align-items: center; gap: 9px; margin-top: 22px; color: var(--accent-dark); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+
+    .about { background: var(--paper-deep); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(45px, 9vw, 135px); }
+    .about-image { position: relative; min-height: 580px; overflow: hidden; background: #d9d0c5; }
+    .about-image img { width: 100%; height: 100%; min-height: 580px; object-fit: cover; }
+    .about-image::after { content: ''; position: absolute; inset: 16px; border: 1px solid rgba(255,255,255,.65); pointer-events: none; }
+    .about-copy h2 { margin-bottom: 26px; }
+    .about-copy > p { max-width: 490px; margin-bottom: 16px; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .about-note { display: flex; align-items: center; gap: 16px; margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--line); }
+    .about-note-mark { flex: 0 0 45px; height: 45px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: white; font-family: var(--serif); font-size: 23px; }
+    .about-note p { color: var(--ink); font-family: var(--serif); font-size: 19px; line-height: 1.35; }
+
+    .gallery-grid { display: grid; grid-template-columns: 1.1fr .9fr .9fr; grid-template-rows: 245px 245px; gap: 14px; }
+    .gallery-item { overflow: hidden; background: var(--paper-deep); }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.3,1); }
+    .gallery-item:hover img { transform: scale(1.045); }
+
+    .visit { background: var(--ink); color: var(--white); }
+    .visit .section-kicker { color: #d6a69b; }
+    .visit h2 { max-width: 740px; }
+    .visit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; margin-top: 58px; }
+    .visit-step { padding-top: 20px; border-top: 1px solid rgba(255,255,255,.22); }
+    .visit-step span { color: #d6a69b; font-size: 10px; letter-spacing: .15em; }
+    .visit-step h3 { margin: 18px 0 10px; font-size: 27px; }
+    .visit-step p { max-width: 32ch; color: rgba(255,255,255,.62); font-size: 12px; line-height: 1.8; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr .85fr; gap: clamp(40px, 9vw, 130px); }
+    .contact-copy h2 { margin-bottom: 23px; }
+    .contact-copy > p { max-width: 400px; color: var(--muted); font-size: 14px; line-height: 1.9; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .contact-details { display: grid; gap: 26px; padding-top: 10px; }
+    .detail { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+    .detail span { display: block; margin-bottom: 7px; color: var(--accent-dark); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .detail p, .detail a { font-size: 15px; }
+    .detail .sub { margin-top: 5px; color: var(--muted); font-size: 11px; }
+
+    footer { padding: 27px var(--gutter); background: #211e1c; color: rgba(255,255,255,.62); }
+    .footer-inner { width: min(100%, 1440px); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-brand { color: white; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+    .footer-meta { font-size: 10px; letter-spacing: .1em; }
+    .to-top { color: white; font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 980px) {
+      .hero { min-height: auto; }
+      .hero-main { grid-template-columns: 1fr .82fr; gap: 30px; }
+      h1 { font-size: clamp(58px, 8vw, 88px); }
+      .hero-photo { min-height: 420px; height: 55vh; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 45px; }
+      .about-image, .about-image img { min-height: 500px; }
+      .gallery-grid { grid-template-rows: 200px 200px; }
+    }
+    @media (max-width: 720px) {
+      .topbar { height: 70px; }
+      .menu-toggle { display: block; margin-left: auto; }
+      .nav { position: fixed; inset: 70px 0 auto; display: none; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 14px var(--gutter) 25px; background: var(--paper); border-bottom: 1px solid var(--line); }
+      .nav.open { display: flex; }
+      .nav a { padding: 15px 0; border-bottom: 1px solid var(--line); }
+      .topbar > .button { display: none; }
+      .hero { padding-top: 112px; }
+      .hero-main { grid-template-columns: 1fr; gap: 43px; }
+      h1 { font-size: clamp(62px, 15vw, 100px); }
+      .hero-copy { max-width: 500px; }
+      .hero-visual { width: min(100%, 500px); justify-self: center; padding-left: 25px; }
+      .hero-photo { min-height: 410px; height: 110vw; max-height: 560px; }
+      .hero-stamp { width: 112px; height: 112px; font-size: 16px; }
+      .hero-bottom { margin-top: 38px; font-size: 8px; letter-spacing: .1em; }
+      .section-heading { display: block; margin-bottom: 35px; }
+      .section-intro { padding-top: 18px; }
+      .services-grid { grid-template-columns: 1fr; gap: 10px; }
+      .service-card { min-height: 210px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-image, .about-image img { min-height: 430px; }
+      .about-copy { order: -1; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 250px 180px 180px; gap: 9px; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+      .visit-grid { grid-template-columns: 1fr; gap: 25px; margin-top: 38px; }
+      .visit-step { padding-top: 16px; }
+    }
+    @media (max-width: 420px) {
+      .brand { font-size: 11px; letter-spacing: .16em; }
+      .hero-actions, .contact-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .button, .contact-actions .button { width: 100%; }
+      .hero-bottom span:last-child { display: none; }
+      .gallery-grid { grid-template-rows: 220px 150px 150px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Restyling — на главную"><span class="brand-mark">R</span> Restyling</a>
+    <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+    <nav class="nav" id="main-nav" aria-label="Главная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#about">О салоне</a>
+      <a href="#gallery">Атмосфера</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a class="button button--small" href="#contact">Записаться <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-text">
+          <p class="eyebrow">Салон красоты · Санкт-Петербург</p>
+          <h1>Время<br>для <em>себя.</em></h1>
+          <p class="hero-copy">Restyling — пространство, где забота о себе становится приятной привычкой. Подчёркиваем индивидуальность и помогаем найти свой стиль.</p>
+          <div class="hero-actions">
+            <a class="button" href="#services">Выбрать услугу <span aria-hidden="true">↗</span></a>
+            <a class="button button--light" href="#about">О салоне</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-photo">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1100&q=88&auto=format&fit=crop" alt="Бьюти-образ и уход за волосами" fetchpriority="high">
+          </figure>
+          <div class="hero-stamp"><div>Твоя<br>естественная<br>красота<small>Restyling studio</small></div></div>
+        </div>
+      </div>
+      <div class="hero-bottom"><span>Мебельная улица · Санкт-Петербург</span><a href="#services">Исследовать услуги ↓</a></div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Уход</span><b>✳</b><span>Красота</span><b>✳</b><span>Твой стиль</span><b>✳</b><span>Уверенность</span><b>✳</b><span>Уход</span><b>✳</b><span>Красота</span><b>✳</b><span>Твой стиль</span><b>✳</b><span>Уверенность</span><b>✳</b>
+      </div>
+    </div>
+
+    <section class="section" id="services">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div><span class="section-kicker">01 / Направления</span><h2>Услуги для<br>твоего образа</h2></div>
+          <p class="section-intro">От небольшого обновления до полного преображения. Подберём процедуру под твои пожелания и особенности.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card reveal"><div class="service-top"><span>01 · Волосы</span><span class="service-icon">✳</span></div><div><h3>Стрижки и укладки</h3><p>Форма, которая подходит именно тебе, и укладка на каждый день или особый случай.</p><a class="service-link" href="#contact">Узнать подробнее <span>↗</span></a></div></article>
+          <article class="service-card reveal"><div class="service-top"><span>02 · Цвет</span><span class="service-icon">◒</span></div><div><h3>Окрашивание</h3><p>Обновление оттенка, сложные техники и бережный подход к качеству волос.</p><a class="service-link" href="#contact">Узнать подробнее <span>↗</span></a></div></article>
+          <article class="service-card reveal"><div class="service-top"><span>03 · Ногти</span><span class="service-icon">◇</span></div><div><h3>Маникюр</h3><p>Аккуратная обработка, уход и покрытие в эстетике, которая близка тебе.</p><a class="service-link" href="#contact">Узнать подробнее <span>↗</span></a></div></article>
+          <article class="service-card reveal"><div class="service-top"><span>04 · Ногти</span><span class="service-icon">○</span></div><div><h3>Педикюр</h3><p>Комфортный уход и аккуратный результат с вниманием к деталям.</p><a class="service-link" href="#contact">Узнать подробнее <span>↗</span></a></div></article>
+          <article class="service-card reveal"><div class="service-top"><span>05 · Взгляд</span><span class="service-icon">⌁</span></div><div><h3>Брови и ресницы</h3><p>Коррекция формы, окрашивание и выразительный, но естественный результат.</p><a class="service-link" href="#contact">Узнать подробнее <span>↗</span></a></div></article>
+          <article class="service-card reveal"><div class="service-top"><span>06 · Образ</span><span class="service-icon">✧</span></div><div><h3>Макияж и уход</h3><p>Завершающий штрих для события или время, посвящённое восстановлению.</p><a class="service-link" href="#contact">Узнать подробнее <span>↗</span></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-inner about-grid">
+        <figure class="about-image reveal"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1000&q=85&auto=format&fit=crop" alt="Светлый интерьер салона красоты" loading="lazy"></figure>
+        <div class="about-copy reveal">
+          <span class="section-kicker">02 / Философия Restyling</span>
+          <h2>Красота —<br>в твоём<br><em>характере.</em></h2>
+          <p>Мы верим, что хороший результат начинается с диалога. Важно понять, чего хочется именно тебе, и предложить решение, с которым будет комфортно каждый день.</p>
+          <p>В Restyling внимание к деталям сочетается с бережным отношением, спокойной атмосферой и уважением к твоей индивидуальности.</p>
+          <div class="about-note"><span class="about-note-mark">R</span><p>Не менять тебя.<br>Подчеркнуть то, что уже есть.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div><span class="section-kicker">03 / Атмосфера</span><h2>Эстетика<br>в деталях</h2></div>
+          <p class="section-intro">Место, где можно выдохнуть, уделить время себе и спокойно довериться мастеру.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=900&q=85&auto=format&fit=crop" alt="Интерьер бьюти-студии" loading="lazy"></figure>
+          <figure class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=700&q=85&auto=format&fit=crop" alt="Портрет с естественным макияжем" loading="lazy"></figure>
+          <figure class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=700&q=85&auto=format&fit=crop" alt="Детали ухода за собой" loading="lazy" onerror="this.style.display='none'"></figure>
+          <figure class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=700&q=85&auto=format&fit=crop" alt="Рабочее место мастера" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visit">
+      <div class="section-inner">
+        <div class="reveal"><span class="section-kicker">04 / Твой визит</span><h2>Всё начинается<br>с простого шага.</h2></div>
+        <div class="visit-grid">
+          <article class="visit-step reveal"><span>ШАГ 01</span><h3>Выбери услугу</h3><p>Расскажи, что хочется изменить или какой результат ты хочешь получить.</p></article>
+          <article class="visit-step reveal"><span>ШАГ 02</span><h3>Обсуди детали</h3><p>Вместе уточним пожелания, длительность процедуры и её стоимость.</p></article>
+          <article class="visit-step reveal"><span>ШАГ 03</span><h3>Приходи за собой</h3><p>Выдели время для отдыха и заботы о себе — остальное обсудим на месте.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-inner contact-grid">
+        <div class="contact-copy reveal">
+          <span class="section-kicker">05 / Контакты</span>
+          <h2>До встречи<br>в Restyling.</h2>
+          <p>Будем рады помочь подобрать услугу и ответить на вопросы. Свяжись с салоном удобным способом или уточни детали перед визитом.</p>
+          <div class="contact-actions"><a class="button" href="#contact-details">Как нас найти <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="contact-details reveal" id="contact-details">
+          <div class="detail"><span>Адрес</span><p>Мебельная улица, Санкт-Петербург</p><p class="sub">Номер дома и ориентир добавьте перед публикацией</p></div>
+          <div class="detail"><span>Запись</span><p>Телефон салона</p><p class="sub">Добавьте актуальный номер для записи</p></div>
+          <div class="detail"><span>Режим работы</span><p>По предварительной записи</p><p class="sub">Укажите фактические дни и часы работы</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a class="footer-brand" href="#top">Restyling · салон красоты</a>
+      <span class="footer-meta">Мебельная улица · Санкт-Петербург</span>
+      <a class="to-top" href="#top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.nav');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('open');
+      document.body.classList.toggle('menu-open', isOpen);
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    });
+    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navigation.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Открыть меню');
+    }));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>

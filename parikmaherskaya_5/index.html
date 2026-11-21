@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Bloom — студия красоты на проспекте Науки</title>
+<meta name="description" content="Студия красоты Bloom на проспекте Науки в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--sun:#f7c744;--leaf:#14392a;--cream:#fffaf0;--coral:#ff7a59;
+  --head:"Comfortaa","Trebuchet MS",system-ui,sans-serif;
+  --sans:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--leaf);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+.hero{background:var(--sun);border-radius:0 0 56px 56px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.logo{font:700 1.5rem/1 var(--head);text-decoration:none}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;background:var(--leaf);color:var(--cream);border:2px solid var(--leaf);font:700 1rem var(--sans);text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.alt{background:transparent;color:var(--leaf)}
+.btn.alt:hover{background:var(--leaf);color:var(--cream)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:10px 0 72px}
+.eyebrow{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.88rem;margin-bottom:6px}
+h1{font:700 clamp(4.4rem,17vw,11rem)/1 var(--head);letter-spacing:-.04em;margin-left:-.04em}
+.lead{max-width:26em;margin:14px 0 30px;font-size:1.15rem}
+
+.flower{width:min(100%,360px);margin:0 auto;display:block;animation:turn 60s linear infinite}
+.petal{fill:var(--cream);stroke:var(--leaf);stroke-width:4;transform-box:fill-box;transform-origin:50% 100%;animation:bloom 1s cubic-bezier(.2,.9,.3,1.25) both;animation-delay:calc(var(--i)*110ms + .2s)}
+@keyframes bloom{from{transform:scale(0)}}
+@keyframes turn{to{transform:rotate(360deg)}}
+
+section{padding:76px 0}
+h2{font:700 clamp(1.9rem,4.6vw,3rem)/1.1 var(--head);letter-spacing:-.02em;margin-bottom:12px}
+.sub{margin-bottom:30px}
+
+.pills{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pills li{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 12px 12px 26px;border:2px solid var(--leaf);border-radius:999px;font-weight:600;transition:background .2s}
+.pills li:hover{background:var(--sun)}
+.pills .p{background:var(--leaf);color:var(--sun);padding:8px 16px;border-radius:999px;font:700 .95rem var(--sans);white-space:nowrap}
+.note{margin-top:22px;font-size:.9rem;opacity:.8}
+
+.about{background:var(--sun);border-radius:56px}
+.about p{max-width:34em;font-size:1.15rem}
+.about p+p{margin-top:14px}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.works div{aspect-ratio:1;border-radius:0 50% 0 50%;background:var(--leaf);color:var(--sun);display:grid;place-items:center;font:700 1rem var(--head)}
+.works div:nth-child(2){border-radius:50% 0 50% 0;background:var(--coral);color:var(--leaf)}
+
+.contacts{background:var(--leaf);color:var(--cream);border-radius:56px 56px 0 0}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contacts p+p{margin-top:8px}
+.contacts .btn{background:var(--sun);border-color:var(--sun);color:var(--leaf)}
+.contacts .btn.alt{background:transparent;color:var(--cream);border-color:var(--cream)}
+.contacts .btn.alt:hover{background:var(--cream);color:var(--leaf)}
+footer{background:var(--leaf);color:var(--cream);padding:6px 0 90px;font-size:.9rem;opacity:.95}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--coral);color:var(--leaf);padding:8px 16px;border-radius:999px;font:700 .8rem var(--sans);letter-spacing:.06em;text-transform:uppercase}
+
+@media (max-width:780px){
+  .hero{border-radius:0 0 36px 36px}
+  .hero-grid{grid-template-columns:1fr;padding-bottom:50px}
+  .flower{width:min(70%,260px)}
+  .pills{grid-template-columns:1fr}
+  .pills li{border-radius:28px}
+  .about{border-radius:36px}
+  .contacts{border-radius:36px 36px 0 0}
+  .cgrid{grid-template-columns:1fr}
+  section{padding:54px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <header>
+      <a class="logo" href="#top">Bloom</a>
+      <a class="btn" href="#contacts">Записаться</a>
+    </header>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Студия красоты · проспект Науки</p>
+        <h1>Bloom</h1>
+        <p class="lead">Стрижки, окрашивание и укладки. Напишите в мессенджер, и мы подберём время.</p>
+        <div class="actions">
+          <a class="btn" href="#contacts">Записаться</a>
+          <a class="btn alt" href="#prices">Цены</a>
+        </div>
+      </div>
+      <svg class="flower" viewBox="0 0 300 300" aria-hidden="true">
+        <g id="petals"></g>
+        <circle cx="150" cy="150" r="30" fill="#14392a"/>
+        <circle cx="150" cy="150" r="11" fill="#ff7a59"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <p class="sub">Цена зависит от длины волос и сложности работы.</p>
+    <ul class="pills">
+      <li>Женская стрижка<span class="p">от 1&nbsp;800&nbsp;₽</span></li>
+      <li>Мужская стрижка<span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+      <li>Детская стрижка<span class="p">от 800&nbsp;₽</span></li>
+      <li>Окрашивание<span class="p">от 3&nbsp;500&nbsp;₽</span></li>
+      <li>Укладка<span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+      <li>Уход и мытьё головы<span class="p">от 500&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Список услуг и цены в демо условные. Актуальный прайс присылает студия.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>О студии</h2>
+    <p>Bloom — студия красоты на проспекте Науки.</p>
+    <p>Здесь будет рассказ о студии: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт студия.</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <p class="sub">Здесь появятся фотографии работ студии.</p>
+    <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap cgrid">
+    <div>
+      <h2>Где найти</h2>
+      <p>Санкт-Петербург, проспект Науки</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions" style="margin-top:22px">
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn alt" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: услуги, цены, часы работы и фото условные. © 2026 Bloom</div>
+</footer>
+
+<script>
+(function () {
+  var g = document.getElementById('petals'), NS = 'http://www.w3.org/2000/svg', n = 8;
+  for (var i = 0; i < n; i++) {
+    var grp = document.createElementNS(NS, 'g');
+    grp.setAttribute('transform', 'rotate(' + (i * 360 / n) + ' 150 150)');
+    var e = document.createElementNS(NS, 'ellipse');
+    e.setAttribute('cx', 150); e.setAttribute('cy', 82); e.setAttribute('rx', 30); e.setAttribute('ry', 66);
+    e.setAttribute('class', 'petal'); e.style.setProperty('--i', i);
+    grp.appendChild(e); g.appendChild(grp);
+  }
+})();
+</script>
+</body>
+</html>

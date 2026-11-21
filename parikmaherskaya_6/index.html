@@ -1,0 +1,844 @@
+<!--
+ИЗМЕНЕНИЯ ДИЗАЙНА
+— Мобильная навигация: добавлены бургер-кнопка и полноэкранная панель меню — в шаблоне не было рабочего меню на мобильных.
+— Добавлена фиксированная нижняя панель «Записаться» на мобильных — требование задачи, место под неё зарезервировано отступом у body.
+— Добавлена плашка «Демо-версия» сверху справа; шапка получила правый отступ, чтобы плашка не перекрывала кнопки, — требование задачи.
+— Все фото заменены пустыми блоками в цвете фона с зерном и подписью «фото» — внешние картинки запрещены задачей.
+— Новые разделы (доверие, мастера, визит, отзывы, работы, FAQ) свёрстаны существующими приёмами шаблона: нумерация секций, тонкие линии, сетки — иначе их негде разместить.
+— Примечание: в переданной копии файла читался только текст; стили воссозданы по описанной системе (бумага/чернила, Cormorant Garamond + Manrope, зерно, тонкие линии, круглые кнопки, анимации) без смены стиля.
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ДЕМО: убери после оплаты -->
+<meta name="robots" content="noindex">
+<title>Янг studio — парикмахерская · Ипподромный переулок, Санкт-Петербург</title>
+<meta name="description" content="Янг studio — парикмахерская в Санкт-Петербурге, Ипподромный переулок. Женские, мужские и детские стрижки, окрашивание, укладки и уход. Приём по записи.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Янг studio">
+<meta property="og:title" content="Янг studio — парикмахерская в Санкт-Петербурге">
+<meta property="og:description" content="Стрижки, окрашивание и укладки. Ипподромный переулок, Санкт-Петербург. Приём по записи.">
+<meta name="theme-color" content="#F4F0E8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Янг studio",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ипподромный переулок",
+    "addressLocality": "Санкт-Петербург",
+    "addressCountry": "RU"
+  }
+}
+</script>
+<style>
+/* ============ БАЗА ============ */
+:root{
+  --paper:#F4F0E8;
+  --paper-2:#ECE7DC;
+  --ink:#221E18;
+  --ink-soft:#464034;
+  --muted:#675E4F;
+  --accent:#835426;
+  --line:rgba(34,30,24,.16);
+  --line-strong:rgba(34,30,24,.38);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Manrope",system-ui,sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --header-h:76px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* зерно поверх всей страницы */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:var(--grain);
+  background-size:160px 160px;
+  opacity:.06;
+  pointer-events:none;
+  z-index:400;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+ul{list-style:none}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.container{max-width:1180px;margin-inline:auto;padding-inline:clamp(20px,4vw,32px)}
+section[id],footer[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
+
+/* ссылка «к содержанию» */
+.skip-link{
+  position:fixed;top:-60px;left:16px;z-index:500;
+  background:var(--ink);color:var(--paper);
+  padding:10px 18px;border-radius:999px;
+  font-size:13px;font-weight:600;text-decoration:none;
+  transition:top .25s var(--ease);
+}
+.skip-link:focus-visible{top:12px}
+
+/* ============ ТИПОГРАФИКА ============ */
+h1,h2,.display{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.01em}
+.eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);
+}
+.lead{color:var(--ink-soft);max-width:52ch}
+.small{font-size:13px;color:var(--muted)}
+
+/* ============ КНОПКИ (круглые) ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:999px;border:1px solid var(--ink);
+  font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;background:transparent;color:var(--ink);
+  transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease);
+  white-space:nowrap;
+}
+.btn-fill{background:var(--ink);color:var(--paper)}
+.btn-ghost{border-color:var(--line-strong)}
+@media (hover:hover){
+  .btn-fill:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+  .btn-ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:translateY(-2px)}
+}
+.btn-sm{padding:10px 20px;font-size:13px}
+
+/* ============ ШАПКА ============ */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(244,240,232,.9);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;gap:28px;
+  min-height:var(--header-h);
+}
+.logo{
+  font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.01em;
+  text-decoration:none;flex-shrink:0;
+}
+.logo em{font-style:italic;font-weight:500;color:var(--accent)}
+.site-nav{display:flex;align-items:center;gap:22px;margin-left:auto}
+.site-nav a:not(.btn){
+  font-size:13px;font-weight:600;letter-spacing:.04em;text-decoration:none;
+  color:var(--ink-soft);padding:6px 2px;position:relative;
+}
+.site-nav a:not(.btn)::after{
+  content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;
+  background:var(--accent);transition:right .3s var(--ease);
+}
+@media (hover:hover){
+  .site-nav a:not(.btn):hover{color:var(--ink)}
+  .site-nav a:not(.btn):hover::after{right:0}
+}
+.nav-toggle{
+  display:none;
+  width:44px;height:44px;border:1px solid var(--line-strong);border-radius:999px;
+  background:transparent;cursor:pointer;position:relative;flex-shrink:0;
+}
+.nav-toggle span{
+  position:absolute;left:12px;right:12px;height:2px;background:var(--ink);
+  transition:transform .3s var(--ease),top .3s var(--ease);
+}
+.nav-toggle span:nth-child(1){top:17px}
+.nav-toggle span:nth-child(2){top:25px}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){top:21px;transform:rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){top:21px;transform:rotate(-45deg)}
+
+/* мобильная навигация (только когда JS работает) */
+@media (max-width:1023px){
+  .js .nav-toggle{display:block;margin-left:auto}
+  .js .site-nav{
+    position:fixed;inset:0;z-index:90;
+    background:var(--paper);
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:0;
+    padding:calc(var(--header-h) + 24px) 24px 100px;
+    visibility:hidden;opacity:0;transform:translateY(-10px);
+    transition:opacity .3s var(--ease),transform .3s var(--ease),visibility .3s;
+    overflow-y:auto;
+  }
+  .js .site-nav.open{visibility:visible;opacity:1;transform:none}
+  .js .site-nav a:not(.btn){
+    font-family:var(--serif);font-size:clamp(30px,8vw,40px);font-weight:500;
+    letter-spacing:0;color:var(--ink);
+    width:100%;padding:12px 0;border-bottom:1px solid var(--line);
+  }
+  .js .site-nav a:not(.btn)::after{display:none}
+  .js .site-nav .btn{margin-top:28px}
+  .js .header-cta{display:none}
+  /* без JS меню видно всегда, шапка не липнет */
+  html:not(.js) .site-header{position:static}
+  html:not(.js) .header-inner{flex-wrap:wrap;padding-block:12px}
+  html:not(.js) .site-nav{flex-basis:100%;flex-wrap:wrap;gap:10px 18px;margin-left:0}
+}
+@media (min-width:1024px){
+  .site-nav .btn{display:none}
+}
+
+/* ============ ПЕРВЫЙ ЭКРАН ============ */
+.hero{padding:clamp(56px,9vh,104px) 0 40px}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(32px,5vw,64px);align-items:center;
+}
+.hero h1{
+  font-size:clamp(52px,12vw,116px);
+  margin:18px 0 22px;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .lead{font-size:clamp(16px,2vw,19px);margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  border-top:1px solid var(--line);margin-top:clamp(40px,6vh,72px);padding-top:18px;
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+}
+.scroll-hint{display:inline-flex;align-items:center;gap:8px}
+.scroll-hint i{font-style:normal;animation:dip 1.8s var(--ease) infinite}
+@keyframes dip{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+/* появление первого экрана */
+.rise{animation:rise .8s var(--ease) both;animation-delay:var(--d,0ms)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* ============ ФОТО-ЗАГЛУШКИ ============ */
+.ph{
+  position:relative;
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.ph::before{
+  content:"";position:absolute;inset:0;
+  background-image:var(--grain);background-size:160px 160px;opacity:.14;
+}
+.ph span{
+  position:relative;font-size:12px;font-weight:600;letter-spacing:.3em;
+  text-transform:lowercase;color:var(--muted);
+}
+.hero-ph{aspect-ratio:3/4;max-height:560px;width:100%}
+
+/* ============ БЛОК ДОВЕРИЯ ============ */
+.trust{border-block:1px solid var(--line)}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.trust-cell{padding:26px clamp(16px,3vw,36px)}
+.trust-cell + .trust-cell{border-left:1px solid var(--line)}
+.trust-cell h3{
+  font-family:var(--sans);font-size:15px;font-weight:700;line-height:1.4;
+  display:flex;align-items:baseline;gap:10px;
+}
+.trust-cell h3::before{
+  content:"";width:7px;height:7px;background:var(--accent);
+  transform:rotate(45deg) translateY(-1px);flex-shrink:0;
+}
+.trust-cell p{font-size:13.5px;color:var(--muted);margin-top:6px;padding-left:17px}
+
+/* ============ СЕКЦИИ ============ */
+.section{padding:clamp(64px,9vw,110px) 0;border-top:1px solid var(--line)}
+.sec-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;margin-bottom:clamp(32px,5vw,56px);
+}
+.sec-title{display:flex;align-items:baseline;gap:16px}
+.sec-num{
+  font-family:var(--sans);font-size:13px;font-weight:700;
+  letter-spacing:.14em;color:var(--accent);
+}
+.sec-head h2{font-size:clamp(34px,5.5vw,56px)}
+.sec-intro{color:var(--muted);max-width:56ch;margin-top:-16px;margin-bottom:32px}
+
+/* ============ УСЛУГИ ============ */
+.services-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:44px clamp(32px,5vw,64px);
+}
+.svc-cat{border-top:1px solid var(--line-strong);padding-top:22px}
+.svc-cat h3{font-size:clamp(24px,3vw,30px);margin-bottom:10px}
+.svc-cat li{
+  display:flex;align-items:baseline;gap:12px;
+  padding:11px 0;font-size:15px;
+}
+.svc-name{color:var(--ink-soft);min-width:0}
+.svc-dots{flex:1;min-width:20px;border-bottom:1px dotted var(--line-strong);transform:translateY(-5px)}
+.svc-price{font-weight:700;font-size:14.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.price-note{
+  margin-top:44px;padding:16px 20px;
+  border:1px solid var(--line);border-left:3px solid var(--accent);
+  font-size:14px;color:var(--ink-soft);max-width:720px;
+}
+
+/* ============ МАСТЕРА ============ */
+.masters-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.master-card{
+  border:1px solid var(--line);padding:26px;min-height:250px;
+  display:flex;flex-direction:column;
+  transition:transform .3s var(--ease),border-color .3s var(--ease);
+}
+@media (hover:hover){
+  .master-card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+}
+.master-num{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--accent)}
+.master-card h3{font-size:27px;margin-top:auto;padding-top:36px}
+.master-spec{
+  font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin-top:6px;
+}
+.master-text{font-size:14px;color:var(--muted);margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+
+/* ============ КАК ПРОХОДИТ ВИЗИТ ============ */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.step{border-top:1px solid var(--line-strong);padding-top:18px}
+.step-num{font-family:var(--serif);font-size:46px;font-weight:500;color:var(--accent);line-height:1}
+.step h3{font-family:var(--sans);font-size:16px;font-weight:700;margin:14px 0 8px}
+.step p{font-size:14px;color:var(--muted)}
+
+/* ============ ОТЗЫВЫ ============ */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review-card{border:1px solid var(--line);padding:26px;display:flex;flex-direction:column}
+.review-mark{font-family:var(--serif);font-size:64px;line-height:.6;color:var(--accent);display:block;height:30px}
+.review-card blockquote{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.4;margin:14px 0 18px}
+.review-name{font-size:14px;font-weight:700;margin-top:auto}
+.review-cap{font-size:12px;color:var(--muted);border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
+
+/* ============ РАБОТЫ ============ */
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.works-grid .ph{aspect-ratio:4/5}
+
+/* ============ FAQ ============ */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 0;cursor:pointer;
+  font-size:16px;font-weight:600;list-style:none;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";font-family:var(--sans);font-size:24px;font-weight:400;
+  color:var(--accent);flex-shrink:0;line-height:1;
+  transition:transform .25s var(--ease);
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 40px 20px 0;font-size:15px;color:var(--ink-soft)}
+
+/* ============ КОНТАКТЫ ============ */
+.contact-panel{
+  border:1px solid var(--line-strong);
+  padding:clamp(28px,5vw,56px);
+  display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4vw,56px);
+}
+.contact-panel h3{font-size:clamp(32px,4.5vw,48px);margin-bottom:16px}
+.contact-panel .lead{font-size:16px}
+.contact-dl div{border-top:1px solid var(--line);padding:16px 0}
+.contact-dl dt{
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;
+}
+.contact-dl dd{font-family:var(--serif);font-size:22px;line-height:1.3}
+.contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+/* ============ ПОДВАЛ ============ */
+.site-footer{border-top:1px solid var(--line);padding:26px 0 40px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-inner p{font-size:13px;color:var(--muted);max-width:60ch}
+.footer-links{display:flex;gap:22px;font-size:13px;font-weight:600}
+.footer-links a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line-strong);padding-bottom:2px}
+@media (hover:hover){.footer-links a:hover{color:var(--accent);border-color:var(--accent)}}
+
+/* ============ НИЖНЯЯ ПАНЕЛЬ (мобильные) ============ */
+.mobile-bar{
+  display:none;
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
+  background:rgba(244,240,232,.94);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+}
+.mobile-bar .btn{width:100%}
+@media (max-width:1023px){
+  .mobile-bar{display:block}
+  body{padding-bottom:84px}
+}
+
+/* ============ ДЕМО-ПЛАШКА: удали этот блок после оплаты ============ */
+.demo-badge{
+  position:fixed;top:12px;right:12px;z-index:300;
+  background:var(--ink);color:var(--paper);
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 13px;border-radius:999px;pointer-events:none;
+}
+.header-inner{padding-right:140px}
+@media (max-width:480px){
+  .demo-badge{font-size:10px;padding:6px 10px;top:10px;right:10px}
+  .header-inner{padding-right:112px}
+}
+/* ============ /ДЕМО-ПЛАШКА ============ */
+
+/* ============ ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ (только с JS) ============ */
+.reveal [data-reveal]{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .7s ease,transform .7s var(--ease);
+  transition-delay:var(--d,0ms);
+}
+.reveal [data-reveal].in{opacity:1;transform:none}
+
+/* ============ АДАПТИВ ============ */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-ph{aspect-ratio:4/3;max-height:380px}
+  .services-grid{grid-template-columns:1fr}
+  .masters-grid,.reviews-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-panel{grid-template-columns:1fr}
+  .works-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+}
+@media (max-width:760px){
+  .trust-grid{grid-template-columns:1fr}
+  .trust-cell + .trust-cell{border-left:0;border-top:1px solid var(--line)}
+  .trust-cell{padding:20px 0}
+  .trust-cell p{padding-left:17px}
+}
+@media (max-width:560px){
+  .steps-grid{grid-template-columns:1fr}
+  .hero-meta{flex-direction:column;align-items:flex-start;gap:10px}
+  .sec-head .btn{width:100%}
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal [data-reveal]{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<a class="skip-link" href="#main">К содержанию</a>
+
+<!-- ДЕМО-ПЛАШКА: удали этот div после оплаты (вместе с блоком CSS «ДЕМО-ПЛАШКА») -->
+<div class="demo-badge" aria-hidden="true">Демо-версия</div>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="logo" href="#top">Янг <em>studio</em></a>
+    <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#masters">Мастера</a>
+      <a href="#visit">Визит</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#works">Работы</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contact">Контакты</a>
+      <a class="btn btn-fill" href="#contact">Записаться</a>
+    </nav>
+    <a class="btn btn-fill btn-sm header-cta" href="#contact">Записаться</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Первый экран -->
+  <section class="hero" aria-label="Янг studio">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow rise" style="--d:0ms">Парикмахерская · Ипподромный переулок</p>
+          <h1 class="rise" style="--d:90ms">Янг <em>studio</em></h1>
+          <p class="lead rise" style="--d:180ms">Стрижки, окрашивание и укладки — спокойно, точно и с уважением к вашему времени.</p>
+          <div class="hero-actions rise" style="--d:270ms">
+            <a class="btn btn-fill" href="#contact">Записаться</a>
+            <a class="btn btn-ghost" href="#reviews">Читать отзывы</a>
+          </div>
+        </div>
+        <div class="ph hero-ph rise" style="--d:200ms"><span>фото</span></div>
+      </div>
+      <div class="hero-meta rise" style="--d:360ms">
+        <span>Приём по записи</span>
+        <span class="scroll-hint">Листайте вниз <i>↓</i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Блок доверия -->
+  <section class="trust" aria-label="Принципы работы">
+    <div class="container">
+      <h2 class="sr-only">Принципы работы</h2>
+      <div class="trust-grid">
+        <div class="trust-cell" data-reveal>
+          <h3>Отзывы клиентов на картах</h3>
+          <p>Читайте реальные отзывы на карточке студии.</p>
+        </div>
+        <div class="trust-cell" data-reveal>
+          <h3>Запись в мессенджерах</h3>
+          <p>Напишите в WhatsApp или Telegram.</p>
+        </div>
+        <div class="trust-cell" data-reveal>
+          <h3>Цена называется после консультации</h3>
+          <p>В прайсе — цены «от». Итог называет мастер.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 Услуги -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">01</span><h2>Услуги</h2></div>
+      </div>
+      <div class="services-grid">
+        <div class="svc-cat" data-reveal>
+          <h3>Женские стрижки</h3>
+          <ul>
+            <li><span class="svc-name">Стрижка и укладка</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;800&nbsp;₽</span></li>
+            <li><span class="svc-name">Подравнивание кончиков</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;200&nbsp;₽</span></li>
+            <li><span class="svc-name">Стрижка чёлки</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;500&nbsp;₽</span></li>
+          </ul>
+        </div>
+        <div class="svc-cat" data-reveal>
+          <h3>Мужские стрижки</h3>
+          <ul>
+            <li><span class="svc-name">Мужская стрижка</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;200&nbsp;₽</span></li>
+            <li><span class="svc-name">Стрижка машинкой</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;800&nbsp;₽</span></li>
+            <li><span class="svc-name">Стрижка и укладка</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;500&nbsp;₽</span></li>
+          </ul>
+        </div>
+        <div class="svc-cat" data-reveal>
+          <h3>Детские стрижки</h3>
+          <ul>
+            <li><span class="svc-name">Детская стрижка</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;800&nbsp;₽</span></li>
+            <li><span class="svc-name">Стрижка для подростков</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;000&nbsp;₽</span></li>
+          </ul>
+        </div>
+        <div class="svc-cat" data-reveal>
+          <h3>Окрашивание</h3>
+          <ul>
+            <li><span class="svc-name">Окрашивание в один тон</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;3&nbsp;500&nbsp;₽</span></li>
+            <li><span class="svc-name">Тонирование</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;2&nbsp;500&nbsp;₽</span></li>
+            <li><span class="svc-name">Сложное окрашивание</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;5&nbsp;500&nbsp;₽</span></li>
+          </ul>
+        </div>
+        <div class="svc-cat" data-reveal>
+          <h3>Укладка</h3>
+          <ul>
+            <li><span class="svc-name">Укладка на брашинг</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;200&nbsp;₽</span></li>
+            <li><span class="svc-name">Вечерняя укладка</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;2&nbsp;000&nbsp;₽</span></li>
+          </ul>
+        </div>
+        <div class="svc-cat" data-reveal>
+          <h3>Уход</h3>
+          <ul>
+            <li><span class="svc-name">Уход и мытьё головы</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;500&nbsp;₽</span></li>
+            <li><span class="svc-name">Глубокий уход за волосами</span><span class="svc-dots" aria-hidden="true"></span><span class="svc-price">от&nbsp;1&nbsp;500&nbsp;₽</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="price-note" data-reveal>Цены в демо условные. Точную стоимость называет мастер после консультации.</p>
+    </div>
+  </section>
+
+  <!-- 02 Мастера -->
+  <section class="section" id="masters">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">02</span><h2>Мастера</h2></div>
+      </div>
+      <div class="masters-grid">
+        <article class="master-card" data-reveal>
+          <span class="master-num" aria-hidden="true">01</span>
+          <h3>Имя мастера</h3>
+          <p class="master-spec">Специализация</p>
+          <p class="master-text">Текст пришлёт студия.</p>
+        </article>
+        <article class="master-card" data-reveal>
+          <span class="master-num" aria-hidden="true">02</span>
+          <h3>Имя мастера</h3>
+          <p class="master-spec">Специализация</p>
+          <p class="master-text">Текст пришлёт студия.</p>
+        </article>
+        <article class="master-card" data-reveal>
+          <span class="master-num" aria-hidden="true">03</span>
+          <h3>Имя мастера</h3>
+          <p class="master-spec">Специализация</p>
+          <p class="master-text">Текст пришлёт студия.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Как проходит визит -->
+  <section class="section" id="visit">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">03</span><h2>Как проходит визит</h2></div>
+      </div>
+      <div class="steps-grid">
+        <div class="step" data-reveal>
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Запись</h3>
+          <p>Напишите в WhatsApp или Telegram и выберите удобное время.</p>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Консультация</h3>
+          <p>Мастер обсуждает с вами форму и длину, называет итоговую стоимость.</p>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Работа мастера</h3>
+          <p>Стрижка, окрашивание или укладка — по согласованному плану.</p>
+        </div>
+        <div class="step" data-reveal>
+          <span class="step-num" aria-hidden="true">4</span>
+          <h3>Рекомендации по уходу</h3>
+          <p>Мастер подскажет, как укладывать волосы и ухаживать за ними дома.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Отзывы -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">04</span><h2>Отзывы клиентов</h2></div>
+        <!-- ЗАМЕНИ href: ссылка на карточку студии на картах -->
+        <a class="btn btn-ghost" href="#">Читать отзывы на картах</a>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card" data-reveal>
+          <span class="review-mark" aria-hidden="true">«</span>
+          <blockquote>Место для текста отзыва клиента.</blockquote>
+          <p class="review-name">Имя клиента</p>
+          <p class="review-cap">Пример отзыва. Здесь будет настоящий отзыв клиента с карт.</p>
+        </article>
+        <article class="review-card" data-reveal>
+          <span class="review-mark" aria-hidden="true">«</span>
+          <blockquote>Место для текста отзыва клиента.</blockquote>
+          <p class="review-name">Имя клиента</p>
+          <p class="review-cap">Пример отзыва. Здесь будет настоящий отзыв клиента с карт.</p>
+        </article>
+        <article class="review-card" data-reveal>
+          <span class="review-mark" aria-hidden="true">«</span>
+          <blockquote>Место для текста отзыва клиента.</blockquote>
+          <p class="review-name">Имя клиента</p>
+          <p class="review-cap">Пример отзыва. Здесь будет настоящий отзыв клиента с карт.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Работы -->
+  <section class="section" id="works">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">05</span><h2>Работы</h2></div>
+      </div>
+      <p class="sec-intro" data-reveal>Здесь появятся работы студии.</p>
+      <div class="works-grid">
+        <div class="ph" data-reveal><span>фото</span></div>
+        <div class="ph" data-reveal><span>фото</span></div>
+        <div class="ph" data-reveal><span>фото</span></div>
+        <div class="ph" data-reveal><span>фото</span></div>
+        <div class="ph" data-reveal><span>фото</span></div>
+        <div class="ph" data-reveal><span>фото</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Частые вопросы -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">06</span><h2>Частые вопросы</h2></div>
+      </div>
+      <div class="faq" data-reveal>
+        <details>
+          <summary>Как записаться?</summary>
+          <p>Напишите в WhatsApp или Telegram — кнопки есть в разделе «Контакты». Приём по записи.</p>
+        </details>
+        <details>
+          <summary>Цена окончательная?</summary>
+          <p>В прайсе — цены «от». Итоговую стоимость называет мастер после консультации.</p>
+        </details>
+        <details>
+          <summary>Где находится студия?</summary>
+          <p>Санкт-Петербург, Ипподромный переулок. Приём по записи.</p>
+        </details>
+        <details>
+          <summary>Можно ли прийти с ребёнком?</summary>
+          <p>Да: детские стрижки есть в списке услуг. Подходящее время уточняйте при записи.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Контакты -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="sec-head" data-reveal>
+        <div class="sec-title"><span class="sec-num">07</span><h2>Контакты</h2></div>
+      </div>
+      <div class="contact-panel" data-reveal>
+        <div>
+          <h3>Запишитесь на визит</h3>
+          <p class="lead">Напишите в мессенджер — подберём мастера и удобное время.</p>
+          <div class="contact-actions">
+            <!-- ЗАМЕНИ: https://wa.me/7XXXXXXXXXX -->
+            <a class="btn btn-fill" href="#">WhatsApp</a>
+            <!-- ЗАМЕНИ: https://t.me/username -->
+            <a class="btn btn-fill" href="#">Telegram</a>
+            <!-- ЗАМЕНИ href: ссылка на маршрут до студии в картах -->
+            <a class="btn btn-ghost" href="#">Как добраться</a>
+          </div>
+        </div>
+        <dl class="contact-dl">
+          <div>
+            <dt>Адрес</dt>
+            <dd>Санкт-Петербург, Ипподромный переулок</dd>
+          </div>
+          <div>
+            <dt>Формат</dt>
+            <dd>Приём по записи</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>Демо-версия сайта: услуги, цены и тексты условные. © 2026 Янг studio</p>
+    <div class="footer-links">
+      <!-- ЗАМЕНИ: https://t.me/username -->
+      <a href="#">Telegram</a>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Нижняя панель записи (мобильные) -->
+<div class="mobile-bar">
+  <a class="btn btn-fill" href="#contact">Записаться</a>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---- Бургер-меню ---- */
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('site-nav');
+
+  function menuOpen(){ return toggle.getAttribute('aria-expanded') === 'true'; }
+
+  function openMenu(){
+    nav.classList.add('open');
+    toggle.setAttribute('aria-expanded','true');
+    toggle.setAttribute('aria-label','Закрыть меню');
+    document.body.style.overflow = 'hidden';
+    var first = nav.querySelector('a');
+    if (first) first.focus();
+  }
+
+  function closeMenu(returnFocus){
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Открыть меню');
+    document.body.style.overflow = '';
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', function(){
+    menuOpen() ? closeMenu(true) : openMenu();
+  });
+
+  /* закрытие по клику на ссылку */
+  nav.addEventListener('click', function(e){
+    if (e.target.closest('a') && menuOpen()) closeMenu(false);
+  });
+
+  /* Esc + ловушка фокуса внутри панели */
+  document.addEventListener('keydown', function(e){
+    if (!menuOpen()) return;
+    if (e.key === 'Escape'){ closeMenu(true); return; }
+    if (e.key === 'Tab'){
+      var links = Array.prototype.slice.call(nav.querySelectorAll('a[href]'));
+      if (!links.length) return;
+      var first = links[0], last = links[links.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* сброс меню при переходе на десктоп */
+  var mq = window.matchMedia('(min-width: 1024px)');
+  function onWide(e){ if (e.matches && menuOpen()) closeMenu(false); }
+  if (mq.addEventListener) mq.addEventListener('change', onWide);
+  else if (mq.addListener) mq.addListener(onWide);
+
+  /* ---- FAQ: открыт только один пункт ---- */
+  var items = Array.prototype.slice.call(document.querySelectorAll('.faq details'));
+  items.forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if (!d.open) return;
+      items.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+
+  /* ---- Появление блоков при прокрутке ---- */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduced){
+    document.documentElement.classList.add('reveal');
+    var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    /* лёгкий каскад для соседей в одной сетке */
+    var counts = new Map();
+    els.forEach(function(el){
+      var p = el.parentElement;
+      var i = counts.get(p) || 0;
+      el.style.setProperty('--d', (i % 6) * 70 + 'ms');
+      counts.set(p, i + 1);
+    });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

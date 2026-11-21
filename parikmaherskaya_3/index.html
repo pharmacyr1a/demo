@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Студия красоты — парикмахерские услуги на проспекте Науки</title>
+<meta name="description" content="Парикмахерские услуги на проспекте Науки в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--rasp:#b3174a;--deep:#7d0f33;--blush:#fdf1f0;--pink:#f3c4cf;--ink:#2a0f1c;
+  --serif:"Prata",Georgia,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--blush);color:var(--ink);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+.hero{position:relative;overflow:hidden;background:var(--rasp);color:#fff;min-height:min(92vh,760px);display:flex;flex-direction:column}
+.strands{position:absolute;left:-5%;bottom:0;width:110%;height:72%;pointer-events:none}
+.strands g{animation:drift 16s ease-in-out infinite alternate}
+.strands path{fill:none;stroke:#fff;stroke-opacity:.3;stroke-width:1.5}
+@keyframes drift{to{transform:translateX(-60px)}}
+header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:24px;padding-bottom:24px}
+.logo{font:400 1.2rem/1.1 var(--serif);text-decoration:none}
+nav{display:flex;align-items:center;gap:26px;font-size:.95rem}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;background:#fff;color:var(--deep);font-weight:500;text-decoration:none;border:2px solid #fff;transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:#fff}
+.btn.dark{background:var(--rasp);color:#fff;border-color:var(--rasp)}
+.btn.dark:hover{background:transparent;color:var(--rasp)}
+.btn.line{background:transparent;color:inherit;border-color:currentColor}
+.btn.line:hover{background:#fff;color:var(--deep)}
+.hero-body{position:relative;z-index:2;margin:auto 0;padding-top:30px;padding-bottom:12vh}
+.eyebrow{font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;opacity:.85;margin-bottom:20px}
+h1{font:400 clamp(2.8rem,9vw,7.4rem)/.98 var(--serif);max-width:9em}
+.lead{max-width:26em;margin:24px 0 32px;font-size:1.15rem}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+
+section{padding:88px 0}
+h2{font:400 clamp(2rem,5vw,3.2rem)/1.05 var(--serif);margin-bottom:12px}
+.sub{color:#7a5463;margin-bottom:36px}
+
+.cards{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cards li{background:#fff;border-radius:28px;padding:26px 28px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;min-height:150px;transition:transform .25s,background .25s}
+.cards li:hover{transform:translateY(-4px);background:var(--pink)}
+.cards b{display:block;font:400 1.35rem/1.2 var(--serif);margin-bottom:6px}
+.cards span{color:#7a5463;font-size:.95rem}
+.cards em{font:400 1.25rem var(--serif);font-style:normal;white-space:nowrap;color:var(--rasp)}
+.note{margin-top:24px;font-size:.9rem;color:#7a5463}
+
+.about{background:var(--pink)}
+.about p{max-width:34em;font-size:1.15rem}
+.about p+p{margin-top:14px}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.works div{aspect-ratio:3/4;border-radius:999px 999px 28px 28px;background:var(--rasp);color:#fff;display:grid;place-items:end center;padding-bottom:22px;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;opacity:.92}
+.works div:nth-child(2){background:var(--deep);margin-top:34px}
+.works div:nth-child(3){background:#d96a8a}
+
+.contacts{background:var(--rasp);color:#fff}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contacts h2{margin-bottom:18px}
+.contacts p+p{margin-top:8px}
+footer{padding:26px 0 90px;font-size:.9rem;color:#7a5463}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--ink);color:#fff;padding:8px 16px;border-radius:999px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+
+@media (max-width:760px){
+  nav a:not(.btn){display:none}
+  .cards{grid-template-columns:1fr}
+  .works{grid-template-columns:1fr 1fr}
+  .works div:nth-child(2){margin-top:0}
+  .cgrid{grid-template-columns:1fr}
+  section{padding:60px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="hero" id="top">
+  <svg class="strands" id="strands" viewBox="0 0 1400 520" preserveAspectRatio="none" aria-hidden="true"><g></g></svg>
+  <header class="wrap">
+    <a class="logo" href="#top">Студия красоты</a>
+    <nav>
+      <a href="#prices">Услуги</a><a href="#about">О студии</a><a href="#works">Работы</a>
+      <a class="btn" href="#contacts">Записаться</a>
+    </nav>
+  </header>
+  <div class="wrap hero-body">
+    <p class="eyebrow">Парикмахерские услуги · проспект Науки</p>
+    <h1>Студия красоты</h1>
+    <p class="lead">Стрижки, окрашивание и укладки для женщин, мужчин и детей. Записаться можно сообщением в мессенджер.</p>
+    <div class="actions">
+      <a class="btn" href="#contacts">Записаться</a>
+      <a class="btn line" href="#prices">Цены</a>
+    </div>
+  </div>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <p class="sub">Цена зависит от длины волос и сложности работы.</p>
+    <ul class="cards">
+      <li><div><b>Женская стрижка</b><span>для женщин</span></div><em>от 1&nbsp;800&nbsp;₽</em></li>
+      <li><div><b>Мужская стрижка</b><span>для мужчин</span></div><em>от 1&nbsp;200&nbsp;₽</em></li>
+      <li><div><b>Детская стрижка</b><span>для детей</span></div><em>от 800&nbsp;₽</em></li>
+      <li><div><b>Окрашивание</b><span>длина и техника обсуждаются на месте</span></div><em>от 3&nbsp;500&nbsp;₽</em></li>
+      <li><div><b>Укладка</b><span>повседневная или вечерняя</span></div><em>от 1&nbsp;200&nbsp;₽</em></li>
+      <li><div><b>Уход и мытьё головы</b><span>отдельно или к стрижке</span></div><em>от 500&nbsp;₽</em></li>
+    </ul>
+    <p class="note">Цены в демо условные. Актуальный прайс присылает студия.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>О студии</h2>
+    <p>Студия красоты на проспекте Науки. Парикмахерские услуги для женщин, мужчин и детей.</p>
+    <p>Здесь будет рассказ о студии: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт студия.</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <p class="sub">Здесь появятся фотографии работ студии.</p>
+    <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap cgrid">
+    <div>
+      <h2>Где найти</h2>
+      <p>Санкт-Петербург, проспект Науки</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions" style="margin-top:22px">
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn line" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, часы работы и фото условные. © 2026 Студия красоты</div>
+</footer>
+
+<script>
+(function () {
+  var g = document.querySelector('#strands g'), NS = 'http://www.w3.org/2000/svg';
+  for (var i = 0; i < 30; i++) {
+    var d = '', base = 120 + i * 11;
+    for (var x = -100; x <= 1500; x += 25) {
+      var y = base + 38 * Math.sin(x / 170 + i * 0.17) + 14 * Math.sin(x / 70 + i * 0.4);
+      d += (x === -100 ? 'M' : 'L') + x + ' ' + y.toFixed(1) + ' ';
+    }
+    var p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d); g.appendChild(p);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Салон красоты — парикмахерские услуги на проспекте Науки</title>
+<meta name="description" content="Парикмахерские услуги на проспекте Науки в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik:wght@500;600&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--mint:#d9ede9;--teal:#0c3b3a;--coral:#ff6b4a;--bulb:#ffe08a;--white:#fffdf8;
+  --head:"Rubik",system-ui,sans-serif;
+  --sans:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --script:"Pacifico","Brush Script MT",cursive}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--mint);color:var(--teal);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+.logo{font:400 1.7rem/1 var(--script);color:var(--coral);text-decoration:none}
+.btn{display:inline-block;padding:14px 24px;border-radius:14px;background:var(--coral);color:var(--teal);font:600 1rem var(--head);text-decoration:none;border:2px solid var(--coral);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.line{background:transparent;border-color:var(--teal)}
+.btn.line:hover{background:var(--teal);color:var(--white)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:20px 0 70px}
+.eyebrow{font:500 .9rem var(--head);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+h1{font:600 clamp(2.5rem,6.6vw,4.9rem)/1.02 var(--head);letter-spacing:-.025em}
+h1 em{font-style:normal;color:var(--coral)}
+.lead{max-width:27em;margin:22px 0 30px;font-size:1.1rem}
+.mirror{width:min(100%,340px);margin:0 auto;display:block}
+.bulb{animation:glow 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*-.17s)}
+@keyframes glow{50%{opacity:.35}}
+
+section{padding:76px 0}
+h2{font:600 clamp(1.8rem,4.4vw,2.8rem)/1.08 var(--head);letter-spacing:-.02em;margin-bottom:12px}
+.sub{margin-bottom:32px;opacity:.8}
+
+.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.group{background:var(--white);border-radius:24px;padding:24px 24px 14px}
+.group h3{font:500 .85rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:8px}
+.group p{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid rgba(12,59,58,.15)}
+.group b{font-weight:500}
+.group span{font:600 1rem var(--head);white-space:nowrap}
+.note{margin-top:22px;font-size:.9rem;opacity:.8}
+
+.about{background:var(--white)}
+.agrid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.about p{font-size:1.12rem;max-width:32em}
+.about p+p{margin-top:14px}
+.disc{aspect-ratio:1;border-radius:50%;background:var(--coral);display:grid;place-items:center;text-align:center;padding:30px;font:500 1rem var(--head);max-width:300px;margin-left:auto}
+
+.scroll{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 22px 18px;margin:0 -22px}
+.scroll div{flex:0 0 210px;aspect-ratio:3/4;border-radius:50%;scroll-snap-align:start;display:grid;place-items:center;font:500 .9rem var(--head);letter-spacing:.1em;text-transform:uppercase;border:6px solid var(--coral);background:var(--white)}
+
+.contacts{background:var(--coral)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contacts p+p{margin-top:8px}
+.contacts .btn{background:var(--teal);border-color:var(--teal);color:var(--white)}
+.contacts .btn.line{background:transparent;color:var(--teal)}
+.contacts .btn.line:hover{background:var(--teal);color:var(--white)}
+footer{padding:26px 0 90px;font-size:.9rem;opacity:.85}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--teal);color:var(--white);padding:8px 16px;border-radius:999px;font:500 .78rem var(--head);letter-spacing:.1em;text-transform:uppercase}
+
+@media (max-width:780px){
+  .hero{grid-template-columns:1fr;padding-bottom:50px}
+  .groups{grid-template-columns:1fr}
+  .agrid,.cgrid{grid-template-columns:1fr}
+  .disc{margin:0;max-width:220px}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="wrap">
+  <header>
+    <a class="logo" href="#top">Салон красоты</a>
+    <a class="btn" href="#contacts">Записаться</a>
+  </header>
+
+  <main class="hero" id="top">
+    <div>
+      <p class="eyebrow">Парикмахерские услуги · проспект Науки</p>
+      <h1>Салон красоты <em>на&nbsp;Науки</em></h1>
+      <p class="lead">Стрижки, окрашивание и укладки. Напишите в мессенджер, и мы подберём время.</p>
+      <div class="actions">
+        <a class="btn" href="#contacts">Записаться</a>
+        <a class="btn line" href="#prices">Цены</a>
+      </div>
+    </div>
+    <svg class="mirror" viewBox="0 0 320 420" aria-hidden="true">
+      <defs><radialGradient id="g" cx="40%" cy="30%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#bfe0da"/></radialGradient></defs>
+      <ellipse cx="160" cy="210" rx="124" ry="174" fill="url(#g)" stroke="#ff6b4a" stroke-width="14"/>
+      <g stroke="#0c3b3a" stroke-width="6" stroke-linecap="round" fill="none">
+        <path d="M125 135L195 268M195 135L125 268"/>
+        <circle cx="120" cy="290" r="15"/><circle cx="200" cy="290" r="15"/>
+      </g>
+      <g id="bulbs"></g>
+    </svg>
+  </main>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <p class="sub">Цена зависит от длины волос и сложности работы.</p>
+    <div class="groups">
+      <div class="group"><h3>Стрижки</h3>
+        <p><b>Женская</b><span>от 1&nbsp;800&nbsp;₽</span></p>
+        <p><b>Мужская</b><span>от 1&nbsp;200&nbsp;₽</span></p>
+        <p><b>Детская</b><span>от 800&nbsp;₽</span></p>
+      </div>
+      <div class="group"><h3>Цвет</h3>
+        <p><b>Окрашивание</b><span>от 3&nbsp;500&nbsp;₽</span></p>
+        <p><b>Консультация по цвету</b><span>по записи</span></p>
+      </div>
+      <div class="group"><h3>Укладка и уход</h3>
+        <p><b>Укладка</b><span>от 1&nbsp;200&nbsp;₽</span></p>
+        <p><b>Уход и мытьё головы</b><span>от 500&nbsp;₽</span></p>
+      </div>
+    </div>
+    <p class="note">Цены в демо условные. Актуальный прайс присылает салон.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap agrid">
+    <div>
+      <h2>О салоне</h2>
+      <p>Салон красоты на проспекте Науки. Парикмахерские услуги для женщин, мужчин и детей.</p>
+      <p>Здесь будет рассказ о салоне: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт салон.</p>
+    </div>
+    <div class="disc">Здесь будет фото салона</div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <p class="sub">Здесь появятся фотографии работ салона. Листайте вбок.</p>
+  </div>
+  <div class="wrap"><div class="scroll" aria-hidden="true">
+    <div>фото</div><div>фото</div><div>фото</div><div>фото</div><div>фото</div>
+  </div></div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap cgrid">
+    <div>
+      <h2>Где найти</h2>
+      <p>Санкт-Петербург, проспект Науки</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions" style="margin-top:22px">
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn line" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, часы работы и фото условные. © 2026 Салон красоты</div>
+</footer>
+
+<script>
+(function () {
+  var g = document.getElementById('bulbs'), NS = 'http://www.w3.org/2000/svg', n = 30;
+  for (var i = 0; i < n; i++) {
+    var a = i / n * Math.PI * 2, c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', (160 + 142 * Math.cos(a)).toFixed(1));
+    c.setAttribute('cy', (210 + 192 * Math.sin(a)).toFixed(1));
+    c.setAttribute('r', 7); c.setAttribute('fill', '#ffe08a');
+    c.setAttribute('stroke', '#0c3b3a'); c.setAttribute('stroke-width', 1.5);
+    c.setAttribute('class', 'bulb'); c.style.setProperty('--i', i);
+    g.appendChild(c);
+  }
+})();
+</script>
+</body>
+</html>

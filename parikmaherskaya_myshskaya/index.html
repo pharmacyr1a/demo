@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Мужская парикмахерская — салон красоты на проспекте Науки</title>
+<meta name="description" content="Мужская парикмахерская на проспекте Науки в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#7b1d1d;--ink:#17120f;--paper:#f3f1ec;--red:#c0392b;--blue:#1f4a8a;
+  --slab:"Alfa Slab One","Rockwell","Georgia",serif;
+  --sans:"Roboto",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.check{height:24px;background:conic-gradient(var(--ink) 25%,var(--paper) 0 50%,var(--ink) 0 75%,var(--paper) 0) 0 0/48px 48px}
+
+.hero{background:var(--wine);color:var(--paper)}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+.logo{font:400 1.2rem/1.1 var(--slab);text-decoration:none}
+.btn{display:inline-block;padding:13px 24px;background:var(--paper);color:var(--ink);font-weight:700;text-decoration:none;border:3px solid var(--ink);border-radius:6px;box-shadow:4px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.alt{background:transparent;color:var(--paper);border-color:var(--paper);box-shadow:4px 4px 0 var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:16px}
+
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center;padding:30px 0 64px}
+.eyebrow{font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.85rem;opacity:.9;margin-bottom:16px}
+h1{font:400 clamp(2rem,6.2vw,4.5rem)/1.04 var(--slab)}
+.lead{max-width:26em;margin:22px 0 32px;font-size:1.12rem}
+
+.pole{position:relative;width:76px;height:300px;border:6px solid var(--ink);border-radius:38px;overflow:hidden;background:#fff}
+.pole i{position:absolute;inset:0 0 -110px;animation:spin 2.6s linear infinite;
+  background:repeating-linear-gradient(45deg,var(--red) 0 18px,#fff 18px 36px,var(--blue) 36px 54px,#fff 54px 72px)}
+@keyframes spin{to{transform:translateY(-101.8px)}}
+
+section{padding:76px 0}
+h2{font:400 clamp(1.9rem,4.6vw,3rem)/1.05 var(--slab);margin-bottom:30px}
+
+.menu{background:var(--ink);color:var(--paper)}
+.menu ul{list-style:none;padding:0;max-width:720px}
+.menu li{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:16px 0;border-bottom:2px solid rgba(243,241,236,.25);font-size:1.1rem}
+.menu li span:last-child{font:400 1.25rem var(--slab);white-space:nowrap;color:#ffd9a0}
+.note{margin-top:22px;font-size:.9rem;opacity:.8}
+
+.about p{max-width:34em;font-size:1.12rem}
+.about p+p{margin-top:14px}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.works div{aspect-ratio:3/4;border:6px solid var(--ink);display:grid;place-items:center;font:400 1.1rem var(--slab);background:repeating-linear-gradient(45deg,rgba(23,18,15,.06) 0 14px,transparent 14px 28px)}
+
+.contacts{background:var(--red);color:var(--ink)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contacts p+p{margin-top:8px}
+.contacts .btn{background:var(--ink);color:var(--paper);border-color:var(--ink);box-shadow:4px 4px 0 var(--paper)}
+.contacts .btn.alt{background:var(--paper);color:var(--ink)}
+footer{padding:26px 0 90px;font-size:.9rem}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--ink);color:var(--paper);padding:8px 16px;border-radius:6px;font:400 .85rem var(--slab);text-transform:uppercase;letter-spacing:.04em}
+
+@media (max-width:780px){
+  .hero-grid{grid-template-columns:1fr}
+  .pole{width:60px;height:150px;order:-1;border-radius:30px}
+  .works{grid-template-columns:1fr 1fr}
+  .cgrid{grid-template-columns:1fr}
+  section{padding:54px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <header>
+      <a class="logo" href="#top">Мужская<br>парикмахерская</a>
+      <a class="btn" href="#contacts">Записаться</a>
+    </header>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Салон красоты · проспект Науки</p>
+        <h1>Мужская парикмахерская</h1>
+        <p class="lead">Стрижки, бороды и укладки. Напишите в мессенджер, и мы подберём время.</p>
+        <div class="actions">
+          <a class="btn" href="#contacts">Записаться</a>
+          <a class="btn alt" href="#prices">Цены</a>
+        </div>
+      </div>
+      <div class="pole" aria-hidden="true"><i></i></div>
+    </div>
+  </div>
+</div>
+<div class="check" aria-hidden="true"></div>
+
+<section class="menu" id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <ul>
+      <li><span>Мужская стрижка</span><span>от 1&nbsp;200&nbsp;₽</span></li>
+      <li><span>Стрижка машинкой</span><span>от 800&nbsp;₽</span></li>
+      <li><span>Стрижка бороды и усов</span><span>от 700&nbsp;₽</span></li>
+      <li><span>Бритьё</span><span>от 1&nbsp;000&nbsp;₽</span></li>
+      <li><span>Стрижка и борода</span><span>от 1&nbsp;800&nbsp;₽</span></li>
+      <li><span>Детская стрижка (мальчики)</span><span>от 800&nbsp;₽</span></li>
+      <li><span>Укладка</span><span>от 500&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Цены в демо условные. Актуальный прайс присылает парикмахерская.</p>
+  </div>
+</section>
+<div class="check" aria-hidden="true"></div>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>О парикмахерской</h2>
+    <p>Мужская парикмахерская на проспекте Науки. Стрижки, уход за бородой и укладки.</p>
+    <p>Здесь будет рассказ о парикмахерской: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт парикмахерская.</p>
+  </div>
+</section>
+
+<section id="works" style="padding-top:0">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+    <p class="note">Здесь появятся фотографии работ парикмахерской.</p>
+  </div>
+</section>
+<div class="check" aria-hidden="true"></div>
+
+<section class="contacts" id="contacts">
+  <div class="wrap cgrid">
+    <div>
+      <h2>Где найти</h2>
+      <p>Санкт-Петербург, проспект Науки</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions" style="margin-top:22px">
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn alt" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, часы работы и фото условные. © 2026 Мужская парикмахерская</div>
+</footer>
+</body>
+</html>

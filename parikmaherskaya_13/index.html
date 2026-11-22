@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Маир — парикмахерская на Крепостной улице</title>
+<meta name="description" content="Парикмахерская «Маир» на Крепостной улице. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1b2a49;--bone:#efece6;--lemon:#f0d34a;--ink:#141a2b;
+  --head:"Russo One","Arial Black",Impact,sans-serif;
+  --sans:"PT Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bone);color:var(--ink);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lemon);outline-offset:3px}
+
+.layout{display:grid;grid-template-columns:minmax(300px,36%) 1fr;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;background:var(--navy);color:var(--bone);padding:34px 40px 30px;display:flex;flex-direction:column;justify-content:space-between}
+.side::after{content:"";position:absolute;top:0;bottom:0;right:-24px;width:24px;background:repeating-linear-gradient(to bottom,var(--navy) 0 24px,transparent 24px 48px)}
+.name{font:400 clamp(4.2rem,9vw,8rem)/.9 var(--head);letter-spacing:-.02em;text-decoration:none;display:block}
+.where{margin-top:18px;font-size:.88rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+nav{display:flex;flex-direction:column;gap:6px;margin:26px 0}
+nav a{font:400 1.1rem var(--head);text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(239,236,230,.25);transition:padding-left .2s,color .2s}
+nav a:hover{padding-left:10px;color:var(--lemon)}
+.btn{display:inline-block;padding:14px 26px;background:var(--lemon);color:var(--ink);font:400 1rem var(--head);text-decoration:none;border:3px solid var(--lemon);transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--lemon)}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--bone)}
+.tiny{font-size:.8rem;opacity:.7}
+
+main{padding:0 clamp(40px,6vw,90px) 40px 56px}
+section{padding:80px 0 20px}
+section:first-child{padding-top:70px}
+h1{font:400 clamp(2rem,4.4vw,3.3rem)/1.08 var(--head);max-width:12em}
+h2{font:400 clamp(1.7rem,3.6vw,2.4rem)/1.1 var(--head);margin-bottom:26px}
+.lead{max-width:28em;margin:22px 0 28px;font-size:1.15rem}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+
+.list{list-style:none;padding:0;max-width:640px}
+.list li{display:grid;grid-template-columns:2.6rem 1fr auto;gap:12px;align-items:baseline;padding:18px 0;border-bottom:2px solid var(--ink)}
+.list li:first-child{border-top:2px solid var(--ink)}
+.list .k{font:400 .95rem var(--head);color:#8a7a14}
+.list .n{font-weight:700;font-size:1.12rem}
+.list .p{font:400 1.15rem var(--head);white-space:nowrap}
+.note{margin-top:20px;font-size:.92rem;opacity:.75}
+
+.about p{max-width:32em;font-size:1.12rem}
+.about p+p{margin-top:12px;opacity:.8}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:700px}
+.works div{aspect-ratio:3/4;background:var(--navy);color:var(--bone);display:grid;place-items:center;font:400 1rem var(--head);
+  -webkit-mask:linear-gradient(#000 0 0) bottom/100% calc(100% - 22px) no-repeat,repeating-linear-gradient(90deg,#000 0 22px,transparent 22px 44px) top/100% 22px no-repeat;
+  mask:linear-gradient(#000 0 0) bottom/100% calc(100% - 22px) no-repeat,repeating-linear-gradient(90deg,#000 0 22px,transparent 22px 44px) top/100% 22px no-repeat}
+
+.contacts p+p{margin-top:8px}
+.contacts .actions{margin-top:22px}
+footer{padding:50px 0 80px;font-size:.88rem;opacity:.75}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--lemon);color:var(--ink);padding:8px 16px;font:400 .78rem var(--head);letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--ink)}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr}
+  .side{position:relative;height:auto;padding:26px 22px 36px}
+  .side::after{right:0;left:0;top:auto;bottom:-24px;width:auto;height:24px;background:repeating-linear-gradient(to right,var(--navy) 0 24px,transparent 24px 48px)}
+  .name{font-size:4.6rem}
+  nav{flex-direction:row;flex-wrap:wrap;gap:6px 18px;margin:20px 0}
+  nav a{border:0}
+  .tiny{display:none}
+  main{padding:30px 22px 20px}
+  section{padding:50px 0 10px}
+  .works{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="layout">
+  <aside class="side">
+    <div>
+      <a class="name" href="#top">Маир</a>
+      <p class="where">Парикмахерская · Крепостная улица</p>
+      <nav aria-label="Разделы">
+        <a href="#prices">Услуги</a><a href="#about">О нас</a><a href="#works">Работы</a><a href="#contacts">Контакты</a>
+      </nav>
+      <a class="btn" href="#contacts">Записаться</a>
+    </div>
+    <p class="tiny">Демо-версия: цены, часы работы и фото условные.</p>
+  </aside>
+
+  <main id="top">
+    <section>
+      <h1>Стрижки, окрашивание и укладки</h1>
+      <p class="lead">Парикмахерская «Маир» на Крепостной улице. Напишите в мессенджер, и мы подберём время.</p>
+      <div class="actions">
+        <a class="btn" style="background:var(--navy);border-color:var(--navy);color:var(--bone)" href="#contacts">Записаться</a>
+        <a class="btn alt" href="#prices">Цены</a>
+      </div>
+    </section>
+
+    <section id="prices">
+      <h2>Услуги и цены</h2>
+      <ul class="list">
+        <li><span class="k">01</span><span class="n">Женская стрижка</span><span class="p">от 1&nbsp;800&nbsp;₽</span></li>
+        <li><span class="k">02</span><span class="n">Мужская стрижка</span><span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+        <li><span class="k">03</span><span class="n">Детская стрижка</span><span class="p">от 800&nbsp;₽</span></li>
+        <li><span class="k">04</span><span class="n">Окрашивание</span><span class="p">от 3&nbsp;500&nbsp;₽</span></li>
+        <li><span class="k">05</span><span class="n">Укладка</span><span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+        <li><span class="k">06</span><span class="n">Уход и мытьё головы</span><span class="p">от 500&nbsp;₽</span></li>
+      </ul>
+      <p class="note">Цены в демо условные. Актуальный прайс присылает парикмахерская.</p>
+    </section>
+
+    <section class="about" id="about">
+      <h2>О нас</h2>
+      <p>«Маир» — парикмахерская на Крепостной улице. Стрижки, окрашивание и укладки.</p>
+      <p>Здесь будет рассказ о парикмахерской: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт парикмахерская.</p>
+    </section>
+
+    <section id="works">
+      <h2>Работы</h2>
+      <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+      <p class="note">Здесь появятся фотографии работ парикмахерской.</p>
+    </section>
+
+    <section class="contacts" id="contacts">
+      <h2>Запись</h2>
+      <p>Крепостная улица</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions">
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" style="background:var(--navy);border-color:var(--navy);color:var(--bone)" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn alt" href="#">Telegram</a>
+      </div>
+    </section>
+
+    <footer>Демо-версия сайта: цены, часы работы и фото условные. © 2026 Маир</footer>
+  </main>
+</div>
+</body>
+</html>

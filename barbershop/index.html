@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Rock-n-head — барбершоп на проспекте Маршала Блюхера</title>
+<meta name="description" content="Барбершоп Rock-n-head на проспекте Маршала Блюхера в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#d8d6cf;--ink:#0c0c0c;--hot:#ff3b14;--white:#f6f4ee;
+  --head:"Oswald","Arial Narrow",Impact,sans-serif;
+  --mono:"IBM Plex Mono","Courier New",monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--mono);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+.up{font-family:var(--head);text-transform:uppercase}
+
+.tape{background:var(--ink);color:var(--hot);overflow:hidden;white-space:nowrap;font:700 .95rem/1 var(--head);letter-spacing:.14em;padding:12px 0}
+.tape div{display:inline-flex;animation:run 26s linear infinite}
+.tape span{padding-right:2.2rem}
+@keyframes run{to{transform:translateX(-50%)}}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+.logo{font:700 1.4rem/1 var(--head);letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.btn{display:inline-block;padding:13px 26px;background:var(--hot);color:var(--ink);font:700 1rem/1 var(--head);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border:3px solid var(--ink);transform:skewX(-8deg);transition:transform .15s,background .15s}
+.btn:hover{transform:skewX(-8deg) translateY(-3px);background:var(--white)}
+.btn.alt{background:transparent}
+.btn.alt:hover{background:var(--ink);color:var(--white)}
+.actions{display:flex;flex-wrap:wrap;gap:16px}
+
+.hero{position:relative;padding:20px 0 90px}
+.hero h1{font:700 clamp(3.3rem,15.5vw,12rem)/.86 var(--head);text-transform:uppercase;letter-spacing:-.01em;transform:rotate(-2deg);transform-origin:left;text-shadow:6px 6px 0 var(--hot);margin:16px 0 30px}
+.label{display:inline-block;background:var(--ink);color:var(--white);padding:6px 14px;font:600 .85rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;transform:rotate(-1.5deg)}
+.lead{max-width:27em;margin-bottom:30px;font-size:1.05rem}
+.badge{position:absolute;right:2%;bottom:20px;width:clamp(120px,22vw,190px);animation:turn 24s linear infinite}
+@keyframes turn{to{transform:rotate(360deg)}}
+.badge text{font:700 15px var(--head);letter-spacing:.14em;fill:var(--ink);text-transform:uppercase}
+
+.zig{height:16px;background:linear-gradient(135deg,var(--ink) 25%,transparent 25%) -8px 0/16px 16px,linear-gradient(225deg,var(--ink) 25%,transparent 25%) -8px 0/16px 16px}
+.zig.flip{transform:scaleY(-1)}
+
+section{padding:76px 0}
+h2{font:700 clamp(2.4rem,7vw,4.4rem)/.95 var(--head);text-transform:uppercase;margin-bottom:34px}
+
+.set{background:var(--ink);color:var(--white)}
+.set ol{list-style:none;padding:0;max-width:760px}
+.set li{display:flex;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px dashed rgba(246,244,238,.35)}
+.set .no{color:var(--hot);font:700 1rem var(--head);min-width:2.2rem}
+.set .n{font:500 clamp(1.15rem,3vw,1.5rem)/1.2 var(--head);text-transform:uppercase;letter-spacing:.04em;flex:1}
+.set .p{font:700 1.3rem var(--head);white-space:nowrap;color:var(--hot)}
+.set li:hover .n{color:var(--hot)}
+.note{margin-top:22px;font-size:.88rem;opacity:.8}
+
+.about p{max-width:34em;background:var(--white);padding:22px 26px;border:3px solid var(--ink);transform:rotate(-.8deg);position:relative}
+.about p::before{content:"";position:absolute;top:-14px;left:40px;width:90px;height:26px;background:rgba(255,59,20,.7);transform:rotate(-3deg)}
+.about p+p{margin-top:22px;transform:rotate(.8deg)}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.works div{aspect-ratio:3/4;background:var(--white);border:3px solid var(--ink);display:grid;place-items:center;font:700 1.4rem var(--head);text-transform:uppercase;position:relative;transform:rotate(-2deg)}
+.works div:nth-child(2){transform:rotate(1.5deg) translateY(14px)}
+.works div:nth-child(3){transform:rotate(-1deg)}
+.works div::before{content:"";position:absolute;top:-12px;left:50%;width:70px;height:22px;margin-left:-35px;background:rgba(12,12,12,.2);transform:rotate(2deg)}
+
+.ticket{position:relative;display:grid;grid-template-columns:1.4fr 1fr;background:var(--white);border:3px solid var(--ink);max-width:880px}
+.ticket::before,.ticket::after{content:"";position:absolute;left:calc(58.3% - 14px);width:28px;height:28px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
+.ticket::before{top:-16px}.ticket::after{bottom:-16px}
+.ticket>div{padding:30px}
+.ticket>div+div{border-left:3px dashed var(--ink);display:flex;flex-direction:column;justify-content:center;gap:16px}
+.ticket h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:14px}
+.ticket p+p{margin-top:6px}
+footer{padding:26px 0 90px;font-size:.85rem}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--ink);color:var(--hot);padding:8px 16px;font:700 .85rem var(--head);letter-spacing:.14em;text-transform:uppercase;transform:rotate(2deg)}
+
+@media (max-width:780px){
+  .badge{display:none}
+  .works{grid-template-columns:1fr 1fr}
+  .ticket{grid-template-columns:1fr}
+  .ticket::before,.ticket::after{display:none}
+  .ticket>div+div{border-left:0;border-top:3px dashed var(--ink)}
+  section{padding:54px 0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.tape div{transform:none}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="tape" aria-hidden="true"><div>
+  <span>Rock-n-head</span><span>Барбершоп</span><span>Проспект Маршала Блюхера</span><span>Стрижки</span><span>Борода</span><span>Укладка</span>
+  <span>Rock-n-head</span><span>Барбершоп</span><span>Проспект Маршала Блюхера</span><span>Стрижки</span><span>Борода</span><span>Укладка</span>
+</div></div>
+
+<div class="wrap" id="top">
+  <header>
+    <a class="logo" href="#top">Rock-n-head</a>
+    <a class="btn" href="#contacts">Записаться</a>
+  </header>
+  <main class="hero">
+    <span class="label">Барбершоп · проспект Маршала Блюхера</span>
+    <h1>Rock-n-head</h1>
+    <p class="lead">Стрижки, бороды и укладки. Напишите в мессенджер, и мы подберём время.</p>
+    <div class="actions">
+      <a class="btn" href="#contacts">Записаться</a>
+      <a class="btn alt" href="#prices">Сет-лист</a>
+    </div>
+    <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
+      <defs><path id="c" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+      <circle cx="100" cy="100" r="96" fill="#ff3b14" stroke="#0c0c0c" stroke-width="4"/>
+      <text><textPath href="#c">Барбершоп • Пр. Маршала Блюхера • Rock-n-head • </textPath></text>
+      <circle cx="100" cy="100" r="30" fill="#0c0c0c"/>
+    </svg>
+  </main>
+</div>
+
+<div class="zig flip" aria-hidden="true"></div>
+<section class="set" id="prices">
+  <div class="wrap">
+    <h2>Сет-лист</h2>
+    <ol>
+      <li><span class="no">01</span><span class="n">Мужская стрижка</span><span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+      <li><span class="no">02</span><span class="n">Стрижка машинкой</span><span class="p">от 800&nbsp;₽</span></li>
+      <li><span class="no">03</span><span class="n">Борода и усы</span><span class="p">от 700&nbsp;₽</span></li>
+      <li><span class="no">04</span><span class="n">Стрижка и борода</span><span class="p">от 1&nbsp;800&nbsp;₽</span></li>
+      <li><span class="no">05</span><span class="n">Бритьё</span><span class="p">от 1&nbsp;000&nbsp;₽</span></li>
+      <li><span class="no">06</span><span class="n">Детская стрижка (мальчики)</span><span class="p">от 800&nbsp;₽</span></li>
+      <li><span class="no">07</span><span class="n">Укладка</span><span class="p">от 500&nbsp;₽</span></li>
+    </ol>
+    <p class="note">Цены в демо условные. Актуальный прайс присылает барбершоп.</p>
+  </div>
+</section>
+<div class="zig" aria-hidden="true"></div>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>О нас</h2>
+    <p>Rock-n-head — барбершоп на проспекте Маршала Блюхера. Стрижки, уход за бородой и укладки.</p>
+    <p>Здесь будет рассказ о барбершопе: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт барбершоп.</p>
+  </div>
+</section>
+
+<section id="works" style="padding-top:10px">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+    <p class="note" style="margin-top:44px">Здесь появятся фотографии работ барбершопа.</p>
+  </div>
+</section>
+
+<section id="contacts" style="padding-top:20px">
+  <div class="wrap">
+    <div class="ticket">
+      <div>
+        <h2>Запись</h2>
+        <p>Санкт-Петербург, проспект Маршала Блюхера</p>
+        <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+        <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      </div>
+      <div>
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn alt" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, часы работы и фото условные. © 2026 Rock-n-head</div>
+</footer>
+</body>
+</html>

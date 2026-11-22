@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери после оплаты -->
+<meta name="robots" content="noindex">
+<title>Студия парикмахерского искусства — Сыктывкарская улица</title>
+<meta name="description" content="Стрижки, окрашивание, укладки и причёски. Студия парикмахерского искусства на Сыктывкарской улице. Демо-версия сайта: цены и фото условные.">
+<meta name="theme-color" content="#15100e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315100e'/%3E%3Crect x='6' y='7' width='20' height='4' fill='%23e07a3f'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%23c9662c'/%3E%3Crect x='6' y='21' width='20' height='4' fill='%239c4715'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/prata@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/manrope@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5/index.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#15100e; --ink-2:#1d1613; --lab:#100c0b;
+  --paper:#efe6d8; --paper-2:#e6dac7; --paper-ink:#241b16;
+  --linen:#f4ece0; --linen-2:#cdbca9;
+  --cu:#e07a3f; --cu-mid:#c9662c; --cu-deep:#9c4715;
+  --brass:#e6b34a; --wine:#a83a55; --ash:#6d94ad;
+  --ok:#7d9a58; --warn:#e8b13a; --danger:#c8452f; --info:#6d94ad;
+  --nav-h:68px; --maxw:1240px;
+  --disp:'Prata',Georgia,'Times New Roman',serif;
+  --body:'Manrope Variable','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'Courier New',monospace;
+  --ease:cubic-bezier(.22,.68,.32,1);
+}
+html{scroll-behavior:smooth;scrollbar-gutter:stable;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--linen);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;overflow-x:clip;padding-top:var(--nav-h)}
+svg{max-width:100%}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:400;margin:0;line-height:1.05;letter-spacing:-.015em}
+p{margin:0}
+h1,h2,h3,p,dd,li,figcaption{overflow-wrap:break-word}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cu);outline-offset:3px}
+.wall-paper :focus-visible{outline-color:var(--cu-deep)}
+::selection{background:var(--cu);color:#15100e}
+*{scrollbar-width:thin;scrollbar-color:var(--cu-deep) #120e0c}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:#120e0c;border-left:1px solid rgba(244,236,224,.08)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--cu),var(--cu-deep));border:3px solid #120e0c}
+::-webkit-scrollbar-thumb:hover{background:var(--cu)}
+::-webkit-scrollbar-corner{background:#120e0c}
+.grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.skip{position:fixed;top:8px;left:8px;z-index:99;background:var(--cu);color:#15100e;padding:10px 16px;transform:translateY(-180%);transition:transform .2s;font-weight:700;text-decoration:none}
+.skip:focus{transform:none}
+.wall{background:var(--bg);color:var(--fg)}
+.wall-ink{--bg:var(--ink);--fg:var(--linen);--dim:#b1a091;--line:rgba(244,236,224,.14);--surface:#1d1613;--acc:var(--cu)}
+.wall-lab{--bg:var(--lab);--fg:var(--linen);--dim:#a99889;--line:rgba(244,236,224,.13);--surface:#181312;--acc:var(--cu)}
+.wall-paper{--bg:var(--paper);--fg:var(--paper-ink);--dim:#6b5b4d;--line:rgba(36,27,22,.18);--surface:#f7f1e6;--acc:var(--cu-deep)}
+.sec{padding:clamp(54px,7.5vw,104px) 0;scroll-margin-top:calc(var(--nav-h) + 10px)}
+#top{scroll-margin-top:var(--nav-h)}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(16px,4vw,44px)}
+.sec-head{display:flex;align-items:flex-end;gap:clamp(14px,3vw,32px);flex-wrap:wrap;margin-bottom:clamp(24px,3.6vw,44px)}
+.idx{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--acc);padding-bottom:8px;white-space:nowrap}
+.sec-title{font-size:clamp(2rem,5.2vw,3.4rem)}
+.lede{color:var(--dim);max-width:58ch;font-size:clamp(14px,1.6vw,16.5px)}
+.rule{flex:1 1 60px;height:1px;background:var(--line);margin-bottom:14px;min-width:40px}
+.note{font-family:var(--mono);font-size:11px;line-height:1.75;color:var(--dim);letter-spacing:.02em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:var(--body);font-weight:700;font-size:13.5px;padding:14px 22px;border:1px solid transparent;border-radius:2px;text-decoration:none;transition:background .2s,color .2s,border-color .2s,filter .2s}
+.btn-solid{background:var(--cu);color:#15100e}
+.btn-solid:hover{filter:brightness(1.09)}
+.wall-paper .btn-solid{background:var(--cu-deep);color:#fff}
+.btn-ghost{border-color:var(--line);color:var(--fg)}
+.btn-ghost:hover{border-color:var(--acc);color:var(--acc)}
+.btn-sm{padding:10px 16px;font-size:12px}
+/* ---------- шапка ---------- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:60;background:#15100e;border-bottom:1px solid rgba(224,122,63,.28);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.nav-in{height:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(14px,4vw,44px);display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;min-width:0}
+.brand svg{flex:none;display:block}
+.brand b{font-family:var(--disp);font-weight:400;font-size:15px;color:var(--linen);display:block;line-height:1.1}
+.brand i{font-family:var(--mono);font-style:normal;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--linen-2);display:block}
+.nav-links{display:flex;gap:clamp(10px,1.6vw,22px);align-items:center;min-width:0}
+.nav-links a{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#b1a091;text-decoration:none;padding:6px 2px;white-space:nowrap;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--cu);transition:right .3s var(--ease)}
+.nav-links a:hover{color:var(--linen)}
+.nav-links a:hover::after{right:0}
+/* ---------- герой ---------- */
+.hero{padding:clamp(34px,6vw,70px) 0 clamp(40px,6vw,78px);position:relative;overflow:hidden;background:linear-gradient(168deg,#1c1512 0%,#15100e 44%,#241610 100%)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,rgba(244,236,224,.045) 0 1px,transparent 1px 74px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);gap:clamp(24px,4vw,56px);align-items:center;position:relative}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cu);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.kicker::before{content:"";width:34px;height:1px;background:var(--cu);flex:none}
+h1.hero-title{font-size:clamp(2.15rem,6.4vw,4.8rem);line-height:.99}
+h1.hero-title em{font-style:normal;color:var(--cu)}
+.hero-sub{margin-top:22px;max-width:46ch;color:#c6b5a4;font-size:clamp(14.5px,1.8vw,17px)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px 28px;margin:32px 0 0;padding-top:20px;border-top:1px solid rgba(244,236,224,.12)}
+.hero-meta dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#8d7d70}
+.hero-meta dd{margin:3px 0 0;font-size:13.5px;color:var(--linen)}
+.enter{animation:enter .7s var(--ease) both;animation-delay:calc(var(--d,0)*90ms)}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* рама под галерейным софитом */
+.artwall{position:relative;margin:0;padding-top:36px}
+.lamp{position:absolute;top:0;left:50%;transform:translateX(-50%);width:118px;height:24px;pointer-events:none;z-index:3}
+.lamp::before{content:"";position:absolute;left:50%;top:0;width:2px;height:12px;margin-left:-1px;background:linear-gradient(180deg,#7d5510,#c9962c)}
+.lamp::after{content:"";position:absolute;left:0;top:12px;width:118px;height:10px;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,#f4d79a,#c9962c 58%,#6f4a0e);box-shadow:0 7px 20px rgba(230,179,74,.3)}
+.wash{position:absolute;left:50%;top:22px;width:118%;height:74%;transform:translateX(-50%);pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,rgba(244,215,154,.22),rgba(224,122,63,.08) 46%,rgba(224,122,63,0) 80%);
+  clip-path:polygon(42% 0,58% 0,100% 100%,0 100%)}
+.mat{position:relative;z-index:1;background:linear-gradient(165deg,#f4ece0,#dfd2bd);padding:clamp(14px,2vw,26px);border:1px solid rgba(36,27,22,.4);box-shadow:0 28px 64px rgba(0,0,0,.5)}
+.mat .hole{aspect-ratio:4/5;max-height:430px}
+.artcap{display:flex;justify-content:space-between;align-items:baseline;gap:10px 14px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid rgba(244,236,224,.14)}
+.artcap b{font-family:var(--disp);font-weight:400;font-size:15px;color:var(--linen)}
+.artcap i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8d7d70}
+/* лента */
+.ribbon{background:var(--cu-deep);color:#fdf6ec;border-top:1px solid rgba(0,0,0,.25);border-bottom:1px solid rgba(0,0,0,.25);padding:11px 0}
+.ribbon-in{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;padding:0 clamp(16px,4vw,44px)}
+.ribbon-in span{display:inline-flex;align-items:center;gap:20px;white-space:nowrap}
+.ribbon-in span::after{content:"";width:4px;height:4px;background:#fdf6ec;border-radius:50%;opacity:.7}
+.ribbon-in span:last-child::after{display:none}
+/* ---------- услуги ---------- */
+.ledger{border-top:1px solid var(--line)}
+.srv{display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:clamp(10px,2vw,24px);padding:clamp(18px,2.4vw,26px) 4px;border-bottom:1px solid var(--line);align-items:start}
+.srv-num{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:.1em;padding-top:7px}
+.srv-name{font-family:var(--disp);font-size:clamp(1.15rem,2.6vw,1.7rem);margin-bottom:8px}
+.srv-text{color:var(--dim);font-size:14.5px;max-width:64ch}
+.srv-tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);border:1px solid var(--line);padding:3px 8px;margin-bottom:10px}
+.srv-price{font-family:var(--mono);font-size:clamp(12px,1.7vw,14px);color:var(--fg);white-space:nowrap;padding-top:6px;text-align:right}
+.srv-price i{display:block;font-style:normal;font-size:9.5px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+/* ---------- палитра ---------- */
+.scale{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));border:1px solid var(--line)}
+.scale div{background:var(--c);color:var(--t);min-height:104px;padding:10px 8px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid rgba(0,0,0,.22)}
+.scale div:last-child{border-right:0}
+.scale b{font-family:var(--mono);font-size:13px;font-weight:400}
+.scale span{font-family:var(--mono);font-size:9px;line-height:1.35;letter-spacing:.04em;text-transform:uppercase}
+.tones{margin-top:clamp(22px,3vw,34px);border-top:1px solid var(--line)}
+.tone{display:grid;grid-template-columns:132px minmax(0,1fr) 108px;gap:clamp(12px,2.4vw,26px);align-items:center;padding:clamp(14px,2vw,20px) 0;border-bottom:1px solid var(--line)}
+.tone .sw{height:64px;background:linear-gradient(115deg,var(--c1) 0%,var(--c2) 62%,var(--c3) 100%);border:1px solid rgba(0,0,0,.3)}
+.tone h3{font-size:clamp(1.1rem,2.4vw,1.45rem);margin-bottom:5px}
+.tone p{color:var(--dim);font-size:14px;max-width:60ch}
+.tone .lvl{font-family:var(--mono);font-size:11px;color:var(--acc);text-align:right;letter-spacing:.08em}
+.tone .lvl i{display:block;font-style:normal;color:var(--dim);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+/* ---------- работы ---------- */
+.gallery{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(12px,1.8vw,22px);grid-auto-flow:dense}
+.frame{grid-column:span var(--sp,2);margin:0;background:var(--paper-2);border:1px solid rgba(36,27,22,.16);padding:clamp(10px,1.4vw,16px);display:flex;flex-direction:column;gap:10px}
+.hole{position:relative;aspect-ratio:var(--ar,4/5);background:repeating-linear-gradient(135deg,rgba(36,27,22,.05) 0 2px,transparent 2px 11px),linear-gradient(160deg,#f4ece0,#ddd0bb);border:1px solid rgba(36,27,22,.2);display:flex;align-items:center;justify-content:center}
+.hole span{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#8a7663}
+.hole::before,.hole::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(36,27,22,.3)}
+.hole::before{left:8px;top:8px;border-right:0;border-bottom:0}
+.hole::after{right:8px;bottom:8px;border-left:0;border-top:0}
+.plaque{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid rgba(36,27,22,.16);padding-top:9px}
+.plaque b{font-family:var(--disp);font-weight:400;font-size:15px}
+.plaque i{font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6b5b4d;white-space:nowrap}
+/* ---------- о студии ---------- */
+.about{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(22px,4vw,60px);align-items:start}
+.about-sticky{position:sticky;top:calc(var(--nav-h) + 26px)}
+.about-sticky h2{font-size:clamp(1.9rem,4.6vw,3.1rem);margin:12px 0 16px}
+.about-body p{font-size:clamp(15px,1.8vw,17px);color:#4b3d33;margin-bottom:18px;max-width:60ch}
+.about-body p.big{font-family:var(--disp);font-size:clamp(1.15rem,2.6vw,1.55rem);color:var(--paper-ink);line-height:1.35}
+.steps{list-style:none;margin:26px 0 0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding:0 0 22px 46px;border-left:1px solid rgba(36,27,22,.2);margin-left:14px}
+.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:-14px;top:0;width:28px;height:28px;background:var(--bg);border:1px solid var(--cu-deep);color:var(--cu-deep);font-family:var(--mono);font-size:10px;display:flex;align-items:center;justify-content:center}
+.steps b{display:block;font-family:var(--disp);font-weight:400;font-size:17px;margin-bottom:3px}
+.steps span{font-size:14px;color:#6b5b4d}
+.pending{margin-top:30px;border:1px dashed rgba(36,27,22,.35);background:rgba(255,255,255,.42);padding:clamp(16px,2.2vw,22px)}
+.pending h3{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cu-deep);margin-bottom:12px}
+.pending ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pending li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#4b3d33}
+.pending li::before{content:"";width:12px;height:12px;border:1px solid var(--cu-deep);flex:none;margin-top:5px}
+/* ---------- контакты ---------- */
+.contacts{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,3vw,40px);align-items:start}
+.card{border:1px solid var(--line);background:var(--surface);padding:clamp(18px,2.6vw,30px)}
+.addr h3{font-size:clamp(1.5rem,3.4vw,2.2rem);margin:10px 0 8px}
+.scheme{margin-top:20px;border:1px solid var(--line);background:#141010}
+.scheme svg{display:block;width:100%;height:auto}
+.c-rows{margin:4px 0 0}
+.c-row{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.c-row dt{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.c-row dd{margin:0;font-size:14.5px;text-align:right}
+.msg{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+/* ---------- подвал ---------- */
+footer{background:#100c0b;border-top:1px solid rgba(224,122,63,.22);padding:44px 0 30px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+.foot-links a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b1a091;text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--cu)}
+.foot-bottom{margin-top:28px;padding-top:18px;border-top:1px solid rgba(244,236,224,.09);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.demo{position:fixed;left:12px;bottom:12px;z-index:70;pointer-events:none;display:flex;align-items:center;gap:8px;background:#15100e;border:1px solid var(--warn);color:var(--linen);font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:7px 11px}
+.demo i{width:6px;height:6px;background:var(--warn);border-radius:50%}
+/* ---------- адаптив ---------- */
+@media (max-width:1080px){
+  .hero-grid,.about,.contacts{grid-template-columns:1fr}
+  .artwall{max-width:460px}
+  .about-sticky{position:static}
+  .tone{grid-template-columns:104px minmax(0,1fr) 96px}
+}
+@media (max-width:900px){
+  .scale{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .scale div{min-height:88px;border-bottom:1px solid rgba(0,0,0,.22)}
+  .scale div:nth-child(5n){border-right:0}
+  .scale div:nth-child(n+6){border-bottom:0}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery .frame{grid-column:span 1}
+  .gallery .frame.wide{grid-column:span 2}
+}
+@media (max-width:860px){
+  :root{--nav-h:94px}
+  .nav-in{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;align-items:center;row-gap:2px;padding:8px clamp(14px,4vw,44px) 6px}
+  .brand{grid-column:1;grid-row:1;margin-right:0}
+  .nav-cta{grid-column:2;grid-row:1}
+  .nav-links{grid-column:1/-1;grid-row:2;overflow-x:auto;gap:16px;padding-bottom:5px;scrollbar-color:var(--cu) #1a1412}
+  .nav-links::-webkit-scrollbar{height:4px}
+  .nav-links::-webkit-scrollbar-track{background:#1a1412;border-left:0}
+  .nav-links::-webkit-scrollbar-thumb{background:var(--cu-deep);border:0}
+  .nav-links::-webkit-scrollbar-thumb:hover{background:var(--cu)}
+  .srv{grid-template-columns:32px minmax(0,1fr);row-gap:8px;padding-left:0;padding-right:0}
+  .srv-price{grid-column:2;text-align:left;padding-top:0}
+  .srv-price i{display:inline;margin-left:8px}
+}
+@media (max-width:560px){
+  .gallery{grid-template-columns:1fr}
+  .gallery .frame.wide{grid-column:span 1}
+  .gallery .frame.wide .hole{aspect-ratio:4/5}
+  .hero-cta .btn{flex:1 1 100%}
+  .tone{grid-template-columns:72px minmax(0,1fr);row-gap:8px}
+  .tone .sw{height:52px}
+  .tone .lvl{grid-column:2;text-align:left}
+  .tone .lvl i{display:inline;margin-left:8px}
+  .c-row dd{text-align:left}
+  .plaque{flex-direction:column;align-items:flex-start;gap:4px}
+  .scale span{font-size:8.5px}
+  .mat .hole{max-height:360px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<a class="skip" href="#uslugi">К содержанию</a>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Студия парикмахерского искусства, наверх">
+      <svg width="24" height="30" viewBox="0 0 24 30" aria-hidden="true">
+        <rect x="1" y="2" width="22" height="6" fill="#e07a3f"/>
+        <rect x="1" y="12" width="22" height="6" fill="#c9662c"/>
+        <rect x="1" y="22" width="22" height="6" fill="#9c4715"/>
+      </svg>
+      <span>
+        <b>Студия</b>
+        <i>парикмахерского искусства</i>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a href="#uslugi">Услуги</a>
+      <a href="#palitra">Палитра</a>
+      <a href="#raboty">Работы</a>
+      <a href="#o-studii">О студии</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+    <a class="btn btn-solid btn-sm nav-cta" href="#kontakty">Записаться</a>
+  </div>
+</header>
+
+<main>
+<!-- ГЕРОЙ -->
+<section class="wall wall-ink hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker enter">Сыктывкарская улица · студия</div>
+      <h1 class="hero-title enter" style="--d:1">Студия<br>парикмахерского<br><em>искусства</em></h1>
+      <p class="hero-sub enter" style="--d:2">Стрижка, цвет и причёска как ремесло. Сначала разговор о форме и оттенке, потом ножницы и кисть. Ниже — прайс, палитра оттенков и стены студии.</p>
+      <div class="hero-cta enter" style="--d:3">
+        <a class="btn btn-solid" href="#kontakty">Контакты и запись</a>
+        <a class="btn btn-ghost" href="#uslugi">Услуги и цены</a>
+      </div>
+      <dl class="hero-meta enter" style="--d:4">
+        <div><dt>Адрес</dt><dd>Сыктывкарская улица</dd></div>
+        <div><dt>Направления</dt><dd>Стрижки · цвет · причёски</dd></div>
+        <div><dt>Запись</dt><dd>Через мессенджер</dd></div>
+      </dl>
+    </div>
+    <figure class="artwall enter" style="--d:2">
+      <span class="lamp" aria-hidden="true"></span>
+      <span class="wash" aria-hidden="true"></span>
+      <div class="mat"><span class="hole"><span>фото</span></span></div>
+      <figcaption class="artcap"><b>Рабочее место мастера</b><i>фото пришлёт студия</i></figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="ribbon">
+  <div class="ribbon-in">
+    <span>стрижка</span><span>окрашивание</span><span>тонирование</span><span>укладка</span><span>причёска</span><span>плетение</span><span>уход</span>
+  </div>
+</div>
+
+<!-- УСЛУГИ -->
+<section class="wall wall-ink sec" id="uslugi">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">01 / прайс</span>
+      <h2 class="sec-title">Услуги</h2>
+      <span class="rule"></span>
+      <p class="lede">Прайс — ориентир, только «от». Точную стоимость мастер называет после осмотра волос: длина, густота и история окрашиваний меняют работу.</p>
+    </div>
+    <p class="note" style="margin-bottom:18px">Цены условные, для макета. Финальный прайс и длительность услуг пришлёт студия.</p>
+    <div class="ledger">
+
+      <div class="srv">
+        <span class="srv-num">01</span>
+        <div><span class="srv-tag">форма</span><h3 class="srv-name">Женская стрижка</h3><p class="srv-text">Силуэт под структуру волос и под то, как вы укладываетесь дома: сколько времени готовы тратить утром и какой объём нужен. Длину и линию среза обсуждают до начала работы.</p></div>
+        <div class="srv-price">от 1 200 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">02</span>
+        <div><span class="srv-tag">форма</span><h3 class="srv-name">Мужская стрижка</h3><p class="srv-text">Классическая или текстурная форма, работа с контуром и переходом. Отдельно обсуждают, как стрижка будет отрастать и когда удобнее прийти в следующий раз.</p></div>
+        <div class="srv-price">от 900 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">03</span>
+        <div><span class="srv-tag">форма</span><h3 class="srv-name">Детская стрижка</h3><p class="srv-text">Спокойный темп и простая форма, которую легко расчёсывать. Возраст и особенности ребёнка лучше указать в сообщении при записи.</p></div>
+        <div class="srv-price">от 700 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">04</span>
+        <div><span class="srv-tag">цвет</span><h3 class="srv-name">Окрашивание в один тон</h3><p class="srv-text">Ровный оттенок по всей длине. На консультации смотрят исходную базу, историю окрашиваний и то, как цвет будет выглядеть при вашем освещении.</p></div>
+        <div class="srv-price">от 2 200 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">05</span>
+        <div><span class="srv-tag">цвет</span><h3 class="srv-name">Сложное окрашивание</h3><p class="srv-text">Работа с несколькими оттенками и переходами. Технику и число визитов мастер определяет очно, после осмотра волос — по фотографии это не решается.</p></div>
+        <div class="srv-price">от 3 500 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">06</span>
+        <div><span class="srv-tag">цвет</span><h3 class="srv-name">Тонирование</h3><p class="srv-text">Мягкая коррекция оттенка: убрать нежелательный подтон или добавить глубины. Подходит как поддержка цвета между окрашиваниями.</p></div>
+        <div class="srv-price">от 1 500 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">07</span>
+        <div><span class="srv-tag">линия</span><h3 class="srv-name">Укладка</h3><p class="srv-text">Объём, гладкость или лёгкая волна — под повод и под погоду. Мастер показывает, как повторить укладку дома своими руками.</p></div>
+        <div class="srv-price">от 800 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">08</span>
+        <div><span class="srv-tag">линия</span><h3 class="srv-name">Вечерняя причёска</h3><p class="srv-text">Собранные формы под платье, украшение и формат события. Репетицию и время визита планируют заранее — укажите дату события в сообщении.</p></div>
+        <div class="srv-price">от 2 000 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">09</span>
+        <div><span class="srv-tag">линия</span><h3 class="srv-name">Плетение</h3><p class="srv-text">Косы и собранные плетения: от повседневного варианта до сложного рисунка. Хорошо сочетается с укладкой.</p></div>
+        <div class="srv-price">от 500 ₽<i>условно</i></div>
+      </div>
+
+      <div class="srv">
+        <span class="srv-num">10</span>
+        <div><span class="srv-tag">уход</span><h3 class="srv-name">Уход и мытьё головы</h3><p class="srv-text">Мытьё, массаж головы и уход по состоянию волос и кожи. Состав подбирает мастер на месте.</p></div>
+        <div class="srv-price">от 600 ₽<i>условно</i></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ПАЛИТРА -->
+<section class="wall wall-lab sec" id="palitra">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">02 / цвет</span>
+      <h2 class="sec-title">Палитра оттенков</h2>
+      <span class="rule"></span>
+      <p class="lede">Спокойный справочник, чтобы разговор о цвете шёл на одном языке: сначала глубина тона, потом направление оттенка.</p>
+    </div>
+
+    <h3 style="font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cu);margin-bottom:12px">Глубина тона · уровни 1–10</h3>
+    <div class="scale">
+      <div style="--c:#17110f;--t:#f4ece0"><b>01</b><span>чёрный</span></div>
+      <div style="--c:#241812;--t:#f4ece0"><b>02</b><span>очень тёмный шатен</span></div>
+      <div style="--c:#3a2418;--t:#f4ece0"><b>03</b><span>тёмный шатен</span></div>
+      <div style="--c:#55311c;--t:#f4ece0"><b>04</b><span>шатен</span></div>
+      <div style="--c:#74452a;--t:#f4ece0"><b>05</b><span>светлый шатен</span></div>
+      <div style="--c:#96603a;--t:#f4ece0"><b>06</b><span>тёмный русый</span></div>
+      <div style="--c:#b57c4e;--t:#241b16"><b>07</b><span>русый</span></div>
+      <div style="--c:#cf9c6c;--t:#241b16"><b>08</b><span>светло-русый</span></div>
+      <div style="--c:#e3bd93;--t:#241b16"><b>09</b><span>блонд</span></div>
+      <div style="--c:#f0d9bb;--t:#241b16"><b>10</b><span>светлый блонд</span></div>
+    </div>
+
+    <h3 style="font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cu);margin:clamp(26px,3.4vw,40px) 0 0">Направления оттенка</h3>
+    <div class="tones">
+      <div class="tone">
+        <span class="sw" style="--c1:#7a3413;--c2:#c9662c;--c3:#e8a45c"></span>
+        <div><h3>Медное</h3><p>Тёплое рыжее направление. Живёт на свету: при дневном освещении читается ярче, при тёплом домашнем — глубже и спокойнее.</p></div>
+        <div class="lvl">уровни 5–9<i>тёплое</i></div>
+      </div>
+      <div class="tone">
+        <span class="sw" style="--c1:#7d5510;--c2:#c9962c;--c3:#eecb74"></span>
+        <div><h3>Золотистое</h3><p>Мягкое солнечное свечение без явной рыжины. Часто выбирают, когда хотят осветлить образ на один-два шага, оставаясь в тёплой гамме.</p></div>
+        <div class="lvl">уровни 6–9<i>тёплое</i></div>
+      </div>
+      <div class="tone">
+        <span class="sw" style="--c1:#331d10;--c2:#7a4526;--c3:#a9673a"></span>
+        <div><h3>Каштановое</h3><p>Плотный тёплый коричневый. Спокойная база, которая аккуратно отрастает и не требует частого обновления по длине.</p></div>
+        <div class="lvl">уровни 3–6<i>тёплое</i></div>
+      </div>
+      <div class="tone">
+        <span class="sw" style="--c1:#1e1410;--c2:#4a2e1e;--c3:#7a4b30"></span>
+        <div><h3>Шоколадное</h3><p>Глубокий тёмный тон с мягким нюансом. В тени выглядит почти чёрным, на свету показывает коричневую глубину.</p></div>
+        <div class="lvl">уровни 2–5<i>нейтральное</i></div>
+      </div>
+      <div class="tone">
+        <span class="sw" style="--c1:#3f4a54;--c2:#7d8f9c;--c3:#c2cdd6"></span>
+        <div><h3>Пепельное</h3><p>Холодное направление: приглушает рыжину и золотинку. Требует более частого тонирования — холодный нюанс вымывается первым.</p></div>
+        <div class="lvl">уровни 6–9<i>холодное</i></div>
+      </div>
+      <div class="tone">
+        <span class="sw" style="--c1:#3f1220;--c2:#8e2440;--c3:#c05a72"></span>
+        <div><h3>Винное</h3><p>Красно-фиолетовый нюанс поверх базового тона. Заметнее всего на светлой базе и при прямом освещении.</p></div>
+        <div class="lvl">уровни 4–7<i>холодное</i></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:18px">Экран искажает цвет, а волос — принимает его по-своему. Это справочник для разговора, а не обещание результата: итоговый оттенок мастер подбирает очно.</p>
+  </div>
+</section>
+
+<!-- РАБОТЫ -->
+<section class="wall wall-paper sec" id="raboty">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">03 / стены</span>
+      <h2 class="sec-title">Работы</h2>
+      <span class="rule"></span>
+      <p class="lede">Рамки уже развешены. Фотографии пришлёт студия — сюда встанут реальные работы мастеров с подписями.</p>
+    </div>
+    <div class="gallery">
+      <figure class="frame" style="--sp:3;--ar:5/6"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Форма и силуэт</b><i>№ 01 · стрижки</i></figcaption></figure>
+      <figure class="frame" style="--sp:3;--ar:5/4"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Медный оттенок</b><i>№ 02 · окрашивание</i></figcaption></figure>
+      <figure class="frame" style="--sp:2;--ar:3/4"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Вечерняя линия</b><i>№ 03 · причёски</i></figcaption></figure>
+      <figure class="frame" style="--sp:4;--ar:16/9"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Короткая форма</b><i>№ 04 · стрижки</i></figcaption></figure>
+      <figure class="frame" style="--sp:4;--ar:16/10"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Тон в тон</b><i>№ 05 · окрашивание</i></figcaption></figure>
+      <figure class="frame" style="--sp:2;--ar:3/4"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Плетение</b><i>№ 06 · причёски</i></figcaption></figure>
+      <figure class="frame" style="--sp:3;--ar:4/5"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Мужская форма</b><i>№ 07 · стрижки</i></figcaption></figure>
+      <figure class="frame" style="--sp:3;--ar:4/5"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Светлая медь</b><i>№ 08 · окрашивание</i></figcaption></figure>
+      <figure class="frame wide" style="--sp:6;--ar:21/8"><span class="hole"><span>фото</span></span><figcaption class="plaque"><b>Собранные волосы</b><i>№ 09 · причёски</i></figcaption></figure>
+    </div>
+    <p class="note" style="margin-top:18px;color:#6b5b4d">Пустые рамки — часть макета. Порядок работ и подписи студия пришлёт вместе с фотографиями.</p>
+  </div>
+</section>
+
+<!-- О СТУДИИ -->
+<section class="wall wall-paper sec" id="o-studii" style="--bg:var(--paper-2)">
+  <div class="wrap about">
+    <div class="about-sticky">
+      <span class="idx">04 / о студии</span>
+      <h2>Ремесло,<br>а не поток</h2>
+      <p class="note" style="color:#6b5b4d">Сыктывкарская улица<br>Точный адрес и вход пришлёт студия</p>
+      <a class="btn btn-solid" href="#kontakty" style="margin-top:22px">Связаться со студией</a>
+    </div>
+    <div class="about-body">
+      <p class="big">Парикмахерское искусство — это про линию, объём и цвет, которые остаются аккуратными и через три недели после визита.</p>
+      <p>В студии работают с формой: смотрят, как волосы лежат сами, куда падает пробор, что делает вихор на макушке. Оттенок собирают от исходной базы, а не от картинки в телефоне — так цвет живёт вместе с вашими волосами.</p>
+      <p>Визит начинается с разговора: что не понравилось в прошлый раз, сколько минут утром вы готовы тратить на укладку, какой длины хотите касаться руками. Дальше — работа и понятные рекомендации по домашнему уходу.</p>
+      <ol class="steps">
+        <li><b>Сообщение</b><span>Пишете в мессенджер: услуга, удобный день, пара слов о волосах.</span></li>
+        <li><b>Время</b><span>Администратор подтверждает день и окно записи.</span></li>
+        <li><b>Разговор</b><span>На месте обсуждаете форму, длину и оттенок.</span></li>
+        <li><b>Работа</b><span>Стрижка или цвет, укладка и рекомендации по уходу.</span></li>
+      </ol>
+      <div class="pending">
+        <h3>Текст пришлёт студия</h3>
+        <ul>
+          <li>Имена мастеров и их направления</li>
+          <li>Опыт, обучение, фотографии интерьера</li>
+          <li>Точный адрес, вход и ориентир</li>
+          <li>Часы работы и правила отмены визита</li>
+          <li>Финальный прайс и длительность услуг</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section class="wall wall-lab sec" id="kontakty">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">05 / контакты</span>
+      <h2 class="sec-title">Как найти</h2>
+      <span class="rule"></span>
+      <p class="lede">Студия на Сыктывкарской улице. Запись — через мессенджер: напишите удобный день и пару слов о волосах.</p>
+    </div>
+    <div class="contacts">
+      <div class="card addr">
+        <span class="idx">адрес</span>
+        <h3>Сыктывкарская улица</h3>
+        <p class="lede">Номер дома, вход и ориентир пришлёт студия — здесь появится точная точка и кнопка «Открыть в картах».</p>
+        <div class="scheme">
+          <svg viewBox="0 0 520 240" role="img" aria-label="Условная схема расположения студии на Сыктывкарской улице">
+            <rect width="520" height="240" fill="#141010"/>
+            <g stroke="rgba(244,236,224,.13)" stroke-width="1"><path d="M0 60h520M0 180h520M120 0v240M400 0v240"/></g>
+            <g fill="rgba(244,236,224,.05)">
+              <rect x="20" y="80" width="80" height="80"/><rect x="140" y="80" width="110" height="80"/>
+              <rect x="280" y="80" width="100" height="80"/><rect x="420" y="80" width="80" height="80"/>
+            </g>
+            <path d="M0 120h520" stroke="#c9662c" stroke-width="3"/>
+            <g transform="translate(258 120)">
+              <path d="M0 0v-34" stroke="#e07a3f" stroke-width="2"/>
+              <rect x="-9" y="-52" width="18" height="18" fill="#e07a3f"/>
+              <circle cx="0" cy="0" r="5" fill="#e07a3f"/>
+            </g>
+            <text x="16" y="112" fill="#b1a091" font-family="JetBrains Mono, monospace" font-size="11">Сыктывкарская ул.</text>
+            <text x="16" y="226" fill="#7d6e62" font-family="JetBrains Mono, monospace" font-size="10">схема условная · не карта</text>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <dl class="c-rows">
+          <div class="c-row"><dt>Телефон</dt><dd>Пришлёт студия</dd></div>
+          <div class="c-row"><dt>Часы работы</dt><dd>Пришлёт студия</dd></div>
+          <div class="c-row"><dt>Запись</dt><dd>Telegram или WhatsApp</dd></div>
+          <div class="c-row"><dt>Адрес</dt><dd>Сыктывкарская улица</dd></div>
+        </dl>
+        <div class="msg">
+          <!-- ЗАМЕНИ href: ссылка на Telegram студии -->
+          <a class="btn btn-solid" href="#">Написать в Telegram</a>
+          <!-- ЗАМЕНИ href: ссылка на WhatsApp студии -->
+          <a class="btn btn-ghost" href="#">Написать в WhatsApp</a>
+        </div>
+        <p class="note" style="margin-top:18px">Пока контактов нет: в макете не должно быть чужих номеров. После согласования здесь появятся настоящие телефон, часы работы и ссылки студии.</p>
+        <a class="btn btn-ghost btn-sm" href="#uslugi" style="margin-top:18px">Вернуться к прайсу</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div style="font-family:var(--disp);font-size:20px">Студия парикмахерского искусства</div>
+        <p class="note" style="margin-top:8px">Сыктывкарская улица · демо-версия сайта</p>
+      </div>
+      <nav class="foot-links" aria-label="Подвал">
+        <a href="#uslugi">Услуги</a><a href="#palitra">Палитра</a><a href="#raboty">Работы</a><a href="#kontakty">Контакты</a>
+        <!-- ЗАМЕНИ href: ссылка на Telegram студии -->
+        <a href="#">Telegram</a>
+        <!-- ЗАМЕНИ href: ссылка на WhatsApp студии -->
+        <a href="#">WhatsApp</a>
+        <a href="#top">Наверх</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span class="note">© 2026 · Демо-версия. Цены и фото условные.</span>
+      <span class="note">Тексты и контакты студия пришлёт перед запуском.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="demo" aria-hidden="true"><i></i>Демо-версия</div>
+</body>
+</html>

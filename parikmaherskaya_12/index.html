@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ДЕМО: убери после оплаты -->
+<meta name="robots" content="noindex">
+<meta name="description" content="Гармония линий — парикмахерская на Сыктывкарской улице. Стрижки, окрашивание, укладки и уход за волосами. Демо-версия сайта-визитки.">
+<meta name="theme-color" content="#11282E">
+<title>Гармония линий — парикмахерская на Сыктывкарской улице</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%2311282E'/%3E%3Cpath%20d='M12%2022c11-7%2029%207%2040%200'%20fill='none'%20stroke='%23F7F1E5'%20stroke-width='3.5'%20stroke-linecap='round'/%3E%3Cpath%20d='M12%2032c11-7%2029%207%2040%200'%20fill='none'%20stroke='%23B4562E'%20stroke-width='3.5'%20stroke-linecap='round'/%3E%3Cpath%20d='M12%2042c11-7%2029%207%2040%200'%20fill='none'%20stroke='%23D9A05B'%20stroke-width='3.5'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<script>document.documentElement.className += ' js';</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/prata@5/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cormorant@5/500-italic.css">
+<style>
+:root{
+  --cream:#F7F1E5;
+  --cream2:#EFE6D4;
+  --ink:#182F34;
+  --petrol:#1B3E46;
+  --deep:#11282E;
+  --copper:#B4562E;
+  --copper-ink:#93411E;
+  --gold:#D9A05B;
+  --line:rgba(27,62,70,.16);
+  --head:72px;
+  --serif:'Prata',Georgia,'Times New Roman',serif;
+  --sans:'Golos Text',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ital:'Cormorant',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:var(--petrol) var(--cream2)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:10px;height:10px}
+html::-webkit-scrollbar-track,body::-webkit-scrollbar-track{background:var(--cream2)}
+html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{background:var(--petrol);border-radius:8px;border:2px solid var(--cream2)}
+html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover{background:var(--copper)}
+body{
+  margin:0;font-family:var(--sans);font-size:16px;line-height:1.65;
+  color:var(--ink);background:var(--cream);overflow-x:clip;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='160'%20height='160'%20filter='url(%23n)'%20opacity='0.6'/%3E%3C/svg%3E");
+}
+::selection{background:var(--copper);color:var(--cream)}
+:focus-visible{outline:2.5px solid var(--copper);outline-offset:3px;border-radius:4px}
+.contact :focus-visible,.band :focus-visible{outline-color:var(--gold)}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;margin:0;color:var(--ink)}
+p{margin:0}
+button{font-family:inherit;color:inherit}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+section{scroll-margin-top:calc(var(--head) + 14px)}
+.symbols{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- reveal ---------- */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- header ---------- */
+#siteHead{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--cream);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+#siteHead.scrolled{border-bottom-color:var(--line);box-shadow:0 14px 34px -30px rgba(17,40,46,.5)}
+.head-in{height:var(--head);display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto}
+.brand-glyph{width:30px;height:30px;color:var(--petrol);flex:none}
+.brand-glyph path{transition:transform .4s ease}
+.brand:hover .brand-glyph path:nth-child(2){transform:translateX(2px)}
+.brand:hover .brand-glyph path:nth-child(3){transform:translateX(-2px)}
+.brand-name{font-family:var(--serif);font-size:1.06rem;letter-spacing:.01em;white-space:nowrap}
+.desk-nav{display:flex;gap:clamp(14px,2.4vw,30px)}
+.desk-nav a{position:relative;text-decoration:none;font-size:.92rem;font-weight:500;padding:6px 2px;color:var(--petrol)}
+.desk-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--copper);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.desk-nav a:hover::after,.desk-nav a.active::after{transform:scaleX(1)}
+.desk-nav a.active{color:var(--copper-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;cursor:pointer;border-radius:999px;font-weight:600;font-size:.95rem;line-height:1;padding:15px 26px;border:1.5px solid var(--petrol);transition:background .3s,color .3s,border-color .3s,transform .2s,box-shadow .3s}
+.btn:active{transform:scale(.97)}
+.btn .i-arrow{width:18px;height:14px;transition:transform .3s}
+.btn:hover .i-arrow{transform:translateX(4px)}
+.btn-primary{background:var(--petrol);color:var(--cream)}
+.btn-primary:hover{background:var(--copper-ink);border-color:var(--copper-ink);box-shadow:0 12px 26px -14px rgba(147,65,30,.65)}
+.btn-ghost{background:transparent;color:var(--petrol)}
+.btn-ghost:hover{border-color:var(--copper);color:var(--copper-ink)}
+.head-cta{padding:12px 20px;font-size:.88rem}
+.burger{display:none;width:44px;height:44px;border:1.5px solid var(--line);border-radius:12px;background:transparent;cursor:pointer;position:relative;transition:border-color .3s}
+.burger:hover{border-color:var(--copper)}
+.b-line{position:absolute;left:11px;right:11px;height:2px;background:var(--petrol);border-radius:2px;transition:transform .35s cubic-bezier(.2,.7,.2,1),top .35s}
+.b-line:nth-child(1){top:16px}
+.b-line:nth-child(2){top:25px}
+.burger.open .b-line:nth-child(1){top:20px;transform:rotate(45deg)}
+.burger.open .b-line:nth-child(2){top:20px;transform:rotate(-45deg)}
+#mnav{position:absolute;top:100%;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--line);box-shadow:0 30px 44px -30px rgba(17,40,46,.45);opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .3s,transform .35s cubic-bezier(.2,.7,.2,1)}
+#mnav.open{opacity:1;transform:none;pointer-events:auto}
+.mnav-in{display:flex;flex-direction:column;padding:14px clamp(16px,4vw,40px) 24px}
+.m-link{font-family:var(--serif);font-size:1.45rem;text-decoration:none;padding:12px 4px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;color:var(--petrol)}
+.m-link small{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;color:var(--copper-ink)}
+.m-link:hover{color:var(--copper-ink)}
+#mnav .btn{margin-top:18px}
+html:not(.js) #mnav{position:static;opacity:1;transform:none;pointer-events:auto}
+html:not(.js) .burger{display:none!important}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:grid;align-content:center;padding-top:calc(var(--head) + 30px);padding-bottom:96px;overflow:hidden}
+.strands{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-in{position:relative;z-index:1}
+.hero-in::before{content:"";position:absolute;inset:-14% -20%;z-index:-1;background:radial-gradient(closest-side,rgba(247,241,229,.94),rgba(247,241,229,.55) 62%,transparent);pointer-events:none}
+.kicker{display:inline-flex;align-items:center;gap:14px;font-size:.74rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--copper-ink)}
+.kicker::before{content:"";width:34px;height:2px;background:var(--copper);border-radius:2px}
+.h-title{margin:22px 0 0;font-size:clamp(3rem,9.4vw,6.6rem);letter-spacing:-.01em;line-height:.98}
+.h-title .t1{display:block}
+.h-title .t2{display:block;margin-left:clamp(24px,7vw,110px);font-family:var(--ital);font-style:italic;font-weight:500;font-size:1.14em;color:var(--copper-ink);line-height:1.02}
+.title-strand{width:clamp(150px,26vw,250px);height:18px;margin:2px 0 0 clamp(24px,7vw,110px)}
+.title-strand path{stroke-dasharray:260;stroke-dashoffset:260;animation:drawLine 1.3s .55s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+.hero-sub{max-width:52ch;margin-top:26px;font-size:clamp(1rem,1.6vw,1.12rem);color:rgba(24,47,52,.88)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-hint{margin-top:30px;font-family:var(--ital);font-style:italic;font-size:1.12rem;color:rgba(27,62,70,.78);display:flex;align-items:center;gap:10px}
+.hero-hint svg{width:26px;height:14px;color:var(--copper);flex:none}
+.scroll-cue{position:absolute;left:clamp(16px,4vw,40px);bottom:22px;z-index:1;display:flex;align-items:center;gap:12px;font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(27,62,70,.66)}
+.cue-line{width:2px;height:44px;background:var(--copper);animation:cueDrop 2.3s ease-in-out infinite}
+@keyframes cueDrop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-side{position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:1;writing-mode:vertical-rl;font-size:.68rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:rgba(27,62,70,.55)}
+.rise{animation:fadeUp .95s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--rd,0s)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* ---------- marquee band ---------- */
+.band{background:var(--petrol);color:var(--cream);padding:15px 0;overflow:hidden;border-block:1px solid var(--deep)}
+.band-track{display:flex;width:max-content;animation:bandSlide 30s linear infinite}
+.band:hover .band-track{animation-play-state:paused}
+.band-list{display:flex;align-items:center;flex:none}
+.band-item{font-family:var(--ital);font-style:italic;font-size:1.35rem;white-space:nowrap;padding-inline:20px}
+.band-sep{font-family:var(--sans);font-style:normal;font-weight:600;font-size:.8rem;letter-spacing:.1em;color:var(--gold)}
+@keyframes bandSlide{to{transform:translateX(-50%)}}
+
+/* ---------- shared section bits ---------- */
+.sec{padding-block:clamp(72px,10vw,124px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--copper-ink)}
+.eyebrow svg{width:18px;height:13px;color:var(--copper)}
+.sec h2{font-size:clamp(1.9rem,4.4vw,3.1rem);margin-top:16px}
+.sec-note{font-family:var(--ital);font-style:italic;font-size:1.08rem;color:var(--copper-ink)}
+
+/* ---------- services ---------- */
+.svc-grid{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+.svc-side{position:sticky;top:calc(var(--head) + 24px)}
+.svc-side p{margin-top:18px;color:rgba(24,47,52,.85)}
+.svc-side .sec-note{margin-top:14px}
+.side-glyph{width:120px;height:38px;color:var(--petrol);opacity:.5;margin-top:30px}
+.side-link{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:600;font-size:.95rem;color:var(--petrol);text-decoration:none;border-bottom:2px solid var(--copper);padding-bottom:3px;transition:color .3s}
+.side-link:hover{color:var(--copper-ink)}
+.side-link svg{width:18px;height:14px}
+.svc-list{border-top:1px solid var(--line)}
+.svc{border-bottom:1px solid var(--line)}
+.svc-head{display:grid;grid-template-columns:44px 1fr auto 30px;align-items:center;gap:14px;width:100%;padding:22px 8px;background:none;border:0;cursor:pointer;text-align:left;transition:background .3s}
+.svc-head:hover{background:rgba(239,230,212,.65)}
+.svc-num{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--copper-ink);transition:color .3s}
+.svc-name{min-width:0;font-family:var(--serif);font-size:clamp(1.12rem,2.2vw,1.48rem);line-height:1.25;position:relative}
+.svc-name::after{content:"";position:absolute;left:0;bottom:-5px;height:2px;width:100%;background:var(--copper);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.svc-head:hover .svc-name::after,.svc.open .svc-name::after{transform:scaleX(1)}
+.svc-price{font-family:var(--serif);font-size:clamp(.98rem,1.8vw,1.14rem);white-space:nowrap}
+.svc-price i{font-family:var(--ital);font-style:italic;font-size:.86em;color:var(--copper-ink);margin-right:4px}
+.svc-toggle{position:relative;width:28px;height:28px;border:1.5px solid var(--line);border-radius:8px;transition:background .3s,border-color .3s,transform .45s cubic-bezier(.2,.7,.2,1)}
+.svc-toggle span{position:absolute;top:50%;left:50%;background:var(--petrol);border-radius:2px;transition:background .3s}
+.t-h{width:12px;height:2px;transform:translate(-50%,-50%)}
+.t-v{width:2px;height:12px;transform:translate(-50%,-50%)}
+.svc.open .svc-toggle{background:var(--petrol);border-color:var(--petrol);transform:rotate(45deg)}
+.svc.open .svc-toggle span{background:var(--cream)}
+.svc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.7,.2,1)}
+.svc.open .svc-panel{grid-template-rows:1fr}
+html:not(.js) .svc-panel{grid-template-rows:1fr}
+.svc-panel-in{overflow:hidden;min-height:0}
+.svc-panel-in p{padding:0 8px 8px 58px;max-width:62ch;color:rgba(24,47,52,.85);font-size:.97rem}
+.svc-link{display:inline-flex;align-items:center;gap:8px;margin:6px 0 24px 58px;font-weight:600;font-size:.9rem;color:var(--copper-ink);text-decoration:none;border-bottom:1.5px solid var(--copper);padding-bottom:2px}
+.svc-link svg{width:16px;height:12px;transition:transform .3s}
+.svc-link:hover svg{transform:translateX(3px)}
+.svc-foot{margin-top:18px;font-family:var(--ital);font-style:italic;font-size:1.02rem;color:var(--copper-ink)}
+
+/* ---------- photo placeholders ---------- */
+.ph{position:relative;background:var(--cream2);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  background-image:repeating-linear-gradient(-45deg,transparent 0 11px,rgba(27,62,70,.05) 11px 12px)}
+.ph .c{position:absolute;width:11px;height:11px;border:0 solid var(--copper);opacity:.85}
+.c1{top:9px;left:9px;border-top-width:1.5px;border-left-width:1.5px}
+.c2{top:9px;right:9px;border-top-width:1.5px;border-right-width:1.5px}
+.c3{bottom:9px;left:9px;border-bottom-width:1.5px;border-left-width:1.5px}
+.c4{bottom:9px;right:9px;border-bottom-width:1.5px;border-right-width:1.5px}
+.ph-word{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--ital);font-style:italic;font-size:1.5rem;color:rgba(27,62,70,.78);letter-spacing:.06em;transition:letter-spacing .35s}
+.ph-idx{position:absolute;top:12px;right:26px;font-size:.68rem;font-weight:600;letter-spacing:.14em;color:rgba(27,62,70,.55)}
+.ph-tag{position:absolute;left:14px;bottom:11px;margin:0;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--copper-ink);background:rgba(247,241,229,.85);padding:4px 10px;border-radius:999px}
+
+/* ---------- about ---------- */
+#about{background:linear-gradient(180deg,var(--cream) 0%,var(--cream2) 120%)}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(36px,6vw,80px);align-items:start;margin-top:44px}
+.collage{position:relative;margin-bottom:52px}
+.ph-main{aspect-ratio:3/4;width:100%}
+.ph-mini{position:absolute;right:-12px;bottom:-34px;width:56%;aspect-ratio:4/3;transform:rotate(-2.4deg);background-color:var(--cream);border:1.5px solid var(--copper);box-shadow:0 24px 44px -26px rgba(17,40,46,.5)}
+.collage-cap{position:absolute;left:2px;bottom:-40px;font-family:var(--ital);font-style:italic;font-size:.98rem;color:rgba(27,62,70,.7)}
+.about-copy>p{margin-top:20px;color:rgba(24,47,52,.88);max-width:60ch}
+.pull{margin:30px 0 8px;font-family:var(--ital);font-style:italic;font-size:clamp(1.45rem,2.8vw,2rem);line-height:1.3;color:var(--petrol);max-width:30ch}
+.pull::before{content:"";display:block;width:56px;height:2.5px;background:var(--copper);border-radius:2px;margin-bottom:18px}
+.principles{margin-top:30px;border-top:1px solid var(--line)}
+.pr-row{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:18px 4px;border-bottom:1px solid var(--line)}
+.pr-num{font-family:var(--serif);font-size:1.15rem;color:var(--copper-ink)}
+.pr-row h3{font-size:1.08rem;font-family:var(--sans);font-weight:600}
+.pr-row p{margin-top:5px;font-size:.93rem;color:rgba(24,47,52,.8)}
+
+/* ---------- works ---------- */
+.works-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.works-sub{margin-top:16px;max-width:56ch;color:rgba(24,47,52,.85)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{border:1.5px solid rgba(27,62,70,.3);background:transparent;border-radius:999px;padding:9px 18px;font-size:.88rem;font-weight:500;cursor:pointer;transition:background .3s,color .3s,border-color .3s,transform .2s}
+.chip:hover{border-color:var(--copper);color:var(--copper-ink);transform:translateY(-1px)}
+.chip.active{background:var(--petrol);border-color:var(--petrol);color:var(--cream)}
+.count{margin-top:14px;font-family:var(--ital);font-style:italic;font-size:1rem;color:var(--copper-ink)}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:clamp(122px,17vw,170px);grid-auto-flow:dense;gap:14px;margin-top:26px}
+.tile{margin:0;transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.tile:hover{transform:translateY(-5px);border-color:var(--copper);box-shadow:0 20px 36px -24px rgba(17,40,46,.55)}
+.tile:hover .ph-word{letter-spacing:.22em}
+.w-tall{grid-row:span 2}
+.w-wide{grid-column:span 3}
+.js .tile.reveal.in{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s;transition-delay:0s}
+.js .tile.reveal.in:hover{transform:translateY(-5px)}
+.tile.hide{display:none}
+.tile.pop{animation:tilePop .45s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes tilePop{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- contact ---------- */
+.contact{position:relative;background:var(--deep);color:var(--cream);overflow:hidden}
+.contact .eyebrow{color:var(--gold)}
+.contact .eyebrow svg{color:var(--gold)}
+.contact h2{color:var(--cream)}
+.contact-deco{position:absolute;top:-50px;right:-90px;width:560px;height:420px;opacity:.08;pointer-events:none}
+.contact-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,72px);align-items:start}
+.c-left>p{margin-top:20px;color:rgba(247,241,229,.82);max-width:46ch}
+.msg-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.btn-msg{display:inline-flex;align-items:center;gap:11px;text-decoration:none;border-radius:999px;font-weight:600;font-size:.98rem;padding:16px 26px;transition:background .3s,color .3s,border-color .3s,transform .2s,box-shadow .3s}
+.btn-msg:active{transform:scale(.97)}
+.btn-msg svg{width:21px;height:21px;transition:transform .3s}
+.btn-msg:hover svg{transform:scale(1.12) rotate(-6deg)}
+.btn-msg.wa{background:var(--cream);color:var(--deep);border:1.5px solid var(--cream)}
+.btn-msg.wa:hover{background:var(--gold);border-color:var(--gold);box-shadow:0 14px 30px -16px rgba(217,160,91,.6)}
+.btn-msg.tg{background:transparent;color:var(--cream);border:1.5px solid rgba(247,241,229,.65)}
+.btn-msg.tg:hover{border-color:var(--gold);color:var(--gold)}
+.c-note{margin-top:22px;font-family:var(--ital);font-style:italic;font-size:1.02rem;color:rgba(247,241,229,.62);max-width:42ch}
+.info-row{padding:19px 2px;border-bottom:1px solid rgba(247,241,229,.16)}
+.info-row:first-child{border-top:1px solid rgba(247,241,229,.16)}
+.info-label{font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.info-val{margin-top:7px;font-size:1.06rem}
+.info-val small{display:block;margin-top:3px;font-size:.84rem;color:rgba(247,241,229,.6)}
+.info-val.pending span{font-family:var(--ital);font-style:italic;font-size:1.1rem;color:rgba(247,241,229,.75);border-bottom:1.5px dashed rgba(247,241,229,.4);padding-bottom:2px}
+.scheme{margin-top:26px;border:1px solid rgba(247,241,229,.18);border-radius:16px;padding:18px 18px 14px;background:rgba(247,241,229,.04)}
+.scheme svg{width:100%;height:auto}
+.scheme-ring{transform-box:fill-box;transform-origin:center;animation:ringPulse 2.6s ease-out infinite}
+@keyframes ringPulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.scheme-cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:.8rem;color:rgba(247,241,229,.75)}
+.scheme-cap em{font-family:var(--ital);font-style:italic;color:rgba(247,241,229,.55)}
+
+/* ---------- footer ---------- */
+footer{background:var(--cream);border-top:1px solid var(--line);padding:36px 0 88px}
+.foot-in{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between}
+.foot-brand{display:flex;align-items:center;gap:10px}
+.foot-brand svg{width:26px;height:26px;color:var(--petrol)}
+.foot-brand b{font-family:var(--serif);font-weight:400;font-size:.98rem}
+.foot-brand small{display:block;font-size:.76rem;color:rgba(24,47,52,.65)}
+.foot-note{font-size:.8rem;color:rgba(24,47,52,.7);max-width:44ch}
+.foot-links{display:flex;gap:18px;font-size:.86rem;font-weight:500}
+.foot-links a{text-decoration:none;color:var(--petrol);border-bottom:1.5px solid transparent;transition:color .3s,border-color .3s;padding-bottom:2px}
+.foot-links a:hover{color:var(--copper-ink);border-color:var(--copper)}
+
+/* ---------- demo badge ---------- */
+.demo-badge{position:fixed;left:14px;bottom:14px;z-index:60;display:inline-flex;align-items:center;gap:8px;background:var(--cream);border:1px solid rgba(27,62,70,.3);border-radius:999px;padding:7px 14px;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--petrol);box-shadow:0 10px 24px -14px rgba(17,40,46,.5)}
+.demo-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--copper);animation:dotPulse 2.4s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){.hero-side{display:none}}
+@media (max-width:960px){
+  .svc-grid{grid-template-columns:1fr}
+  .svc-side{position:static}
+  .side-glyph{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .collage{max-width:440px}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:880px){
+  .desk-nav{display:none}
+  .burger{display:block}
+}
+@media (max-width:760px){
+  :root{--head:64px}
+  .works-grid{grid-template-columns:repeat(2,1fr)}
+  .w-wide{grid-column:span 2}
+  .svc-head{grid-template-columns:34px 1fr auto 28px;gap:10px;padding:18px 4px}
+  .svc-panel-in p{padding-left:44px}
+  .svc-link{margin-left:44px}
+  .ph-mini{right:-6px}
+}
+@media (max-width:560px){
+  .head-cta{display:none}
+  .hero{padding-bottom:84px}
+  .hero-cta .btn{flex:1 1 auto;justify-content:center}
+  .band-item{font-size:1.15rem;padding-inline:14px}
+  .msg-row .btn-msg{flex:1 1 auto;justify-content:center}
+  .foot-in{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+  .band-track{animation:none!important}
+  .cue-line,.scheme-ring,.demo-badge .dot{animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<svg class="symbols" aria-hidden="true" focusable="false">
+  <symbol id="gl-lines" viewBox="0 0 32 32">
+    <path d="M4 10c8-5 16 5 24 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M4 16c8-5 16 5 24 0" fill="none" stroke="#B4562E" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M4 22c8-5 16 5 24 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="gl-comb" viewBox="0 0 20 14">
+    <path d="M3 13 7 1M9 13 13 1M15 13 19 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="gl-arrow" viewBox="0 0 20 16">
+    <path d="M1 8h16M12 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="gl-wa" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 2.2A9.8 9.8 0 0 0 3.6 17L2.2 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2Zm0 1.8a8 8 0 1 1-4.1 14.9l-.6-.35-2.6.7.7-2.5-.36-.6A8 8 0 0 1 12 4Zm-3.1 3.6c.24-.53.5-.55.74-.56h.63c.2 0 .47.07.6.4.2.5.66 1.63.72 1.75.06.12.1.27.02.43-.08.16-.12.26-.24.4-.12.14-.25.31-.36.42-.12.12-.24.25-.1.49.14.24.62 1.03 1.34 1.67.92.82 1.7 1.08 1.94 1.2.24.12.38.1.52-.06.14-.16.6-.7.76-.94.16-.24.32-.2.54-.12.22.08 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.14 1.14-.2.56-1.16 1.1-1.6 1.14-.44.04-.86.2-2.9-.6-2.45-.97-4-3.47-4.12-3.63-.12-.16-.98-1.3-.98-2.48 0-1.18.62-1.76.84-2Z"/>
+  </symbol>
+  <symbol id="gl-tg" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M21.7 3.6c.3-1.2-.4-1.8-1.3-1.5L2.6 9c-1.2.5-1.2 1.2-.2 1.5l4.5 1.4 1.7 5.3c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.8l2.9-14.4ZM8.7 11.6l9.6-6c.5-.3.9-.1.5.2l-8 7.3-.3 3.3-1.8-4.8Z"/>
+  </symbol>
+</svg>
+
+<header id="siteHead">
+  <div class="wrap head-in">
+    <a class="brand" href="#top" aria-label="Гармония линий — наверх">
+      <svg class="brand-glyph" aria-hidden="true"><use href="#gl-lines"/></svg>
+      <span class="brand-name">Гармония линий</span>
+    </a>
+    <nav class="desk-nav" aria-label="Основная навигация">
+      <a href="#services" data-spy-link>Услуги</a>
+      <a href="#about" data-spy-link>О салоне</a>
+      <a href="#works" data-spy-link>Работы</a>
+      <a href="#contact" data-spy-link>Контакты</a>
+    </nav>
+    <a class="btn btn-primary head-cta" href="#contact">Записаться</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <span class="b-line"></span><span class="b-line"></span>
+    </button>
+  </div>
+  <div id="mnav">
+    <nav class="mnav-in" aria-label="Мобильная навигация">
+      <a class="m-link" href="#services" data-spy-link>Услуги <small>01</small></a>
+      <a class="m-link" href="#about" data-spy-link>О салоне <small>02</small></a>
+      <a class="m-link" href="#works" data-spy-link>Работы <small>03</small></a>
+      <a class="m-link" href="#contact" data-spy-link>Контакты <small>04</small></a>
+      <a class="btn btn-primary" href="#contact">Записаться на визит <svg class="i-arrow" aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" data-spy>
+  <svg class="strands" id="strands" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 200 C 240 170 480 230 720 200 S 1200 170 1440 200" fill="none" stroke="#1B3E46" stroke-opacity=".3" stroke-width="1.2"/>
+    <path d="M0 320 C 240 290 480 350 720 320 S 1200 290 1440 320" fill="none" stroke="#B4562E" stroke-opacity=".5" stroke-width="1.2"/>
+    <path d="M0 440 C 240 410 480 470 720 440 S 1200 410 1440 440" fill="none" stroke="#1B3E46" stroke-opacity=".3" stroke-width="1.2"/>
+  </svg>
+  <div class="wrap hero-in">
+    <p class="kicker rise" style="--rd:.05s">Парикмахерская · Сыктывкарская улица</p>
+    <h1 class="h-title">
+      <span class="t1 rise" style="--rd:.14s">Гармония</span>
+      <span class="t2 rise" style="--rd:.26s">линий</span>
+    </h1>
+    <svg class="title-strand rise" style="--rd:.3s" viewBox="0 0 250 18" aria-hidden="true" focusable="false">
+      <path d="M3 12 C 60 2 140 18 247 7" fill="none" stroke="#B4562E" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <p class="hero-sub rise" style="--rd:.4s">Парикмахерская, где форму подбирают под человека: под структуру волос, привычки и ритм жизни. Сначала разговор — потом ножницы.</p>
+    <div class="hero-cta rise" style="--rd:.5s">
+      <a class="btn btn-primary" href="#contact">Записаться <svg class="i-arrow" aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+      <a class="btn btn-ghost" href="#services">Услуги и цены</a>
+    </div>
+    <p class="hero-hint rise" style="--rd:.62s">
+      <svg viewBox="0 0 26 14" aria-hidden="true" focusable="false"><path d="M1 9c6-6 10 6 16 0 3-3 5-2 8-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      проведите по линиям — они отзовутся
+    </p>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span class="cue-line"></span>листайте</div>
+  <div class="hero-side" aria-hidden="true">сыктывкарская улица · парикмахерская</div>
+</section>
+
+<!-- ================= BAND ================= -->
+<div class="band" aria-hidden="true">
+  <div class="band-track">
+    <div class="band-list">
+      <span class="band-item">Женская стрижка</span><span class="band-sep">///</span>
+      <span class="band-item">Мужская стрижка</span><span class="band-sep">///</span>
+      <span class="band-item">Детская стрижка</span><span class="band-sep">///</span>
+      <span class="band-item">Окрашивание</span><span class="band-sep">///</span>
+      <span class="band-item">Укладка</span><span class="band-sep">///</span>
+      <span class="band-item">Уход за волосами</span><span class="band-sep">///</span>
+    </div>
+    <div class="band-list">
+      <span class="band-item">Женская стрижка</span><span class="band-sep">///</span>
+      <span class="band-item">Мужская стрижка</span><span class="band-sep">///</span>
+      <span class="band-item">Детская стрижка</span><span class="band-sep">///</span>
+      <span class="band-item">Окрашивание</span><span class="band-sep">///</span>
+      <span class="band-item">Укладка</span><span class="band-sep">///</span>
+      <span class="band-item">Уход за волосами</span><span class="band-sep">///</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="sec" id="services" data-spy>
+  <div class="wrap svc-grid">
+    <div class="svc-side reveal">
+      <p class="eyebrow"><svg aria-hidden="true"><use href="#gl-comb"/></svg>01 · Услуги</p>
+      <h2>Прайс-лист</h2>
+      <p>Ниже — ориентир по услугам. Точные цены и время на каждую работу пришлёт студия: стоимость зависит от длины и густоты волос.</p>
+      <p class="sec-note">Цены условные — это демо-версия.</p>
+      <svg class="side-glyph" preserveAspectRatio="xMinYMid meet" aria-hidden="true"><use href="#gl-lines"/></svg>
+      <a class="side-link" href="#contact">К записи <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+    </div>
+    <div>
+      <div class="svc-list reveal" style="--d:.1s">
+        <div class="svc open">
+          <button class="svc-head" id="svcH1" aria-expanded="true" aria-controls="svcP1">
+            <span class="svc-num">01</span>
+            <span class="svc-name">Женская стрижка</span>
+            <span class="svc-price"><i>от</i>900 ₽</span>
+            <span class="svc-toggle" aria-hidden="true"><span class="t-h"></span><span class="t-v"></span></span>
+          </button>
+          <div class="svc-panel" id="svcP1" role="region" aria-labelledby="svcH1">
+            <div class="svc-panel-in">
+              <p>Сначала разговор: как вы носите волосы и сколько времени готовы тратить на укладку. Потом — форма под структуру волос.</p>
+              <a class="svc-link" href="#contact">Записаться на услугу <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="svc">
+          <button class="svc-head" id="svcH2" aria-expanded="false" aria-controls="svcP2">
+            <span class="svc-num">02</span>
+            <span class="svc-name">Мужская стрижка</span>
+            <span class="svc-price"><i>от</i>700 ₽</span>
+            <span class="svc-toggle" aria-hidden="true"><span class="t-h"></span><span class="t-v"></span></span>
+          </button>
+          <div class="svc-panel" id="svcP2" role="region" aria-labelledby="svcH2">
+            <div class="svc-panel-in">
+              <p>Обсудим длину и переходы, чтобы стрижку было легко носить каждый день — без долгих сборов у зеркала.</p>
+              <a class="svc-link" href="#contact">Записаться на услугу <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="svc">
+          <button class="svc-head" id="svcH3" aria-expanded="false" aria-controls="svcP3">
+            <span class="svc-num">03</span>
+            <span class="svc-name">Детская стрижка</span>
+            <span class="svc-price"><i>от</i>600 ₽</span>
+            <span class="svc-toggle" aria-hidden="true"><span class="t-h"></span><span class="t-v"></span></span>
+          </button>
+          <div class="svc-panel" id="svcP3" role="region" aria-labelledby="svcH3">
+            <div class="svc-panel-in">
+              <p>Спокойно и без спешки. Можно прийти со своей расчёской и любимой игрушкой — так проще познакомиться с креслом.</p>
+              <a class="svc-link" href="#contact">Записаться на услугу <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="svc">
+          <button class="svc-head" id="svcH4" aria-expanded="false" aria-controls="svcP4">
+            <span class="svc-num">04</span>
+            <span class="svc-name">Окрашивание</span>
+            <span class="svc-price"><i>от</i>1 800 ₽</span>
+            <span class="svc-toggle" aria-hidden="true"><span class="t-h"></span><span class="t-v"></span></span>
+          </button>
+          <div class="svc-panel" id="svcP4" role="region" aria-labelledby="svcH4">
+            <div class="svc-panel-in">
+              <p>Тон и технику мастер предложит после осмотра волос. Стоимость зависит от длины и исходной базы — уточним до начала работы.</p>
+              <a class="svc-link" href="#contact">Записаться на услугу <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="svc">
+          <button class="svc-head" id="svcH5" aria-expanded="false" aria-controls="svcP5">
+            <span class="svc-num">05</span>
+            <span class="svc-name">Укладка</span>
+            <span class="svc-price"><i>от</i>800 ₽</span>
+            <span class="svc-toggle" aria-hidden="true"><span class="t-h"></span><span class="t-v"></span></span>
+          </button>
+          <div class="svc-panel" id="svcP5" role="region" aria-labelledby="svcH5">
+            <div class="svc-panel-in">
+              <p>На каждый день или к случаю. Подскажем, как повторить укладку дома своими руками — без лишних средств.</p>
+              <a class="svc-link" href="#contact">Записаться на услугу <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="svc">
+          <button class="svc-head" id="svcH6" aria-expanded="false" aria-controls="svcP6">
+            <span class="svc-num">06</span>
+            <span class="svc-name">Уход за волосами</span>
+            <span class="svc-price"><i>от</i>1 000 ₽</span>
+            <span class="svc-toggle" aria-hidden="true"><span class="t-h"></span><span class="t-v"></span></span>
+          </button>
+          <div class="svc-panel" id="svcP6" role="region" aria-labelledby="svcH6">
+            <div class="svc-panel-in">
+              <p>Подберём уход после разговора и осмотра волос. Посоветуем только то, что нужно именно вашим волосам.</p>
+              <a class="svc-link" href="#contact">Записаться на услугу <svg aria-hidden="true"><use href="#gl-arrow"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="svc-foot reveal" style="--d:.15s">Все цены — «от» и условные. Финальный прайс пришлёт студия.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec" id="about" data-spy>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><svg aria-hidden="true"><use href="#gl-comb"/></svg>02 · О салоне</p>
+      <h2>Место, где не торопят</h2>
+    </div>
+    <div class="about-grid">
+      <div class="collage reveal" style="--d:.1s">
+        <div class="ph ph-main" role="img" aria-label="Здесь будет фотография зала">
+          <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+          <span class="ph-word">фото</span>
+          <span class="ph-tag">зал</span>
+        </div>
+        <div class="ph ph-mini" role="img" aria-label="Здесь будет фотография рабочего места">
+          <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+          <span class="ph-word">фото</span>
+          <span class="ph-tag">рабочее место</span>
+        </div>
+        <p class="collage-cap">здесь будут фотографии салона</p>
+      </div>
+      <div class="about-copy">
+        <p class="pull reveal" style="--d:.12s">Красивая стрижка — это линия, которая продолжает человека.</p>
+        <p class="reveal" style="--d:.16s">«Гармония линий» — небольшая парикмахерская на Сыктывкарской улице. Здесь принято сначала слушать: как вы носите волосы, что мешает, чего хочется. Ножницы — потом.</p>
+        <p class="reveal" style="--d:.2s">Форму подбирают под структуру волос и привычный ритм: чтобы укладка занимала минуты, а стрижку было легко носить каждый день.</p>
+        <div class="principles reveal" style="--d:.24s">
+          <div class="pr-row">
+            <span class="pr-num">1</span>
+            <div><h3>Разговор до стрижки</h3><p>Уточняем длину, форму и привычки — чтобы сюрпризов в зеркале не было.</p></div>
+          </div>
+          <div class="pr-row">
+            <span class="pr-num">2</span>
+            <div><h3>Форма под структуру</h3><p>Один и тот же силуэт на разных волосах ведёт себя по-разному. Это учитываем.</p></div>
+          </div>
+          <div class="pr-row">
+            <span class="pr-num">3</span>
+            <div><h3>Уход по делу</h3><p>Советуем только то, что нужно вашим волосам. Без лишних баночек.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORKS ================= -->
+<section class="sec" id="works" data-spy>
+  <div class="wrap">
+    <div class="works-head reveal">
+      <div>
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#gl-comb"/></svg>03 · Работы</p>
+        <h2>Линии в работе</h2>
+        <p class="works-sub">Сюда студия добавит фотографии стрижек и окрашиваний. Пока — рамки под них: выберите категорию, чтобы увидеть будущую раскладку.</p>
+      </div>
+    </div>
+    <div class="chips reveal" style="--d:.08s" role="group" aria-label="Фильтр работ">
+      <button class="chip active" data-filter="all" aria-pressed="true">Все</button>
+      <button class="chip" data-filter="cuts" aria-pressed="false">Стрижки</button>
+      <button class="chip" data-filter="color" aria-pressed="false">Окрашивание</button>
+      <button class="chip" data-filter="style" aria-pressed="false">Укладки</button>
+    </div>
+    <p class="count reveal" style="--d:.12s" id="workCount" aria-live="polite">Показано: 6 из 6</p>
+    <div class="works-grid">
+      <figure class="tile ph w-tall reveal" data-cat="cuts" style="--d:.05s">
+        <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+        <span class="ph-idx">01</span><span class="ph-word">фото</span>
+        <figcaption class="ph-tag">женская стрижка</figcaption>
+      </figure>
+      <figure class="tile ph reveal" data-cat="color" style="--d:.1s">
+        <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+        <span class="ph-idx">02</span><span class="ph-word">фото</span>
+        <figcaption class="ph-tag">окрашивание</figcaption>
+      </figure>
+      <figure class="tile ph reveal" data-cat="style" style="--d:.15s">
+        <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+        <span class="ph-idx">03</span><span class="ph-word">фото</span>
+        <figcaption class="ph-tag">укладка</figcaption>
+      </figure>
+      <figure class="tile ph reveal" data-cat="cuts" style="--d:.2s">
+        <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+        <span class="ph-idx">04</span><span class="ph-word">фото</span>
+        <figcaption class="ph-tag">мужская стрижка</figcaption>
+      </figure>
+      <figure class="tile ph reveal" data-cat="color" style="--d:.25s">
+        <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+        <span class="ph-idx">05</span><span class="ph-word">фото</span>
+        <figcaption class="ph-tag">окрашивание</figcaption>
+      </figure>
+      <figure class="tile ph w-wide reveal" data-cat="style" style="--d:.3s">
+        <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+        <span class="ph-idx">06</span><span class="ph-word">фото</span>
+        <figcaption class="ph-tag">укладка</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec contact" id="contact" data-spy>
+  <svg class="contact-deco" viewBox="0 0 560 420" aria-hidden="true" focusable="false">
+    <path d="M-20 60 C 140 10 320 110 580 50" fill="none" stroke="#F7F1E5" stroke-width="1.5"/>
+    <path d="M-20 130 C 140 80 320 180 580 120" fill="none" stroke="#F7F1E5" stroke-width="1.5"/>
+    <path d="M-20 200 C 140 150 320 250 580 190" fill="none" stroke="#F7F1E5" stroke-width="1.5"/>
+    <path d="M-20 270 C 140 220 320 320 580 260" fill="none" stroke="#F7F1E5" stroke-width="1.5"/>
+    <path d="M-20 340 C 140 290 320 390 580 330" fill="none" stroke="#F7F1E5" stroke-width="1.5"/>
+  </svg>
+  <div class="wrap contact-grid">
+    <div class="c-left reveal">
+      <p class="eyebrow"><svg aria-hidden="true"><use href="#gl-comb"/></svg>04 · Контакты</p>
+      <h2>Запишитесь<br>на визит</h2>
+      <p>Напишите в мессенджер — студия ответит, подберёт мастера и удобное время.</p>
+      <div class="msg-row">
+        <!-- ЗАМЕНИ href: ссылка на WhatsApp студии (https://wa.me/7XXXXXXXXXX) -->
+        <a class="btn-msg wa" href="#"><svg aria-hidden="true"><use href="#gl-wa"/></svg>WhatsApp</a>
+        <!-- ЗАМЕНИ href: ссылка на Telegram студии (https://t.me/username) -->
+        <a class="btn-msg tg" href="#"><svg aria-hidden="true"><use href="#gl-tg"/></svg>Telegram</a>
+      </div>
+      <p class="c-note">В демо-версии кнопки не ведут в чат — студия пришлёт контакты, и они заработают.</p>
+    </div>
+    <div class="c-right reveal" style="--d:.12s">
+      <div class="info-row">
+        <p class="info-label">Адрес</p>
+        <p class="info-val">Сыктывкарская улица<small>дом и вход уточнит студия</small></p>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Часы работы</p>
+        <p class="info-val pending"><span>пришлёт студия</span></p>
+      </div>
+      <div class="info-row">
+        <p class="info-label">Телефон</p>
+        <p class="info-val pending"><span>пришлёт студия</span></p>
+      </div>
+      <div class="scheme">
+        <svg viewBox="0 0 340 130" aria-hidden="true" focusable="false">
+          <path d="M-10 30 C 80 10 200 50 350 24" fill="none" stroke="#F7F1E5" stroke-opacity=".14" stroke-width="1.5"/>
+          <path d="M-10 110 C 90 92 220 128 350 104" fill="none" stroke="#F7F1E5" stroke-opacity=".14" stroke-width="1.5"/>
+          <path d="M-10 78 C 90 58 210 98 350 72" fill="none" stroke="#D9A05B" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M150 56 L168 100" stroke="#F7F1E5" stroke-opacity=".22" stroke-width="1.5"/>
+          <circle class="scheme-ring" cx="170" cy="79" r="11" fill="none" stroke="#D9A05B" stroke-width="1.5"/>
+          <circle cx="170" cy="79" r="5" fill="#D9A05B"/>
+          <text x="170" y="52" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="12" fill="#F7F1E5">Сыктывкарская улица</text>
+        </svg>
+        <p class="scheme-cap"><span>мы где-то на этой линии</span><em>схема условная</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <svg aria-hidden="true"><use href="#gl-lines"/></svg>
+      <div><b>Гармония линий</b><small>© 2026 · демо-версия</small></div>
+    </div>
+    <p class="foot-note">Цены и фото условные. Контакты и прайс появятся после согласования со студией.</p>
+    <div class="foot-links">
+      <a href="#top">Наверх ↑</a>
+      <!-- ЗАМЕНИ href: ссылка на WhatsApp студии (https://wa.me/7XXXXXXXXXX) -->
+      <a href="#">WhatsApp</a>
+      <!-- ЗАМЕНИ href: ссылка на Telegram студии (https://t.me/username) -->
+      <a href="#">Telegram</a>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-badge" aria-label="Это демо-версия сайта"><span class="dot" aria-hidden="true"></span>демо-версия</div>
+
+<script>
+(function(){
+'use strict';
+var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+/* ---------- header ---------- */
+var head = document.getElementById('siteHead');
+function onScrollHead(){ head.classList.toggle('scrolled', window.scrollY > 8); }
+window.addEventListener('scroll', onScrollHead, {passive:true});
+onScrollHead();
+
+/* ---------- mobile menu ---------- */
+var burger = document.getElementById('burger');
+var mnav = document.getElementById('mnav');
+function setMenu(open){
+  burger.classList.toggle('open', open);
+  mnav.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+}
+burger.addEventListener('click', function(){ setMenu(!mnav.classList.contains('open')); });
+mnav.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+document.addEventListener('click', function(e){
+  if (mnav.classList.contains('open') && !head.contains(e.target)) setMenu(false);
+});
+window.addEventListener('resize', function(){
+  if (window.innerWidth > 880 && mnav.classList.contains('open')) setMenu(false);
+}, {passive:true});
+head.querySelector('.brand').addEventListener('click', function(){ setMenu(false); });
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape' && mnav.classList.contains('open')) { setMenu(false); burger.focus(); }
+});
+
+/* ---------- scrollspy ---------- */
+var spyLinks = Array.prototype.slice.call(document.querySelectorAll('[data-spy-link]'));
+function activate(id){
+  spyLinks.forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+  });
+}
+if ('IntersectionObserver' in window) {
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting) activate(en.target.id); });
+  }, {rootMargin:'-40% 0px -55% 0px', threshold:0});
+  document.querySelectorAll('[data-spy]').forEach(function(s){ spy.observe(s); });
+}
+
+/* ---------- reveal ---------- */
+var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+function showAll(){ revealEls.forEach(function(el){ el.classList.add('in'); }); }
+if (motionQuery.matches || !('IntersectionObserver' in window)) {
+  showAll();
+} else {
+  var ro = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); ro.unobserve(en.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  revealEls.forEach(function(el){ ro.observe(el); });
+}
+
+/* ---------- services accordion ---------- */
+var svcItems = Array.prototype.slice.call(document.querySelectorAll('.svc'));
+svcItems.forEach(function(item){
+  var btn = item.querySelector('.svc-head');
+  btn.addEventListener('click', function(){
+    var wasOpen = item.classList.contains('open');
+    svcItems.forEach(function(other){
+      other.classList.remove('open');
+      other.querySelector('.svc-head').setAttribute('aria-expanded','false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+/* ---------- works filter ---------- */
+var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+var countEl = document.getElementById('workCount');
+chips.forEach(function(chip){
+  chip.addEventListener('click', function(){
+    chips.forEach(function(c){
+      c.classList.toggle('active', c === chip);
+      c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+    });
+    var f = chip.getAttribute('data-filter');
+    var shown = 0;
+    tiles.forEach(function(tile){
+      var match = f === 'all' || tile.getAttribute('data-cat') === f;
+      tile.classList.toggle('hide', !match);
+      if (match) {
+        shown++;
+        tile.classList.add('in');
+        if (!motionQuery.matches) {
+          tile.classList.remove('pop');
+          void tile.offsetWidth;
+          tile.classList.add('pop');
+        }
+      }
+    });
+    countEl.textContent = 'Показано: ' + shown + ' из ' + tiles.length;
+  });
+});
+
+/* ---------- hero strands field ---------- */
+function StrandsField(host, svg){
+  this.host = host; this.svg = svg;
+  this.paths = []; this.meta = [];
+  this.t = 0; this.last = 0; this.raf = 0;
+  this.running = false; this.visible = true;
+  this.px = 0; this.py = 0; this.tx = 0; this.ty = 0;
+  this.str = 0; this.tstr = 0;
+  this.N = 44; this.R = 150;
+  var cs = getComputedStyle(document.documentElement);
+  this.cols = {
+    petrol: (cs.getPropertyValue('--petrol') || '#1B3E46').trim(),
+    copper: (cs.getPropertyValue('--copper') || '#B4562E').trim(),
+    gold: (cs.getPropertyValue('--gold') || '#D9A05B').trim()
+  };
+  this.tick = this.tick.bind(this);
+  this.build();
+  var self = this;
+  host.addEventListener('pointermove', function(e){
+    var r = self.svg.getBoundingClientRect();
+    self.tx = e.clientX - r.left;
+    self.ty = e.clientY - r.top;
+    self.tstr = 1;
+  }, {passive:true});
+  host.addEventListener('pointerleave', function(){ self.tstr = 0; }, {passive:true});
+  host.addEventListener('pointercancel', function(){ self.tstr = 0; }, {passive:true});
+  host.addEventListener('pointerup', function(e){
+    if (e.pointerType !== 'mouse') self.tstr = 0;
+  }, {passive:true});
+  var rt;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){
+      self.build();
+      if (!self.running) self.draw(0);
+    }, 160);
+  }, {passive:true});
+  document.addEventListener('visibilitychange', function(){ self.sync(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(en){
+      self.visible = en[0].isIntersecting;
+      self.sync();
+    }, {threshold:0}).observe(host);
+  }
+  if (motionQuery.addEventListener) motionQuery.addEventListener('change', function(){ self.sync(); });
+  else if (motionQuery.addListener) motionQuery.addListener(function(){ self.sync(); });
+  this.sync();
+}
+StrandsField.prototype.build = function(){
+  var r = this.host.getBoundingClientRect();
+  this.w = Math.max(320, r.width);
+  this.h = Math.max(420, r.height);
+  this.svg.setAttribute('viewBox', '0 0 ' + this.w + ' ' + this.h);
+  var count = Math.min(34, Math.max(14, Math.round(this.h / 26)));
+  while (this.svg.firstChild) this.svg.removeChild(this.svg.firstChild);
+  this.paths = []; this.meta = [];
+  var NS = 'http://www.w3.org/2000/svg';
+  for (var i = 0; i < count; i++) {
+    var p = document.createElementNS(NS, 'path');
+    var kind = (i % 7 === 3) ? 'copper' : ((i % 9 === 5) ? 'gold' : 'petrol');
+    var baseOp = kind === 'petrol' ? 0.32 : 0.55;
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke', this.cols[kind]);
+    p.setAttribute('stroke-linecap', 'round');
+    p.setAttribute('stroke-width', '1.2');
+    p.style.strokeOpacity = baseOp;
+    this.svg.appendChild(p);
+    this.paths.push(p);
+    this.meta.push({ y: (i + 1) * (this.h / (count + 1)), ph: i * 0.42, baseOp: baseOp });
+  }
+  this.px = this.tx = this.w * 0.7;
+  this.py = this.ty = this.h * 0.4;
+};
+StrandsField.prototype.draw = function(dt){
+  this.t += dt;
+  this.px += (this.tx - this.px) * 0.14;
+  this.py += (this.ty - this.py) * 0.14;
+  this.str += (this.tstr - this.str) * 0.07;
+  var w = this.w, N = this.N, t = this.t, R2 = 2 * this.R * this.R;
+  for (var i = 0; i < this.paths.length; i++) {
+    var m = this.meta[i];
+    var dyb = m.y - this.py;
+    var near = Math.exp(-(dyb * dyb) / R2) * this.str;
+    var dir = dyb === 0 ? (i % 2 ? 1 : -1) : (dyb > 0 ? 1 : -1);
+    var d = '';
+    for (var j = 0; j < N; j++) {
+      var x = j / (N - 1) * w;
+      var y = m.y + Math.sin(x * 0.006 + t * 0.9 + m.ph) * 7 + Math.sin(x * 0.0125 - t * 0.55 + m.ph * 1.7) * 4.5;
+      var dx = x - this.px;
+      var g = Math.exp(-(dx * dx + dyb * dyb) / R2) * this.str;
+      y += g * 44 * dir;
+      d += (j ? 'L' : 'M') + x.toFixed(1) + ' ' + y.toFixed(1);
+    }
+    this.paths[i].setAttribute('d', d);
+    this.paths[i].style.strokeOpacity = (m.baseOp + near * 0.4).toFixed(3);
+    this.paths[i].setAttribute('stroke-width', (1.2 + near * 1.4).toFixed(2));
+  }
+};
+StrandsField.prototype.tick = function(now){
+  if (!this.running) return;
+  var dt = Math.min(0.05, (now - this.last) / 1000 || 0.016);
+  this.last = now;
+  this.draw(dt);
+  this.raf = requestAnimationFrame(this.tick);
+};
+StrandsField.prototype.start = function(){
+  if (this.running) return;
+  this.running = true;
+  this.last = performance.now();
+  this.raf = requestAnimationFrame(this.tick);
+};
+StrandsField.prototype.stop = function(){
+  this.running = false;
+  cancelAnimationFrame(this.raf);
+};
+StrandsField.prototype.sync = function(){
+  var should = this.visible && !document.hidden && !motionQuery.matches;
+  if (should) this.start();
+  else { this.stop(); this.draw(0); }
+};
+new StrandsField(document.getElementById('top'), document.getElementById('strands'));
+})();
+</script>
+</body>
+</html>

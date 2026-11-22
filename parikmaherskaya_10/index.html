@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери после оплаты -->
+<meta name="robots" content="noindex">
+<title>Тодэс — салон причёсок на проспекте Большевиков</title>
+<meta name="description" content="Тодэс — салон причёсок на проспекте Большевиков, Санкт-Петербург. Стрижки, укладки, окрашивание, вечерние причёски. Запись сообщением в мессенджер.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/prata@5/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/golos-text@5/900.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2317110E'/%3E%3Crect x='5' y='7' width='22' height='5' rx='1.5' fill='%23E8B04B'/%3E%3Cg stroke='%23C4552B' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M8 13v13M13 13v11M18 13v13M23 13v11'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+/* ============ ПАЛИТРА: эспрессо · терракота · латунь · нефрит ============ */
+:root{
+  --espresso:#17110E;
+  --bark:#1E1611;
+  --surface:#241A14;
+  --overlay:#2E211A;
+  --clay:#C4552B;
+  --clay-deep:#8E3A1C;
+  --clay-light:#E08A5A;
+  --brass:#E8B04B;
+  --brass-deep:#B9832A;
+  --jade:#17A398;
+  --bone:#F4EBE0;
+  --sand:#D9C7B4;
+  --scrim:rgba(12,8,6,.86);
+
+  --ink:#F4EBE0;
+  --muted:#C6B29C;
+  --line:rgba(232,176,75,.22);
+  --nav-h:74px;
+  --amb-a:#3A1A0E;
+  --amb-b:#1B1512;
+  --ease:cubic-bezier(.2,.75,.2,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--clay) var(--bark)}
+body{
+  margin:0;background:var(--espresso);color:var(--ink);
+  font-family:'Golos Text','Segoe UI',system-ui,-apple-system,sans-serif;
+  font-size:17px;line-height:1.62;overflow-x:clip;-webkit-font-smoothing:antialiased;
+}
+body.locked{overflow:hidden}
+svg{display:block;max-width:100%}
+h1,h2,h3,h4{margin:0;font-family:'Prata','Playfair Display',Georgia,'Times New Roman',serif;font-weight:400;line-height:1.05;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+::selection{background:var(--brass);color:var(--espresso)}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px;border-radius:2px}
+.sect--light :focus-visible{outline-color:var(--clay-deep)}
+
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--bark);border-left:1px solid rgba(232,176,75,.16)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--clay),var(--clay-deep));border:3px solid var(--bark)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--brass),var(--clay))}
+::-webkit-scrollbar-corner{background:var(--bark)}
+
+/* ---- фон: тёплый свет сквозь жалюзи + зерно ---- */
+#ambient{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(158deg,var(--amb-a) 0%,var(--amb-b) 46%,var(--espresso) 100%);
+  transition:background 1.1s var(--ease)}
+#ambient::before{content:"";position:absolute;inset:-20%;
+  background:repeating-linear-gradient(102deg,rgba(232,176,75,.075) 0 2px,rgba(232,176,75,0) 2px 30px);
+  animation:blinds 26s linear infinite}
+#ambient::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(23,17,14,.72),rgba(23,17,14,0) 30%,rgba(23,17,14,0) 70%,rgba(23,17,14,.72))}
+@keyframes blinds{from{transform:translate3d(0,0,0)}to{transform:translate3d(-120px,60px,0)}}
+#grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{width:min(1240px,calc(100% - 44px));margin-inline:auto;position:relative;z-index:2}
+section{position:relative;z-index:2;scroll-margin-top:calc(var(--nav-h) + 20px)}
+
+/* ============ ГРЕБЕНЬ — фирменный элемент ============ */
+.comb-rule{position:relative;height:16px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.comb-rule::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--line)}
+.comb-rule::after{content:"";position:absolute;inset:2px 0 0;
+  background:repeating-linear-gradient(90deg,var(--line) 0 2px,transparent 2px 11px)}
+.comb-mini{display:inline-block;width:26px;height:12px;position:relative;flex:none}
+.comb-mini::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:currentColor}
+.comb-mini::after{content:"";position:absolute;inset:2px 0 0;background:repeating-linear-gradient(90deg,currentColor 0 1.6px,transparent 1.6px 6px)}
+
+/* ============ НАВИГАЦИЯ ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:linear-gradient(180deg,rgba(23,17,14,.94),rgba(23,17,14,0));
+  transition:background .35s var(--ease),box-shadow .35s var(--ease)}
+.nav.solid{background:#1B1410;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.nav-in{display:flex;align-items:center;gap:18px;height:var(--nav-h)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand-mark{width:26px;height:26px;flex:none}
+.brand-name{font-family:'Prata',Georgia,serif;font-size:22px;letter-spacing:.18em;color:var(--bone)}
+.brand:hover .brand-name{color:var(--brass)}
+.nav-links{display:flex;gap:26px;margin-left:auto}
+.nav-link{position:relative;text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--sand);padding:6px 0;transition:color .25s}
+.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:7px;opacity:0;
+  background:repeating-linear-gradient(90deg,var(--brass) 0 2px,transparent 2px 6px);
+  transform:scaleX(.4);transform-origin:left;transition:opacity .25s,transform .3s var(--ease)}
+.nav-link:hover{color:var(--bone)}
+.nav-link:hover::after,.nav-link.active::after{opacity:1;transform:scaleX(1)}
+.nav-link.active{color:var(--brass)}
+.nav-cta{flex:none}
+.nav-progress{position:relative;height:9px;background:rgba(232,176,75,.08)}
+.nav-progress span{display:block;height:9px;width:0;
+  background:repeating-linear-gradient(90deg,var(--brass) 0 2px,transparent 2px 7px);
+  border-top:2px solid var(--clay);transition:width .12s linear}
+.burger{display:none;width:44px;height:40px;background:transparent;border:1px solid var(--line);
+  align-items:center;justify-content:center;cursor:pointer;flex:none;transition:border-color .25s,background .25s}
+.burger:hover{border-color:var(--brass);background:rgba(232,176,75,.08)}
+.burger i{display:block;width:20px;height:2px;background:var(--bone);position:relative}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--bone)}
+.burger i::before{top:-6px}.burger i::after{top:6px}
+
+.menu{position:fixed;inset:0;z-index:110;background:var(--scrim)}
+.menu-in{position:absolute;inset:0;background:linear-gradient(150deg,#2A160E,#17110E 60%);
+  padding:26px 24px 40px;display:flex;flex-direction:column;overflow-y:auto}
+.menu-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.menu-close{width:44px;height:44px;border:1px solid var(--line);background:transparent;color:var(--bone);
+  font-size:22px;cursor:pointer;line-height:1}
+.menu-close:hover{border-color:var(--brass);color:var(--brass)}
+.menu-links{display:flex;flex-direction:column;gap:4px;margin-bottom:auto}
+.menu-links a{font-family:'Prata',Georgia,serif;font-size:clamp(30px,9vw,44px);text-decoration:none;
+  padding:10px 0;border-bottom:1px solid rgba(232,176,75,.14);display:flex;align-items:baseline;gap:14px;
+  opacity:0;transform:translateY(16px);animation:menuIn .5s var(--ease) forwards}
+.menu-links a span{font-family:'Golos Text',sans-serif;font-size:12px;color:var(--clay-light);font-weight:700}
+.menu-links a:hover{color:var(--brass)}
+@keyframes menuIn{to{opacity:1;transform:none}}
+.menu-foot{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* ============ КНОПКИ ============ */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 24px;border:1px solid transparent;background:transparent;cursor:pointer;
+  font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  border-radius:2px;transition:transform .25s var(--ease),background .25s,color .25s,border-color .25s,box-shadow .25s}
+.btn::after{content:"";position:absolute;left:10px;right:10px;bottom:-5px;height:5px;
+  background:repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 6px);
+  opacity:0;transform:scaleY(.4);transform-origin:top;transition:opacity .25s,transform .25s var(--ease)}
+.btn:hover::after{opacity:.75;transform:scaleY(1)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn--primary{background:var(--brass);color:#17110E;box-shadow:0 10px 26px rgba(232,176,75,.18)}
+.btn--primary:hover{background:#F2C167;box-shadow:0 16px 34px rgba(232,176,75,.28)}
+.btn--clay{background:var(--clay-deep);color:var(--bone)}
+.btn--clay:hover{background:#A34421}
+.btn--ghost{border-color:rgba(244,235,224,.34);color:var(--bone)}
+.btn--ghost:hover{border-color:var(--brass);color:var(--brass)}
+.btn--sm{padding:10px 16px;font-size:12px}
+.sect--light .btn--ghost{border-color:rgba(23,17,14,.3);color:#17110E}
+.sect--light .btn--ghost:hover{border-color:var(--clay-deep);color:var(--clay-deep)}
+
+/* ============ ОБЩЕЕ ДЛЯ СЕКЦИЙ ============ */
+.sect{padding:clamp(64px,9vw,120px) 0}
+.sect--light{--ink:#17110E;--muted:#6B5A4B;--line:rgba(23,17,14,.18);--surface:#EDE0D0;
+  background:var(--bone);color:var(--ink);color-scheme:light}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--clay-light);margin-bottom:18px}
+.sect--light .eyebrow{color:var(--clay-deep)}
+.eyebrow b{font-weight:900;color:var(--brass);font-size:13px}
+.sect--light .eyebrow b{color:var(--clay)}
+.h2{font-size:clamp(34px,5.6vw,62px)}
+.lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:56ch}
+.note{border:1px dashed var(--line);padding:14px 16px;font-size:14px;color:var(--muted);
+  background:rgba(232,176,75,.05);border-radius:2px}
+.sect--light .note{background:rgba(142,58,28,.05)}
+[data-reveal]{opacity:0;transform:translateY(26px);
+  transition:opacity .75s var(--ease),transform .75s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].is-in{opacity:1;transform:none}
+
+/* ============ ГЕРОЙ ============ */
+.hero{padding-top:calc(var(--nav-h) + 46px);padding-bottom:clamp(40px,7vw,86px);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,64px);align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);
+  padding:7px 14px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+.hero-tag i{width:7px;height:7px;background:var(--jade);border-radius:50%;flex:none;
+  box-shadow:0 0 0 0 rgba(23,163,152,.6);animation:pulse 2.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(23,163,152,0)}100%{box-shadow:0 0 0 0 rgba(23,163,152,0)}}
+.hero h1{font-size:clamp(72px,15vw,168px);line-height:.86;margin:20px 0 6px;letter-spacing:-.02em}
+.hero h1 .ltr{display:inline-block;opacity:0;transform:translateY(40px) rotate(6deg);
+  animation:ltrIn .9s var(--ease) forwards}
+@keyframes ltrIn{to{opacity:1;transform:none}}
+.hero h1 em{font-style:normal;color:var(--brass)}
+.hero-sub{font-family:'Prata',Georgia,serif;font-size:clamp(21px,3.2vw,34px);color:var(--clay-light);margin-bottom:20px}
+.hero-line{width:120px;height:14px;margin:0 0 22px;color:var(--clay)}
+.hero p.lead{margin-bottom:30px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:var(--muted)}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta span::before{content:"";width:12px;height:2px;background:var(--clay);flex:none}
+[data-enter]{opacity:0;transform:translateY(20px);animation:enter .8s var(--ease) forwards;animation-delay:var(--d,0s)}
+@keyframes enter{to{opacity:1;transform:none}}
+
+.hero-art{position:relative}
+.hero-art-in{position:relative;border:1px solid var(--line);
+  background:linear-gradient(170deg,rgba(196,85,43,.16),rgba(23,17,14,.5));padding:16px;border-radius:2px}
+.hero-art-in::before{content:"";position:absolute;inset:8px;border:1px solid rgba(232,176,75,.14);pointer-events:none}
+.hero-comb{width:100%;height:auto}
+.hc-strand{transform-box:fill-box;transform-origin:50% 0;animation:sway 5.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-1.1deg)}to{transform:rotate(1.1deg)}}
+.hc-tip{animation:tipGlow 4s ease-in-out infinite alternate}
+@keyframes tipGlow{from{opacity:.35}to{opacity:.95}}
+.pin{transform-box:fill-box;transform-origin:50% 50%;animation:pinFloat 9s ease-in-out infinite alternate}
+@keyframes pinFloat{from{transform:translateY(-6px) rotate(-6deg)}to{transform:translateY(8px) rotate(8deg)}}
+.hero-vertical{position:absolute;right:-14px;top:50%;transform:translateY(-50%) rotate(180deg);
+  writing-mode:vertical-rl;font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-deep)}
+
+/* ============ БЕГУЩАЯ СТРОКА ============ */
+.ticker{border-block:1px solid var(--line);background:#1B1410;overflow:hidden;padding:15px 0;position:relative;z-index:2}
+.ticker-track{display:flex;width:max-content;animation:tick 34s linear infinite}
+.ticker-set{display:flex;align-items:center;gap:26px;padding-right:26px}
+.ticker-set b{font-family:'Prata',Georgia,serif;font-weight:400;font-size:clamp(18px,2.4vw,26px);white-space:nowrap;color:var(--bone)}
+.ticker-set b:nth-child(4n+1){color:var(--clay-light)}
+.ticker-set .comb-mini{color:var(--brass);width:22px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ============ ПРАЙС ============ */
+.price-layout{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:start}
+.price-aside{position:sticky;top:calc(var(--nav-h) + 34px)}
+.price-aside .h2{margin-bottom:18px}
+.price-list{border-top:1px solid var(--line)}
+.price-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:8px 20px;align-items:start;
+  padding:22px 4px;border-bottom:1px solid var(--line);position:relative;
+  transition:background .35s var(--ease),padding-left .35s var(--ease)}
+.price-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;
+  background:linear-gradient(90deg,rgba(196,85,43,.22),rgba(196,85,43,0));transition:width .45s var(--ease);pointer-events:none}
+.price-row:hover::before{width:100%}
+.price-row:hover{padding-left:14px}
+.price-num{font-size:12px;font-weight:900;color:var(--clay-light);letter-spacing:.08em;padding-top:8px}
+.price-name{font-family:'Prata',Georgia,serif;font-size:clamp(20px,2.6vw,27px);line-height:1.16}
+.price-desc{grid-column:2;color:var(--muted);font-size:15px;max-width:52ch;margin-top:4px}
+.price-cost{font-size:16px;font-weight:700;color:var(--brass);white-space:nowrap;
+  font-variant-numeric:tabular-nums;padding-top:6px}
+
+/* ============ О САЛОНЕ ============ */
+.about-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,72px);align-items:start}
+.about-aside{position:sticky;top:calc(var(--nav-h) + 34px)}
+.about-word{font-size:clamp(56px,10vw,120px);line-height:.9;margin:10px 0 20px}
+.about-word em{font-style:normal;color:var(--clay)}
+.about-comb{width:100%;max-width:280px;height:auto;color:var(--clay-deep)}
+.about-text p{font-size:clamp(16.5px,1.8vw,19.5px);margin-bottom:20px}
+.about-text p.big{font-family:'Prata',Georgia,serif;font-size:clamp(21px,2.7vw,29px);line-height:1.34;color:#2B1C13}
+.steps{margin-top:34px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--line);align-items:start}
+.step-n{font-family:'Prata',Georgia,serif;font-size:30px;color:var(--clay);line-height:1}
+.step h4{font-size:20px;margin-bottom:5px}
+.step p{font-size:15px;color:var(--muted)}
+
+/* ============ ГАЛЕРЕЯ ============ */
+.gal{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:42px}
+.slot{position:relative;border:1px dashed rgba(232,176,75,.36);margin:0;
+  background:linear-gradient(150deg,rgba(196,85,43,.12),rgba(36,26,20,.85));
+  display:flex;flex-direction:column;justify-content:flex-end;padding:16px;overflow:hidden;border-radius:2px;
+  transition:border-color .35s,transform .45s var(--ease),background .45s}
+.slot::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(115deg,rgba(232,176,75,.07) 0 1px,transparent 1px 16px);
+  opacity:.7;transition:opacity .4s}
+.slot::after{content:"";position:absolute;left:16px;top:16px;width:30px;height:14px;
+  background:repeating-linear-gradient(90deg,var(--brass) 0 2px,transparent 2px 7px);border-top:2px solid var(--brass);opacity:.55}
+.slot:hover{transform:translateY(-4px);border-color:var(--brass);background:linear-gradient(150deg,rgba(196,85,43,.24),rgba(46,33,26,.9))}
+.slot:hover::before{opacity:1}
+.slot b{position:relative;font-family:'Prata',Georgia,serif;font-weight:400;font-size:20px;color:var(--bone)}
+.slot span{position:relative;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--clay-light);margin-bottom:6px}
+.slot--a{grid-column:span 5;aspect-ratio:4/5}
+.slot--b{grid-column:span 7;aspect-ratio:16/10}
+.slot--c,.slot--d,.slot--e{grid-column:span 4;aspect-ratio:1/1}
+.slot--f{grid-column:span 12;aspect-ratio:24/7}
+
+/* ============ ЗАПИСЬ И КОНТАКТЫ ============ */
+.contact-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,60px);align-items:start;margin-top:40px}
+.info-card{border:1px solid var(--line);padding:20px 22px;background:rgba(36,26,20,.6);border-radius:2px;
+  transition:border-color .3s,transform .35s var(--ease)}
+.info-card:hover{border-color:rgba(232,176,75,.5);transform:translateX(4px)}
+.info-card h4{font-size:12px;font-family:'Golos Text',sans-serif;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--clay-light);margin-bottom:9px}
+.info-card p{font-size:17px}
+.info-card .await{color:var(--muted);font-size:14.5px;border-bottom:1px dashed var(--line);display:inline-block;padding-bottom:2px}
+.info-col{display:flex;flex-direction:column;gap:16px}
+.msg-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.order-card{background:linear-gradient(165deg,var(--overlay),#1B1410);border:1px solid var(--line);
+  padding:clamp(20px,3vw,32px);border-radius:2px}
+.order-card h3{font-size:clamp(24px,3vw,32px);margin-bottom:14px}
+.order-list{list-style:none;margin:22px 0 0;padding:0;counter-reset:o}
+.order-list li{counter-increment:o;position:relative;padding:14px 0 14px 46px;border-top:1px solid var(--line);font-size:15.5px;color:var(--sand)}
+.order-list li::before{content:counter(o,decimal-leading-zero);position:absolute;left:0;top:12px;
+  font-family:'Prata',Georgia,serif;font-size:22px;color:var(--brass)}
+.order-list li b{display:block;color:var(--bone);font-size:17px;font-weight:700;margin-bottom:2px}
+
+/* ============ ПОДВАЛ ============ */
+.foot{border-top:1px solid var(--line);background:#140F0C;padding:44px 0 84px;position:relative;z-index:2}
+.foot-in{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
+.foot-brand{font-family:'Prata',Georgia,serif;font-size:32px;letter-spacing:.16em}
+.foot small{display:block;color:var(--muted);font-size:13px;margin-top:8px;max-width:44ch}
+.foot-links{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.foot-links a{color:var(--sand);text-decoration:none;transition:color .25s}
+.foot-links a:hover{color:var(--brass)}
+.foot-bottom{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;
+  gap:12px;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+
+.demo-badge{position:fixed;left:14px;bottom:14px;z-index:95;display:flex;align-items:center;gap:8px;
+  background:var(--clay-deep);color:var(--bone);border:1px solid rgba(232,176,75,.5);
+  padding:7px 13px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;
+  box-shadow:0 10px 26px rgba(0,0,0,.5)}
+.demo-badge i{width:7px;height:7px;background:var(--brass);border-radius:50%;flex:none}
+.noscript{background:var(--clay-deep);color:var(--bone);padding:12px 16px;font-size:14px;text-align:center;margin:0}
+
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-art{max-width:420px}
+  .hero-vertical{right:-6px}
+  .price-layout,.about-layout,.contact-layout{grid-template-columns:1fr}
+  .price-aside,.about-aside{position:static}
+}
+@media (max-width:860px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .nav-cta{margin-left:auto}
+  .slot--a,.slot--b{grid-column:span 6}
+  .slot--c,.slot--d,.slot--e{grid-column:span 4}
+  .slot--f{aspect-ratio:16/7}
+}
+@media (max-width:620px){
+  :root{--nav-h:64px}
+  body{font-size:16px}
+  .wrap{width:calc(100% - 28px)}
+  .brand-name{font-size:19px;letter-spacing:.14em}
+  .nav-in{gap:10px}
+  .nav-cta{padding:10px 13px;font-size:11.5px}
+  .hero h1{font-size:clamp(60px,19vw,110px)}
+  .price-row{grid-template-columns:34px minmax(0,1fr) auto;gap:4px 12px;padding:18px 2px}
+  .price-desc{grid-column:2/4}
+  .price-cost{font-size:15px}
+  .price-row:hover{padding-left:2px}
+  .gal{grid-template-columns:repeat(6,1fr);gap:11px}
+  .slot--a,.slot--b,.slot--c,.slot--d,.slot--e,.slot--f{grid-column:span 6;aspect-ratio:16/10}
+  .slot--a{aspect-ratio:4/5}
+  .step{grid-template-columns:38px minmax(0,1fr);gap:12px}
+  .foot-in{flex-direction:column}
+  .demo-badge{left:10px;bottom:10px;padding:6px 10px;font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;scroll-behavior:auto !important}
+  [data-reveal],[data-enter],.hero h1 .ltr,.menu-links a{opacity:1 !important;transform:none !important}
+}
+</style>
+</head>
+<body>
+<div id="ambient" aria-hidden="true"></div>
+<div id="grain" aria-hidden="true"></div>
+
+<!-- ================= НАВИГАЦИЯ ================= -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Тодэс — на главную">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="3" y="5" width="26" height="6" rx="2" fill="#E8B04B"/>
+        <g stroke="#C4552B" stroke-width="2.4" stroke-linecap="round">
+          <path d="M7 12v14M13 12v11M19 12v14M25 12v11"/>
+        </g>
+      </svg>
+      <span class="brand-name">ТОДЭС</span>
+    </a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a class="nav-link" href="#services">Услуги</a>
+      <a class="nav-link" href="#about">О салоне</a>
+      <a class="nav-link" href="#gallery">Галерея</a>
+      <a class="nav-link" href="#contact">Запись</a>
+    </nav>
+    <a class="btn btn--primary btn--sm nav-cta" href="#contact">Записаться</a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu"><i></i></button>
+  </div>
+  <div class="nav-progress" aria-hidden="true"><span id="navTeeth"></span></div>
+</header>
+
+<div class="menu" id="mobileMenu" hidden>
+  <div class="menu-in">
+    <div class="menu-top">
+      <span class="brand-name">ТОДЭС</span>
+      <button class="menu-close" id="menuClose" aria-label="Закрыть меню">×</button>
+    </div>
+    <nav class="menu-links" aria-label="Мобильное меню">
+      <a href="#services" style="animation-delay:.05s"><span>01</span>Услуги</a>
+      <a href="#about" style="animation-delay:.11s"><span>02</span>О салоне</a>
+      <a href="#gallery" style="animation-delay:.17s"><span>03</span>Галерея</a>
+      <a href="#contact" style="animation-delay:.23s"><span>04</span>Запись</a>
+    </nav>
+    <div class="menu-foot">
+      <a class="btn btn--primary" href="#contact">Записаться</a>
+      <!-- ЗАМЕНИ href: ссылка на Telegram салона -->
+      <a class="btn btn--ghost" href="#" rel="nofollow">Telegram</a>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+  <noscript><p class="noscript">Сайт работает без JavaScript: все разделы, услуги и контакты доступны ниже.</p></noscript>
+
+  <!-- ================= ГЕРОЙ ================= -->
+  <section class="hero" data-a="#3A1A0E" data-b="#1B1512">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-tag" data-enter style="--d:.05s"><i></i>Санкт-Петербург · проспект Большевиков</span>
+        <h1 aria-label="Тодэс">
+          <span class="ltr" style="animation-delay:.10s">Т</span><span class="ltr" style="animation-delay:.16s">о</span><span class="ltr" style="animation-delay:.22s">д</span><span class="ltr" style="animation-delay:.28s"><em>э</em></span><span class="ltr" style="animation-delay:.34s">с</span>
+        </h1>
+        <p class="hero-sub" data-enter style="--d:.42s">салон причёсок</p>
+        <div class="comb-rule hero-line" data-enter style="--d:.48s" aria-hidden="true"></div>
+        <p class="lead" data-enter style="--d:.54s">Стрижки, укладки, окрашивание и вечерние причёски. Запись — сообщением в мессенджер: напишите, что нужно, и выберите удобное время.</p>
+        <div class="hero-cta" data-enter style="--d:.62s">
+          <a class="btn btn--primary" href="#contact">Записаться на визит</a>
+          <a class="btn btn--ghost" href="#services">Посмотреть услуги</a>
+        </div>
+        <div class="hero-meta" data-enter style="--d:.7s">
+          <span>Запись сообщением</span>
+          <span>Санкт-Петербург</span>
+          <span>Демо: цены условные</span>
+        </div>
+      </div>
+      <div class="hero-art" data-enter style="--d:.5s">
+        <div data-par="0.06">
+          <div class="hero-art-in">
+            <svg class="hero-comb" viewBox="0 0 360 420" role="img" aria-label="Гребень, зубья которого переходят в пряди волос">
+              <defs>
+                <linearGradient id="hcGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#E8B04B"/>
+                  <stop offset=".45" stop-color="#C4552B"/>
+                  <stop offset="1" stop-color="#8E3A1C" stop-opacity=".25"/>
+                </linearGradient>
+                <linearGradient id="hcSpine" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#F2C167"/>
+                  <stop offset=".55" stop-color="#E8B04B"/>
+                  <stop offset="1" stop-color="#B9832A"/>
+                </linearGradient>
+              </defs>
+              <g id="heroComb"></g>
+              <rect x="18" y="34" width="324" height="32" rx="3" fill="url(#hcSpine)"/>
+              <rect x="18" y="60" width="324" height="6" fill="#8E3A1C" opacity=".35"/>
+              <text x="180" y="56" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="13" font-weight="700" letter-spacing="7" fill="#17110E">ТОДЭС</text>
+              <g class="pin" opacity=".9">
+                <path d="M300 300 q10 -26 20 0 q-10 26 -20 0" fill="none" stroke="#E8B04B" stroke-width="2.4"/>
+                <path d="M304 302 l14 -34" stroke="#E8B04B" stroke-width="2.4" stroke-linecap="round"/>
+              </g>
+              <g class="pin" style="animation-delay:-3s" opacity=".75">
+                <path d="M40 350 q9 -22 18 0 q-9 22 -18 0" fill="none" stroke="#17A398" stroke-width="2.2"/>
+                <path d="M44 352 l12 -30" stroke="#17A398" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <span class="hero-vertical" aria-hidden="true">проспект Большевиков</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЛЕНТА ================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-set">
+        <b>Стрижки</b><span class="comb-mini"></span><b>Укладки</b><span class="comb-mini"></span><b>Окрашивание</b><span class="comb-mini"></span><b>Вечерние причёски</b><span class="comb-mini"></span><b>Плетение</b><span class="comb-mini"></span><b>Уход</b><span class="comb-mini"></span>
+      </div>
+      <div class="ticker-set">
+        <b>Стрижки</b><span class="comb-mini"></span><b>Укладки</b><span class="comb-mini"></span><b>Окрашивание</b><span class="comb-mini"></span><b>Вечерние причёски</b><span class="comb-mini"></span><b>Плетение</b><span class="comb-mini"></span><b>Уход</b><span class="comb-mini"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= УСЛУГИ ================= -->
+  <section class="sect" id="services" data-a="#2A1B12" data-b="#17110E">
+    <div class="wrap price-layout">
+      <aside class="price-aside" data-reveal>
+        <p class="eyebrow"><b>01</b><span class="comb-mini"></span>Услуги</p>
+        <h2 class="h2">Прайс-лист</h2>
+        <p class="lead" style="margin:18px 0 22px">Всё, чем занимается салон: форма, длина, цвет, собранные причёски и уход.</p>
+        <p class="note">Список и цены условные, для примера вёрстки. Свой прайс пришлёт салон.</p>
+      </aside>
+
+      <div class="price-list" data-reveal style="--d:.1s">
+        <article class="price-row">
+          <span class="price-num">01</span>
+          <h3 class="price-name">Женская стрижка</h3>
+          <p class="price-desc">Мытьё, стрижка, сушка. Форму и длину обсуждают до начала работы.</p>
+          <span class="price-cost">от 2 000 ₽</span>
+        </article>
+        <article class="price-row">
+          <span class="price-num">02</span>
+          <h3 class="price-name">Мужская стрижка</h3>
+          <p class="price-desc">Стрижка, окантовка, сушка.</p>
+          <span class="price-cost">от 1 200 ₽</span>
+        </article>
+        <article class="price-row">
+          <span class="price-num">03</span>
+          <h3 class="price-name">Укладка</h3>
+          <p class="price-desc">Укладка под образ и повод: гладкая, объёмная, локоны.</p>
+          <span class="price-cost">от 1 500 ₽</span>
+        </article>
+        <article class="price-row">
+          <span class="price-num">04</span>
+          <h3 class="price-name">Вечерняя причёска</h3>
+          <p class="price-desc">Собранные формы, локоны, плетение. Пробный вариант обсуждается отдельно.</p>
+          <span class="price-cost">от 3 000 ₽</span>
+        </article>
+        <article class="price-row">
+          <span class="price-num">05</span>
+          <h3 class="price-name">Окрашивание</h3>
+          <p class="price-desc">Тон, корни, сложные техники. Итоговая стоимость зависит от длины и расхода — считают на месте.</p>
+          <span class="price-cost">от 3 500 ₽</span>
+        </article>
+        <article class="price-row">
+          <span class="price-num">06</span>
+          <h3 class="price-name">Уход и мытьё головы</h3>
+          <p class="price-desc">Мытьё, маска, массаж головы.</p>
+          <span class="price-cost">от 900 ₽</span>
+        </article>
+        <article class="price-row">
+          <span class="price-num">07</span>
+          <h3 class="price-name">Детская стрижка</h3>
+          <p class="price-desc">Спокойный темп и простая форма. Возраст лучше указать в сообщении.</p>
+          <span class="price-cost">от 1 000 ₽</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= О САЛОНЕ ================= -->
+  <section class="sect sect--light" id="about" data-a="#2A160F" data-b="#1B1512">
+    <div class="wrap about-layout">
+      <aside class="about-aside" data-reveal>
+        <p class="eyebrow"><b>02</b><span class="comb-mini"></span>О салоне</p>
+        <h2 class="about-word">Про<br><em>форму</em></h2>
+        <svg class="about-comb" viewBox="0 0 280 120" aria-hidden="true">
+          <rect x="6" y="8" width="268" height="14" rx="3" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".85">
+            <path d="M18 24v70M38 24v54M58 24v78M78 24v60M98 24v88M118 24v52M138 24v74M158 24v62M178 24v84M198 24v56M218 24v72M238 24v64M258 24v80"/>
+          </g>
+        </svg>
+      </aside>
+      <div class="about-text" data-reveal style="--d:.1s">
+        <p class="big">Тодэс — салон причёсок на проспекте Большевиков. Здесь занимаются формой: стрижка, укладка, цвет, собранный вечерний образ.</p>
+        <p>Работают и с повседневной стрижкой, и с причёской под конкретный повод. Что именно нужно — обсуждают до начала работы, чтобы длина и объём совпали с ожиданиями.</p>
+        <p class="note">Здесь будет текст салона: история, мастера, подход, правила записи. Его пришлёт студия — в демо на этом месте нейтральный текст.</p>
+
+        <div class="steps">
+          <div class="step"><span class="step-n">1</span><div><h4>Сообщение</h4><p>Пишете в мессенджер: услуга, удобное время, пожелания по длине и форме.</p></div></div>
+          <div class="step"><span class="step-n">2</span><div><h4>Время</h4><p>Салон отвечает и предлагает свободное окно. Часы работы уточнит салон.</p></div></div>
+          <div class="step"><span class="step-n">3</span><div><h4>Разговор о форме</h4><p>На месте обсуждаете длину, объём и уход.</p></div></div>
+          <div class="step"><span class="step-n">4</span><div><h4>Визит</h4><p>Приходите к назначенному времени. Адрес и вход пришлёт салон.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ГАЛЕРЕЯ ================= -->
+  <section class="sect" id="gallery" data-a="#2A160F" data-b="#141010">
+    <div class="wrap">
+      <div data-reveal>
+        <p class="eyebrow"><b>03</b><span class="comb-mini"></span>Галерея</p>
+        <h2 class="h2">Место для работ</h2>
+        <p class="lead" style="margin-top:18px">Фото пришлёт салон. В демо — пустые блоки с подписями, чтобы было видно раскладку.</p>
+      </div>
+      <div class="gal">
+        <figure class="slot slot--a" data-reveal><span>фото</span><b>Стрижка</b></figure>
+        <figure class="slot slot--b" data-reveal style="--d:.06s"><span>фото</span><b>Укладка</b></figure>
+        <figure class="slot slot--c" data-reveal style="--d:.12s"><span>фото</span><b>Цвет</b></figure>
+        <figure class="slot slot--d" data-reveal style="--d:.18s"><span>фото</span><b>Вечерняя причёска</b></figure>
+        <figure class="slot slot--e" data-reveal style="--d:.24s"><span>фото</span><b>Детали</b></figure>
+        <figure class="slot slot--f" data-reveal style="--d:.3s"><span>фото</span><b>Интерьер салона</b></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЗАПИСЬ ================= -->
+  <section class="sect" id="contact" data-a="#12262A" data-b="#1E1410">
+    <div class="wrap">
+      <div data-reveal>
+        <p class="eyebrow"><b>04</b><span class="comb-mini"></span>Запись и контакты</p>
+        <h2 class="h2">Как записаться</h2>
+        <p class="lead" style="margin-top:18px">Напишите в мессенджер: услуга, удобное время и пожелания по форме. Салон ответит и предложит свободное окно.</p>
+      </div>
+
+      <div class="contact-layout">
+        <div class="order-card" data-reveal>
+          <h3>Три шага до визита</h3>
+          <p class="lead">Никаких форм на сайте: в демо запись идёт напрямую сообщением. Так проще и салону, и клиенту.</p>
+          <ol class="order-list">
+            <li><b>Сообщение</b>Услуга, дата, время, пожелания по длине и форме.</li>
+            <li><b>Ответ салона</b>Подтверждение времени или вариант рядом.</li>
+            <li><b>Визит</b>Адрес и вход пришлёт салон накануне.</li>
+          </ol>
+          <div class="msg-links" style="margin-top:24px">
+            <!-- ЗАМЕНИ href: ссылка на Telegram салона -->
+            <a class="btn btn--primary" href="#" rel="nofollow">Написать в Telegram</a>
+            <!-- ЗАМЕНИ href: ссылка на WhatsApp салона -->
+            <a class="btn btn--clay" href="#" rel="nofollow">Написать в WhatsApp</a>
+          </div>
+          <p class="note" style="margin-top:18px">Демо: кнопки мессенджеров пока не подключены. Ссылки подставим, когда салон пришлёт контакты.</p>
+        </div>
+
+        <div class="info-col" data-reveal style="--d:.1s">
+          <div class="info-card">
+            <h4>Адрес</h4>
+            <p>Санкт-Петербург, проспект Большевиков</p>
+            <p class="await">Точный адрес, корпус и вход пришлёт салон</p>
+          </div>
+          <div class="info-card">
+            <h4>Часы работы</h4>
+            <p class="await">Расписание пришлёт салон</p>
+          </div>
+          <div class="info-card">
+            <h4>Телефон</h4>
+            <p class="await">Номер пришлёт салон</p>
+          </div>
+          <div class="info-card">
+            <h4>Почта</h4>
+            <p class="await">Адрес почты пришлёт салон</p>
+          </div>
+          <div class="comb-rule" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= ПОДВАЛ ================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-in">
+      <div>
+        <div class="foot-brand">ТОДЭС</div>
+        <small>Салон причёсок · Санкт-Петербург, проспект Большевиков</small>
+      </div>
+      <nav class="foot-links" aria-label="Ссылки в подвале">
+        <a href="#services">Услуги</a>
+        <a href="#about">О салоне</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#contact">Запись</a>
+        <!-- ЗАМЕНИ href: ссылка на Telegram салона -->
+        <a href="#" rel="nofollow">Telegram</a>
+        <!-- ЗАМЕНИ href: ссылка на WhatsApp салона -->
+        <a href="#" rel="nofollow">WhatsApp</a>
+        <a href="#top">Наверх ↑</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Тодэс</span>
+      <span>Демо-версия: цены и фото условные.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-badge" aria-hidden="true"><i></i>Демо-версия</div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(s, r){ return (r || document).querySelector(s); };
+var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+var reduceMotion = mqReduce.matches;
+if (mqReduce.addEventListener) mqReduce.addEventListener('change', function(e){ reduceMotion = e.matches; });
+
+$('#year').textContent = String(new Date().getFullYear());
+
+/* --- гребень-пряди в герое: только рисунок, без интерактива --- */
+(function heroComb(){
+  var g = $('#heroComb');
+  if (!g) return;
+  var s = '', N = 26, i, k;
+  var n1 = function(v){ return String(Math.round(v * 10) / 10); };
+  for (i = 0; i < N; i++){
+    var x = 26 + i * (308 / (N - 1));
+    var len = 180 + Math.sin(i * 0.7) * 70 + (i % 3) * 28;
+    var amp = 5 + (i % 5) * 2.4;
+    var wl = 110 + (i % 4) * 26;
+    var d = 'M ' + n1(x) + ' 70', lastX = x;
+    for (k = 1; k <= 22; k++){
+      var u = k / 22, y = 70 + len * u;
+      lastX = x + Math.sin((y / wl) * Math.PI * 2 + i * 0.5) * amp * u;
+      d += ' L ' + n1(lastX) + ' ' + n1(y);
+    }
+    s += '<path class="hc-strand" d="' + d + '" style="animation-delay:' + (-i * 0.18).toFixed(2) + 's" stroke="url(#hcGrad)" stroke-width="' + (2.2 + (i % 3) * 0.5).toFixed(1) + '" fill="none" stroke-linecap="round" opacity="' + (0.5 + 0.5 * Math.abs(Math.sin(i))).toFixed(2) + '"/>';
+    s += '<circle class="hc-tip" style="animation-delay:' + (-i * 0.23).toFixed(2) + 's" cx="' + n1(lastX) + '" cy="' + n1(70 + len) + '" r="2.6" fill="#E8B04B"/>';
+  }
+  g.innerHTML = s;
+})();
+
+/* --- меню --- */
+var burger = $('#burger'), menu = $('#mobileMenu'), menuOpen = false;
+function setMenu(open){
+  menuOpen = open;
+  menu.hidden = !open;
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  document.body.classList.toggle('locked', open);
+  if (open) $('#menuClose').focus(); else burger.focus();
+}
+burger.addEventListener('click', function(){ setMenu(!menuOpen); });
+$('#menuClose').addEventListener('click', function(){ setMenu(false); });
+$$('#mobileMenu a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && menuOpen) setMenu(false); });
+
+/* --- демо-заглушки мессенджеров --- */
+$$('a[href="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){ e.preventDefault(); });
+});
+
+/* --- прокрутка: прогресс, активный раздел, оттенок фона, появление --- */
+var nav = $('#nav'), navTeeth = $('#navTeeth'), navLinks = $$('.nav-link');
+var parEls = $$('[data-par]');
+var clampN = function(v, a, b){ return Math.min(b, Math.max(a, v)); };
+var ticking = false;
+
+function frame(){
+  ticking = false;
+  var doc = document.documentElement;
+  var top = window.pageYOffset || doc.scrollTop;
+  var max = Math.max(1, doc.scrollHeight - window.innerHeight);
+  navTeeth.style.width = (clampN(top / max, 0, 1) * 100).toFixed(2) + '%';
+  nav.classList.toggle('solid', top > 40);
+  if (!reduceMotion){
+    var vh = window.innerHeight;
+    parEls.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var f = parseFloat(el.getAttribute('data-par')) || 0.05;
+      el.style.transform = 'translate3d(0,' + ((r.top + r.height / 2 - vh / 2) * -f).toFixed(1) + 'px,0)';
+    });
+  }
+}
+function tick(){ if (!ticking){ ticking = true; requestAnimationFrame(frame); } }
+window.addEventListener('scroll', tick, { passive: true });
+window.addEventListener('resize', tick);
+frame();
+
+if ('IntersectionObserver' in window){
+  var activeIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var id = en.target.id;
+      navLinks.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  $$('main section[id]').forEach(function(sec){ activeIO.observe(sec); });
+
+  var ambIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      var a = en.target.getAttribute('data-a'), b = en.target.getAttribute('data-b');
+      if (!a || !b) return;
+      var amb = $('#ambient');
+      amb.style.setProperty('--amb-a', a);
+      amb.style.setProperty('--amb-b', b);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  $$('[data-a]').forEach(function(sec){ ambIO.observe(sec); });
+
+  var revealIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('is-in'); revealIO.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  $$('[data-reveal]').forEach(function(el){
+    if (reduceMotion) el.classList.add('is-in'); else revealIO.observe(el);
+  });
+} else {
+  $$('[data-reveal]').forEach(function(el){ el.classList.add('is-in'); });
+}
+})();
+</script>
+</body>
+</html>

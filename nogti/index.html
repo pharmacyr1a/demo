@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>ManicureOff — ногтевая студия на проспекте Маршала Блюхера</title>
+<meta name="description" content="Ногтевая студия ManicureOff на проспекте Маршала Блюхера в Санкт-Петербурге. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eeeeee;--ink:#141414;--white:#fff;
+  --sans:"Geologica",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;transition:filter .6s}
+html.off{filter:grayscale(1)}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.logo{font:800 1.15rem/1 var(--sans);letter-spacing:-.02em;text-decoration:none}
+.btn{display:inline-block;padding:14px 24px;border-radius:14px;background:var(--ink);color:var(--white);border:2px solid var(--ink);font:700 .95rem var(--sans);text-decoration:none;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--white)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:20px 0 80px}
+.eyebrow{font-weight:500;font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+h1{font:800 clamp(2.6rem,8.4vw,6rem)/.98 var(--sans);letter-spacing:-.045em}
+.offbtn{font:inherit;letter-spacing:inherit;display:inline-block;margin-left:.08em;padding:0 .26em .06em;border:.07em solid var(--ink);border-radius:999px;background:#ff6f61;color:var(--ink);cursor:pointer;transition:background .3s,transform .2s}
+.offbtn:hover{transform:rotate(-3deg)}
+.offbtn[aria-pressed="true"]{background:var(--white)}
+.hint{margin:14px 0 28px;font-size:.9rem;opacity:.75}
+.lead{max-width:26em;margin-bottom:28px;font-size:1.08rem}
+
+.fan{position:relative;height:300px;width:100%;max-width:380px;margin:0 auto}
+.fan i{position:absolute;left:50%;bottom:0;width:92px;height:250px;background:var(--c);border:6px solid var(--white);border-bottom-width:40px;border-radius:14px;
+  transform-origin:50% 100%;transform:translateX(-50%) rotate(calc(var(--r)*1deg));transition:transform .5s cubic-bezier(.2,.9,.3,1.2);box-shadow:0 6px 14px rgba(0,0,0,.12)}
+.fan:hover i{transform:translateX(-50%) rotate(calc(var(--r)*1.35deg))}
+
+section{padding:70px 0}
+h2{font:800 clamp(1.9rem,4.6vw,3rem)/1.05 var(--sans);letter-spacing:-.035em;margin-bottom:12px}
+.sub{margin-bottom:30px;opacity:.8}
+
+.chips{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.chip,.work{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 2px 0 rgba(0,0,0,.08);transition:transform .25s}
+.chip:hover{transform:translateY(-6px) rotate(-1deg)}
+.chip::before,.work::before{content:"";display:block;height:96px;background:var(--c)}
+.chip div{padding:16px 18px 20px}
+.chip small{display:block;font:500 .75rem var(--sans);letter-spacing:.14em;opacity:.55}
+.chip b{display:block;font:700 1.08rem/1.25 var(--sans);margin:4px 0 10px;min-height:2.7em}
+.chip em{font:800 1.35rem var(--sans);font-style:normal;letter-spacing:-.02em}
+.note{margin-top:24px;font-size:.9rem;opacity:.75}
+
+.about{background:var(--white)}
+.about p{max-width:34em;font-size:1.12rem}
+.about p+p{margin-top:12px;opacity:.75}
+
+.works{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.work{aspect-ratio:3/4;display:flex;flex-direction:column}
+.work::before{height:auto;flex:1}
+.work span{padding:12px 16px;font-weight:700;font-size:.9rem}
+
+.contacts{background:var(--ink);color:var(--white)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contacts p+p{margin-top:8px}
+.contacts .btn{background:#ffc933;color:var(--ink);border-color:#ffc933}
+.contacts .btn.alt{background:transparent;color:var(--white);border-color:var(--white)}
+.contacts .btn.alt:hover{background:var(--white);color:var(--ink)}
+footer{padding:24px 0 90px;font-size:.88rem;background:var(--ink);color:#a8a8a8}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--ink);color:#ffc933;padding:8px 16px;border-radius:999px;font:700 .78rem var(--sans);letter-spacing:.08em;text-transform:uppercase}
+
+@media (max-width:780px){
+  .hero{grid-template-columns:1fr;padding-bottom:50px}
+  .fan{height:250px;max-width:300px}
+  .fan i{width:76px;height:206px}
+  .chips{grid-template-columns:1fr 1fr}
+  .works{grid-template-columns:1fr 1fr}
+  .cgrid{grid-template-columns:1fr}
+  section{padding:52px 0}
+}
+@media (max-width:420px){.chips{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*,html{transition:none!important;animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="wrap" id="top">
+  <header>
+    <a class="logo" href="#top">ManicureOff</a>
+    <a class="btn" href="#contacts">Записаться</a>
+  </header>
+  <main class="hero">
+    <div>
+      <p class="eyebrow">Ногтевая студия · проспект Маршала Блюхера</p>
+      <h1>Manicure<button class="offbtn" id="sw" type="button" aria-pressed="false" aria-label="Off: выключить цвет страницы">Off</button></h1>
+      <p class="hint">Нажмите на Off, и цвет выключится.</p>
+      <p class="lead">Маникюр, педикюр и покрытие. Напишите в мессенджер, и мы подберём время.</p>
+      <div class="actions">
+        <a class="btn" href="#contacts">Записаться</a>
+        <a class="btn alt" href="#prices">Цены</a>
+      </div>
+    </div>
+    <div class="fan" aria-hidden="true">
+      <i style="--r:-36;--c:#ff6f61"></i><i style="--r:-24;--c:#ffc933"></i><i style="--r:-12;--c:#35b66f"></i>
+      <i style="--r:0;--c:#1fb5ac"></i><i style="--r:12;--c:#3a6df0"></i><i style="--r:24;--c:#b69cff"></i><i style="--r:36;--c:#ff4d8d"></i>
+    </div>
+  </main>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <p class="sub">Каждая услуга как образец оттенка. Цены «от», итог называет мастер.</p>
+    <ul class="chips">
+      <li class="chip" style="--c:#ff6f61"><div><small>MO-01</small><b>Маникюр классический</b><em>от 1&nbsp;600&nbsp;₽</em></div></li>
+      <li class="chip" style="--c:#ffc933"><div><small>MO-02</small><b>Маникюр с покрытием</b><em>от 2&nbsp;300&nbsp;₽</em></div></li>
+      <li class="chip" style="--c:#35b66f"><div><small>MO-03</small><b>Педикюр</b><em>от 2&nbsp;600&nbsp;₽</em></div></li>
+      <li class="chip" style="--c:#1fb5ac"><div><small>MO-04</small><b>Педикюр с покрытием</b><em>от 3&nbsp;300&nbsp;₽</em></div></li>
+      <li class="chip" style="--c:#3a6df0"><div><small>MO-05</small><b>Снятие покрытия</b><em>от 400&nbsp;₽</em></div></li>
+      <li class="chip" style="--c:#ff4d8d"><div><small>MO-06</small><b>Дизайн, один ноготь</b><em>от 100&nbsp;₽</em></div></li>
+    </ul>
+    <p class="note">Цены в демо условные. Актуальный прайс присылает студия.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>О студии</h2>
+    <p>ManicureOff — ногтевая студия на проспекте Маршала Блюхера.</p>
+    <p>Здесь будет рассказ о студии: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт студия.</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <p class="sub">Здесь появятся фотографии работ студии.</p>
+    <div class="works" aria-hidden="true">
+      <div class="work" style="--c:#ff4d8d"><span>фото</span></div><div class="work" style="--c:#ffc933"><span>фото</span></div>
+      <div class="work" style="--c:#1fb5ac"><span>фото</span></div><div class="work" style="--c:#b69cff"><span>фото</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap cgrid">
+    <div>
+      <h2>Где найти</h2>
+      <p>Санкт-Петербург, проспект Маршала Блюхера</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions" style="margin-top:22px">
+        <!-- ЗАМЕНИ href: ссылка на запись студии (карты или мессенджер); чужую ссылку не ставить -->
+        <a class="btn" href="#">Записаться онлайн</a>
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn alt" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn alt" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: цены, часы работы и фото условные. © 2026 ManicureOff</div>
+</footer>
+
+<script>
+(function () {
+  var b = document.getElementById('sw'), h = document.documentElement;
+  b.addEventListener('click', function () {
+    var off = h.classList.toggle('off');
+    b.setAttribute('aria-pressed', off ? 'true' : 'false');
+  });
+})();
+</script>
+</body>
+</html>

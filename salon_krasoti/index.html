@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери после оплаты -->
+<meta name="robots" content="noindex">
+<title>Долински — салон красоты, Санкт-Петербург</title>
+<meta name="description" content="Долински — салон красоты на проспекте Маршала Блюхера в Санкт-Петербурге. Волосы, ногти, брови и ресницы.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F0E7;
+    --paper:#FDFBF7;
+    --ink:#221E1A;
+    --muted:#5C554D;
+    --clay:#A8432A;
+    --clay-light:#E2865F;
+    --brass:#9A7B3F;
+    --line:rgba(34,30,26,.16);
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Manrope",system-ui,sans-serif;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+  img{max-width:100%}
+  h1,h2,h3{font-family:"Prata",Georgia,serif;font-weight:400;margin:0;line-height:1.12}
+  p{margin:0}
+  a{color:var(--clay);text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:3px solid var(--clay);outline-offset:3px;border-radius:2px}
+
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* ---------- фирменный элемент: гребень ---------- */
+  .comb{
+    height:13px;
+    border-top:2px solid var(--brass);
+    background:repeating-linear-gradient(90deg,var(--brass) 0 2px,transparent 2px 9px);
+  }
+  .comb--short{width:74px}
+  .comb--dark{border-top-color:var(--clay-light);background:repeating-linear-gradient(90deg,var(--clay-light) 0 2px,transparent 2px 9px)}
+
+  /* ---------- демо-плашка ---------- */
+  .demo{
+    position:fixed;z-index:60;right:0;bottom:0;
+    background:var(--ink);color:var(--cream);
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    padding:8px 14px;
+  }
+
+  /* ---------- шапка ---------- */
+  header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px 0 12px}
+  .logo{font-family:"Prata",serif;font-size:24px;letter-spacing:.06em;color:var(--ink)}
+  .logo:hover{text-decoration:none}
+  nav{display:flex;gap:18px;flex-wrap:wrap;margin-left:auto;font-size:15px}
+  nav a{color:var(--muted)}
+  nav a:hover{color:var(--clay)}
+  .bar .btn{padding:9px 18px;font-size:14px}
+
+  /* ---------- кнопки ---------- */
+  .btn{
+    display:inline-block;border:1px solid var(--ink);background:var(--ink);color:var(--cream);
+    padding:14px 26px;font-size:15px;font-weight:500;letter-spacing:.04em;
+    transition:background .2s ease,color .2s ease;
+  }
+  .btn:hover{background:var(--clay);border-color:var(--clay);text-decoration:none;color:#fff}
+  .btn--ghost{background:transparent;color:var(--ink)}
+  .btn--ghost:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .btn--light{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+  .btn--light:hover{background:var(--clay-light);border-color:var(--clay-light);color:var(--ink)}
+  .btn--outline-light{background:transparent;color:var(--cream);border-color:rgba(246,240,231,.5)}
+  .btn--outline-light:hover{background:var(--cream);color:var(--ink)}
+
+  /* ---------- герой ---------- */
+  .hero{padding:56px 0 0}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:end}
+  .eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:clamp(52px,13vw,116px);letter-spacing:.01em;margin:18px 0 0}
+  .hero-sub{font-family:"Prata",serif;font-size:clamp(20px,3.4vw,30px);color:var(--clay);margin-top:6px}
+  .hero-text{max-width:44ch;margin-top:22px;color:var(--muted)}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 40px}
+
+  /* ---------- заглушки фото ---------- */
+  .photo{
+    position:relative;background:var(--paper);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+    min-height:120px;
+  }
+  .photo::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:11px;
+    border-top:2px solid var(--brass);
+    background:repeating-linear-gradient(90deg,var(--brass) 0 2px,transparent 2px 9px);
+    opacity:.75;
+  }
+  .photo--tall{aspect-ratio:3/4}
+  .photo--wide{aspect-ratio:4/3}
+  .photo--square{aspect-ratio:1/1}
+
+  /* ---------- секции ---------- */
+  section{padding:72px 0}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  h2{font-size:clamp(30px,5.4vw,50px)}
+  .head .comb{margin-bottom:12px}
+  .note{font-size:14px;color:var(--muted);max-width:52ch}
+  .rule{height:1px;background:var(--line);margin:26px 0 0}
+
+  /* ---------- прайс ---------- */
+  .price-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 56px;margin-top:34px}
+  .group{padding:22px 0 6px;border-top:1px solid var(--line)}
+  .group h3{font-size:22px;margin-bottom:14px}
+  .row{display:flex;align-items:baseline;gap:8px;padding:9px 0}
+  .row .name{min-width:0}
+  .row .dots{flex:1 1 12px;border-bottom:1px dotted rgba(34,30,26,.35);transform:translateY(-4px)}
+  .row .val{white-space:nowrap;font-weight:500;color:var(--clay)}
+  .price-foot{margin-top:26px;font-size:14px;color:var(--muted)}
+
+  /* ---------- о салоне ---------- */
+  .about{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
+  .about-text p+p{margin-top:16px}
+  .placeholder{
+    margin-top:22px;padding:16px 18px;border-left:3px solid var(--brass);
+    background:var(--cream);font-size:15px;color:var(--muted);
+  }
+
+  /* ---------- галерея ---------- */
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+  .mosaic .photo:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:1/1}
+  .mosaic .photo:nth-child(2){grid-column:span 2}
+  .mosaic .photo:nth-child(3),
+  .mosaic .photo:nth-child(4){grid-column:span 1}
+  .mosaic .photo:nth-child(5){grid-column:span 2}
+  .mosaic .photo:nth-child(6){grid-column:span 2}
+  .mosaic .photo{aspect-ratio:4/3}
+
+  /* ---------- контакты ---------- */
+  .contact{background:var(--ink);color:var(--cream)}
+  .contact h2{color:var(--cream)}
+  .contact .eyebrow{color:var(--clay-light)}
+  .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:34px;align-items:start}
+  .contact-lead{font-family:"Prata",serif;font-size:clamp(22px,3.6vw,32px);line-height:1.25}
+  .contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  dl{margin:0;display:grid;gap:22px}
+  dt{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--clay-light);margin-bottom:6px}
+  dd{margin:0;font-size:17px}
+  dd .sub{display:block;font-size:14px;color:rgba(246,240,231,.72);margin-top:4px}
+
+  /* ---------- подвал ---------- */
+  footer{background:var(--ink);color:rgba(246,240,231,.78);padding:0 0 34px}
+  .foot{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;padding-top:24px;font-size:14px}
+  footer a{color:var(--clay-light)}
+
+  /* ---------- появление ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- адаптив ---------- */
+  @media (max-width:900px){
+    .hero-grid,.about-grid,.contact-grid,.price-cols{grid-template-columns:1fr}
+    .hero{padding-top:36px}
+    .hero-actions{margin-bottom:28px}
+    section{padding:56px 0}
+    .mosaic{grid-template-columns:repeat(2,1fr)}
+    .mosaic .photo:nth-child(n){grid-column:span 1;grid-row:auto;aspect-ratio:4/3}
+    .mosaic .photo:nth-child(1){grid-column:span 2;aspect-ratio:16/10}
+  }
+  @media (max-width:560px){
+    body{font-size:16px}
+    nav{order:3;width:100%;margin-left:0;gap:14px;font-size:14px}
+    .bar .btn{margin-left:auto}
+    .btn{padding:13px 20px}
+    .hero-actions .btn{flex:1 1 100%;text-align:center}
+    .contact-actions .btn{flex:1 1 100%;text-align:center}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Демо-версия</div>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top">Долински</a>
+      <nav>
+        <a href="#services">Услуги</a>
+        <a href="#about">О салоне</a>
+        <a href="#gallery">Работы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <a class="btn" href="#contact">Записаться</a>
+    </div>
+  </div>
+  <div class="comb"></div>
+</header>
+
+<main id="top">
+
+  <!-- ГЕРОЙ -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Салон красоты · Санкт-Петербург</p>
+          <h1>Долински</h1>
+          <p class="hero-sub">проспект Маршала Блюхера</p>
+          <p class="hero-text">
+            Волосы, ногти, брови и ресницы — в одном салоне рядом с домом.
+            Запись по сообщению или звонку: подберём услугу и удобное время.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#contact">Записаться</a>
+            <!-- ЗАМЕНИ href: ссылка на WhatsApp салона -->
+            <a class="btn btn--ghost" href="#">Написать в WhatsApp</a>
+          </div>
+        </div>
+        <div class="photo photo--tall">фото</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- УСЛУГИ -->
+  <section id="services">
+    <div class="wrap reveal">
+      <div class="head">
+        <div>
+          <div class="comb comb--short"></div>
+          <h2>Услуги и цены</h2>
+        </div>
+        <p class="note">Прайс ниже — пример для демонстрации. Точный список услуг и цены пришлёт студия.</p>
+      </div>
+      <div class="rule"></div>
+
+      <div class="price-cols">
+        <div class="group">
+          <h3>Волосы</h3>
+          <div class="row"><span class="name">Стрижка</span><span class="dots"></span><span class="val">от 2 000 ₽</span></div>
+          <div class="row"><span class="name">Стрижка и укладка</span><span class="dots"></span><span class="val">от 2 800 ₽</span></div>
+          <div class="row"><span class="name">Окрашивание</span><span class="dots"></span><span class="val">от 5 000 ₽</span></div>
+          <div class="row"><span class="name">Уход за волосами</span><span class="dots"></span><span class="val">от 2 000 ₽</span></div>
+        </div>
+
+        <div class="group">
+          <h3>Ногти</h3>
+          <div class="row"><span class="name">Маникюр</span><span class="dots"></span><span class="val">от 1 800 ₽</span></div>
+          <div class="row"><span class="name">Маникюр с покрытием</span><span class="dots"></span><span class="val">от 2 600 ₽</span></div>
+          <div class="row"><span class="name">Педикюр</span><span class="dots"></span><span class="val">от 2 800 ₽</span></div>
+        </div>
+
+        <div class="group">
+          <h3>Брови и ресницы</h3>
+          <div class="row"><span class="name">Оформление бровей</span><span class="dots"></span><span class="val">от 1 000 ₽</span></div>
+          <div class="row"><span class="name">Окрашивание бровей</span><span class="dots"></span><span class="val">от 900 ₽</span></div>
+          <div class="row"><span class="name">Ресницы</span><span class="dots"></span><span class="val">от 2 500 ₽</span></div>
+        </div>
+
+        <div class="group">
+          <h3>Дополнительно</h3>
+          <div class="row"><span class="name">Укладка на событие</span><span class="dots"></span><span class="val">от 2 500 ₽</span></div>
+          <div class="row"><span class="name">Другие услуги</span><span class="dots"></span><span class="val">уточняйте</span></div>
+          <p class="note" style="margin-top:14px">Раздел заполняется вместе с салоном.</p>
+        </div>
+      </div>
+
+      <p class="price-foot">Цены условные, указаны «от» и не являются предложением услуги.</p>
+    </div>
+  </section>
+
+  <!-- О САЛОНЕ -->
+  <section id="about" class="about">
+    <div class="wrap reveal">
+      <div class="about-grid">
+        <div class="photo photo--wide">фото</div>
+        <div class="about-text">
+          <div class="comb comb--short"></div>
+          <h2 style="margin-top:12px">О салоне</h2>
+          <p style="margin-top:20px">
+            «Долински» — салон красоты на проспекте Маршала Блюхера.
+            Основные направления: волосы, ногти, брови и ресницы.
+          </p>
+          <p>
+            Здесь будет короткий рассказ о салоне: как работает запись,
+            сколько времени занимает визит, что важно знать перед первым приходом.
+          </p>
+          <div class="placeholder">Текст пришлёт студия. Достаточно 3–4 предложений: о салоне, о мастерах и о том, как проходит запись.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ -->
+  <section id="gallery">
+    <div class="wrap reveal">
+      <div class="head">
+        <div>
+          <div class="comb comb--short"></div>
+          <h2>Работы</h2>
+        </div>
+        <p class="note">Место для фотографий салона и работ. Сейчас блоки пустые — фото условные.</p>
+      </div>
+      <div class="mosaic">
+        <div class="photo">фото</div>
+        <div class="photo">фото</div>
+        <div class="photo">фото</div>
+        <div class="photo">фото</div>
+        <div class="photo">фото</div>
+        <div class="photo">фото</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contact" class="contact">
+    <div class="wrap reveal">
+      <div class="comb comb--short comb--dark"></div>
+      <p class="eyebrow" style="margin-top:16px">Контакты</p>
+      <h2 style="margin-top:10px">Записаться</h2>
+
+      <div class="contact-grid">
+        <div>
+          <p class="contact-lead">Напишите или позвоните — уточним услугу, время и стоимость.</p>
+          <div class="contact-actions">
+            <!-- ЗАМЕНИ href: ссылка на WhatsApp салона -->
+            <a class="btn btn--light" href="#">WhatsApp</a>
+            <!-- ЗАМЕНИ href: ссылка на Telegram салона -->
+            <a class="btn btn--outline-light" href="#">Telegram</a>
+          </div>
+        </div>
+
+        <dl>
+          <div>
+            <dt>Адрес</dt>
+            <dd>Санкт-Петербург, проспект Маршала Блюхера
+              <span class="sub">Номер дома и вход пришлёт студия</span>
+            </dd>
+          </div>
+          <div>
+            <dt>Телефон</dt>
+            <dd><span class="sub">Телефон пришлёт студия</span></dd>
+          </div>
+          <div>
+            <dt>Часы работы</dt>
+            <dd><span class="sub">Часы работы пришлёт студия</span></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="comb comb--dark"></div>
+  <div class="wrap">
+    <div class="foot">
+      <span>Долински · салон красоты · демонстрационная версия сайта</span>
+      <span>Цены и фото условные</span>
+      <!-- ЗАМЕНИ href: ссылка на Telegram салона -->
+      <a href="#">Telegram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var items = document.querySelectorAll('.reveal');
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(calm || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{rootMargin:'0px 0px -10% 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

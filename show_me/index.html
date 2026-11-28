@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ДЕМО: убери строку после оплаты -->
+<meta name="robots" content="noindex">
+<title>Show me — студия красоты на Большом Гнездниковском переулке</title>
+<meta name="description" content="Студия красоты Show me на Большом Гнездниковском переулке. Услуги, цены, запись.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#d9dde2;--ink:#131316;--red:#e11d48;--white:#f7f8f9;
+  --sans:"Commissioner",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.logo{font:800 1.25rem/1 var(--sans);letter-spacing:-.02em;text-decoration:none;text-transform:uppercase}
+.logo i{color:var(--red);font-style:normal}
+.btn{display:inline-block;padding:14px 26px;background:var(--ink);color:var(--white);border:2px solid var(--ink);font:500 .95rem var(--sans);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s,transform .2s}
+.btn:hover{background:var(--red);border-color:var(--red);transform:translateY(-3px)}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn.alt:hover{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+
+.stage{position:relative;padding:20px 0 40px;--x:50%;--y:50%}
+.eyebrow{font:500 .85rem var(--sans);letter-spacing:.18em;text-transform:uppercase}
+.bigwrap{position:relative;margin:10px 0 24px}
+.big{font:800 clamp(5.4rem,25vw,19rem)/.82 var(--sans);text-transform:uppercase;letter-spacing:-.06em;margin-left:-.05em}
+.big em{color:var(--red);font-style:normal}
+.base{color:rgba(19,19,22,.13)}
+.lit{position:absolute;inset:0;color:var(--ink);pointer-events:none}
+.js .lit{-webkit-mask:radial-gradient(circle 200px at var(--x) var(--y),#000 0 55%,transparent 100%);mask:radial-gradient(circle 200px at var(--x) var(--y),#000 0 55%,transparent 100%)}
+.hint{font-size:.88rem;opacity:.7;margin-bottom:22px}
+.lead{max-width:27em;margin-bottom:28px;font-size:1.12rem}
+
+section{padding:80px 0;border-top:2px solid var(--ink)}
+h2{font:800 clamp(2rem,5vw,3.4rem)/1 var(--sans);letter-spacing:-.04em;text-transform:uppercase;margin-bottom:34px}
+
+.list{list-style:none;padding:0}
+.list li{position:relative;display:grid;grid-template-columns:3rem 1fr auto;gap:14px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(19,19,22,.3);transition:padding-left .25s}
+.list li::before{content:"";position:absolute;left:0;top:0;bottom:-1px;width:0;background:var(--red);transition:width .25s}
+.list li:hover{padding-left:20px}
+.list li:hover::before{width:6px}
+.list .k{font-size:.85rem;opacity:.6}
+.list .n{font:800 clamp(1.4rem,3.6vw,2.4rem)/1.1 var(--sans);letter-spacing:-.03em}
+.list .p{font:500 1.15rem var(--sans);white-space:nowrap}
+.note{margin-top:22px;font-size:.9rem;opacity:.75}
+
+.about p{max-width:34em;font-size:1.15rem}
+.about p+p{margin-top:12px;opacity:.75}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.works div{aspect-ratio:3/4;background:var(--white);display:grid;place-items:end start;padding:16px;font:800 1.1rem var(--sans);text-transform:uppercase;letter-spacing:-.02em;position:relative}
+.works div::after{content:"";position:absolute;top:16px;right:16px;width:14px;height:14px;border-radius:50%;background:var(--red)}
+
+.contacts{background:var(--ink);color:var(--white)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contacts p+p{margin-top:8px}
+.contacts .btn{background:var(--red);border-color:var(--red);color:var(--white)}
+.contacts .btn:hover{background:var(--white);border-color:var(--white);color:var(--ink)}
+.contacts .btn.alt{background:transparent;color:var(--white);border-color:var(--white)}
+.contacts .btn.alt:hover{background:var(--white);color:var(--ink)}
+footer{background:var(--ink);color:#a9aab0;padding:6px 0 90px;font-size:.88rem}
+
+/* ДЕМО: удали этот блок и <div class="demo"> после оплаты */
+.demo{position:fixed;right:14px;bottom:14px;z-index:9;background:var(--red);color:var(--white);padding:8px 16px;font:800 .75rem var(--sans);letter-spacing:.12em;text-transform:uppercase}
+
+@media (max-width:780px){
+  .works{grid-template-columns:1fr 1fr}
+  .cgrid{grid-template-columns:1fr}
+  .list li{grid-template-columns:2.2rem 1fr auto}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия</div>
+
+<div class="wrap" id="top">
+  <header>
+    <a class="logo" href="#top">Show me<i>.</i></a>
+    <a class="btn" href="#contacts">Записаться</a>
+  </header>
+
+  <main class="stage" id="stage">
+    <p class="eyebrow">Студия красоты · Большой Гнездниковский переулок</p>
+    <div class="bigwrap">
+      <h1 class="big base">Show<br>me<em>.</em></h1>
+      <div class="big lit" aria-hidden="true">Show<br>me<em>.</em></div>
+    </div>
+    <p class="hint">Проведите по названию, чтобы подсветить его.</p>
+    <p class="lead">Стрижки, окрашивание и укладки. Напишите в мессенджер, и мы подберём время.</p>
+    <div class="actions">
+      <a class="btn" href="#contacts">Записаться</a>
+      <a class="btn alt" href="#prices">Цены</a>
+    </div>
+  </main>
+</div>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Услуги и цены</h2>
+    <ul class="list">
+      <li><span class="k">01</span><span class="n">Женская стрижка</span><span class="p">от 1&nbsp;800&nbsp;₽</span></li>
+      <li><span class="k">02</span><span class="n">Мужская стрижка</span><span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+      <li><span class="k">03</span><span class="n">Детская стрижка</span><span class="p">от 800&nbsp;₽</span></li>
+      <li><span class="k">04</span><span class="n">Окрашивание</span><span class="p">от 3&nbsp;500&nbsp;₽</span></li>
+      <li><span class="k">05</span><span class="n">Укладка</span><span class="p">от 1&nbsp;200&nbsp;₽</span></li>
+      <li><span class="k">06</span><span class="n">Уход и мытьё головы</span><span class="p">от 500&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Список услуг и цены в демо условные. Актуальный прайс присылает студия.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <h2>О студии</h2>
+    <p>Show me — студия красоты на Большом Гнездниковском переулке.</p>
+    <p>Здесь будет рассказ о студии: кто работает, чем вы отличаетесь, как проходит визит. Текст пришлёт студия.</p>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works" aria-hidden="true"><div>фото</div><div>фото</div><div>фото</div></div>
+    <p class="note">Здесь появятся фотографии работ студии.</p>
+  </div>
+</section>
+
+<section class="contacts" id="contacts">
+  <div class="wrap cgrid">
+    <div>
+      <h2>Где найти</h2>
+      <p>Большой Гнездниковский переулок</p>
+      <p>Ежедневно, 10:00–21:00 (в демо условно)</p>
+    </div>
+    <div>
+      <h2>Запись</h2>
+      <p>Напишите в мессенджер: подберём мастера и удобное время.</p>
+      <div class="actions" style="margin-top:22px">
+        <!-- ЗАМЕНИ href: https://wa.me/7XXXXXXXXXX (номер без плюса) -->
+        <a class="btn" href="#">WhatsApp</a>
+        <!-- ЗАМЕНИ href: https://t.me/username -->
+        <a class="btn alt" href="#">Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Демо-версия сайта: услуги, цены, часы работы и фото условные. © 2026 Show me</div>
+</footer>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;                       // без движения: название видно целиком
+  document.documentElement.classList.add('js');
+  var box = stage.querySelector('.bigwrap'), active = false, idle, t = 0;
+  function set(x, y) { stage.style.setProperty('--x', x + 'px'); stage.style.setProperty('--y', y + 'px'); }
+  function pos(e) {
+    var r = box.getBoundingClientRect();
+    set(e.clientX - r.left, e.clientY - r.top);
+    active = true; clearTimeout(idle);
+    idle = setTimeout(function () { active = false; }, 2500);
+  }
+  stage.addEventListener('pointermove', pos);
+  stage.addEventListener('pointerdown', pos);
+  function tick() {
+    if (!active) {
+      var w = box.offsetWidth, h = box.offsetHeight;
+      set(w * (0.5 + 0.38 * Math.sin(t * 0.7)), h * (0.5 + 0.3 * Math.sin(t * 1.1 + 1)));
+    }
+    t += 0.016;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
